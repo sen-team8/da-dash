@@ -28,6 +28,8 @@ module.exports = {
     'no-param-reassign': 0,
     'quotes': 0,
     'space-before-function-paren': 0,
+    'react/arrow-body-style': 0,
+    'arrow-body-style': 0,
     'react/prop-types': 0,
     // 'react/jsx-boolean-value': 0,
     'no-console': 0,
