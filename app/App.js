@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ToDo from './Widgets/ToDo';
+
 export default class Bapp extends Component {
   foo() {
     return 'good';
@@ -6,7 +8,8 @@ export default class Bapp extends Component {
   render() {
     return (
       <div className="commentBox">
-          Hello,wosssld! I am a CommentBox.
+          Hello,wosld! I am a CommentBox.
+          <ToDo/>
       </div>
     );
   }
