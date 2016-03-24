@@ -1,5 +1,5 @@
-module.exports = function () {
-  var element = document.createElement('h1');
+module.exports = () => {
+  const element= document.createElement('h1');
 
   element.innerHTML = 'Kusan world';
 
