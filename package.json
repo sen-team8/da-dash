@@ -8,7 +8,8 @@
     "build": "webpack",
     "start": "webpack-dev-server",
     "lint": "eslint . --ext .js --ext .jsx  || true",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "doc": "jsdoc ./app -d ./DOC"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
     "gh-pages": "^0.9.0",
     "html-webpack-plugin": "^2.7.2",
     "html-webpack-template": "^3.1.5",
+    "jsdoc": "^3.4.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1",
