@@ -47,12 +47,6 @@ class TodoItem extends React.Component {
     });
   }
 
-  handleKeyDown() {
-    this.setState({
-      isEditing: false,
-    });
-  }
-
   handleCompleteTodo() {
     this.props.actions.completeTodo(this.props.todo.ID);
   }
@@ -61,7 +55,7 @@ class TodoItem extends React.Component {
     this.setState({
       isEditing: false,
     });
-    this.props.actions.createTodo(this.state.text);
+    this.props.actions.editTodo(this.state.text, this.props.todo.ID);
   }
 
   handleTextChange(e) {
@@ -88,7 +82,7 @@ class TodoItem extends React.Component {
       return (
         <div style={styleD} onDoubleClick={this.handleDoubleClick}>
           <div style= {styleP}>
-              <TextField value= {this.state.text} onKeyDown= {this.handleKeyDown} onChange= {this.handleTextChange} />
+              <TextField value= {this.state.text} onChange= {this.handleTextChange} />
           </div>
 
           <RaisedButton type="submit" label="Save" style={styleB} onClick={this.handleSave} />

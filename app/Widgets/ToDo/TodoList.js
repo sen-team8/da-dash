@@ -2,6 +2,10 @@ import React from 'react';
 import TodoItem from './TodoItem';
 import RaisedButton from 'material-ui/lib/raised-button';
 
+const styleB = {
+  float: 'left',
+};
+
 export default class TodoList extends React.Component {
   constructor(props) {
     super(props);
@@ -41,8 +45,8 @@ export default class TodoList extends React.Component {
           );
           })
         }
-        <RaisedButton type="submit" label="Completed" onClick={this.handleShowCompleted} />
-        <RaisedButton type="submit" label="All" onClick={this.handleShowAll} />
+        <RaisedButton type="submit" label="All" style={styleB} onClick={this.handleShowAll} />
+        <RaisedButton type="submit" label="Completed" style={styleB} onClick={this.handleShowCompleted} />
       </div>
     );
   }
