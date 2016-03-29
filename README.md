@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sen-team8/da-dash.svg?branch=master)](https://travis-ci.org/sen-team8/da-dash)
+
 ## Based on surviveJS
 
 `This branch doesn't have Redux`
@@ -11,4 +13,4 @@
 ### Deploy
     $ npm run build
 
-bundled app would be in build directory 
+bundled app would be in build directory
