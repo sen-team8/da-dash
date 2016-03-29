@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- "stable"
+
+script:
+  - npm run build
+  - npm run lint
+
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
