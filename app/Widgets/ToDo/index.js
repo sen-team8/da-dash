@@ -33,7 +33,7 @@ class Todo extends React.Component {
     return (
       <div className="centered todo container" id="todoApp">
         <Link to="login"> This link </Link>
-        <div id="todoHeader">
+        <div className="todo" id="todoHeader">
           <span>Todo App</span>
         </div>
         {this.showCreateTodo()}

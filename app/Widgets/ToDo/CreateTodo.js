@@ -1,10 +1,6 @@
 import React from 'react';
 import { Button, Input } from 'react-bootstrap';
 
-const style = {
-  margin: 12,
-};
-
 export default class CreateTodo extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +31,7 @@ export default class CreateTodo extends React.Component {
               onChange={this.handleChange}
             /> */}
             <Input className="todo textfield" type="text" placeholder="Enter text" onChange={this.handleChange}/>
-          <Button className="raised" bsStyle="primary" type="submit" style={style}>Add</Button>
+          <Button className="todo raised" id="add" bsStyle="primary" type="submit">Add</Button>
         </form>
     </div>
     );

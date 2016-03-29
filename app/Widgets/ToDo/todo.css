@@ -1,4 +1,4 @@
-.todo.btn-primary.raised {
+/*.todo.btn-primary.raised {
     box-shadow: 0 3px 0 0 #007299;
 }
 
@@ -7,12 +7,15 @@
   box-shadow: none;
   margin-bottom: -3px !important;
   margin-top: 3px !important;
-}
+}*/
 
 .todo.list {
   float: left;
+  margin-top: 5%;
   margin-left: 20%;
-  margin-bottom: 5%;
+  margin-bottom: 10px;
+  position: fixed;
+  bottom: -5px;
 }
 
 .todo.textfield {
@@ -21,4 +24,17 @@
 
 .todo.container{
   width: 300px !important;
+  min-height: 350px;
+}
+
+.todo#todoHeader{
+  margin: 5% 5% 10% 5%;
+}
+
+.todo#add{
+  margin: 1% 0 5% 40%;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
 }

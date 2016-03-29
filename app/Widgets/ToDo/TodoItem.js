@@ -35,8 +35,7 @@ export default class TodoItem extends React.Component {
     this.props.actions.completeTodo(this.props.todo.ID);
     if (!this.props.todo.completed) {
       this.state.buttonState="success";
-    }
-    else {
+    } else {
       this.state.buttonState="default";
     }
   }
