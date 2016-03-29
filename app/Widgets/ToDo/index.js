@@ -11,6 +11,7 @@ class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { show: 'All' };
+    this.handleStateChange = this.handleStateChange.bind(this);
   }
 
   showCreateTodo() {
@@ -22,6 +23,7 @@ class Todo extends React.Component {
     return <div></div>;
   }
   handleStateChange(text) {
+    this.setState({ show: text });
   }
 
   render() {
@@ -33,7 +35,9 @@ class Todo extends React.Component {
           <span>Todo App</span>
         </div>
         {this.showCreateTodo()}
-        <TodoList actions={this.props.actions} todos={this.props.todos} />
+        <TodoList actions={this.props.actions} todos={this.props.todo.todos}
+          handleStateChange={this.handleStateChange}
+        />
       </div>
     );
   }
@@ -45,7 +49,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return { ...state.reducer };
 }
 
