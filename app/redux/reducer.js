@@ -3,7 +3,8 @@ import {
   CREATE_TODO,
   DELETE_TODO,
   COMPLETE_TODO,
-} from './actions';
+  EDIT_TODO,
+} from './todoActions';
 
 const getId = (state) => {
   return state.todos.reduce((maxId, todoItem) => {
@@ -46,10 +47,16 @@ function todo(state = todoState, action) {
           return todoItem.ID === action.ID ? Object.assign({}, todoItem, { completed: !todoItem.completed }) : todoItem;
         }),
       });
+    case EDIT_TODO:
+      return Object.assign({}, state, {
+        todos: state.todos.map((todoItem) => {
+          return todoItem.ID === action.TODO.ID ? Object.assign({}, todoItem, { TEXT: action.TODO.TEXT }) : todoItem;
+        }),
+      });
     default: {
       return state;
     }
   }
 }
-const reducer = combineReducers(todo);
+const reducer= todo;
 export default reducer;
