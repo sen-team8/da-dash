@@ -10,6 +10,18 @@ import { actions } from '../../redux/actions';
 class Todo extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { show: 'All' };
+  }
+
+  showCreateTodo() {
+    if (this.state.show === 'All') {
+      return (
+          <CreateTodo actions={this.props.actions}/>
+        );
+    }
+    return <div></div>;
+  }
+  handleStateChange(text) {
   }
 
   render() {
@@ -20,8 +32,8 @@ class Todo extends React.Component {
         <div id="todoHeader">
           <span>Todo App</span>
         </div>
-        <CreateTodo actions={this.props.actions} />
-        <TodoList actions={this.props.actions} todos={this.props.todo.todos} />
+        {this.showCreateTodo()}
+        <TodoList actions={this.props.actions} todos={this.props.todos} />
       </div>
     );
   }
