@@ -3,9 +3,12 @@ import ToDo from './Widgets/ToDo';
 import { actions } from './redux/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Router, Route } from 'react-router';
+import Login from './Components/Login';
 
 function mapStateToProps(state) {
-  return state;
+  console.log(state);
+  return { ...state.reducer };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -13,19 +16,19 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(actions, dispatch),
   };
 }
-
 class App extends Component {
-  foo() {
-    return 'good';
-  }
   render() {
+    console.log(this.props);
     return (
       <div className="commentBox">
-          Hello,wosld! I am a CommentBox.
-          <ToDo actions={this.props.actions} todos={this.props.reducer.todos}/>
+        <Router history={this.props.history}>
+            <Route path="/" component={ToDo} actions = {this.props.actions} todos = {this.props.todo.todos} />
+            <Route path="/login" component={Login} />
+        </Router>
       </div>
     );
   }
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
