@@ -26,6 +26,7 @@ export default class CreateTodo extends React.Component {
     this.props.actions.createTodo(this.state.text);
   }
   render() {
+    // console.log(this.props);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

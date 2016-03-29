@@ -14,6 +14,7 @@ export default class TodoList extends React.Component {
   }
 
   handleShowAll() {
+    this.props.handleStateChange('All');
     this.setState({
       showAll: true,
       showCompleted: false,
@@ -21,12 +22,14 @@ export default class TodoList extends React.Component {
   }
 
   handleShowCompleted() {
+    this.props.handleStateChange('Completed');
     this.setState({
       showAll: false,
       showCompleted: true,
     });
   }
   render() {
+    // console.log(this.props.todos);
     return (
       <div>
         {

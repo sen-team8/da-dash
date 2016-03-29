@@ -20,6 +20,7 @@ export default class TodoItem extends React.Component {
   }
 
   handleDeleteTodo() {
+    console.log(this.props.todo.ID);
     this.props.actions.deleteTodo(this.props.todo.ID);
   }
 
@@ -82,6 +83,7 @@ export default class TodoItem extends React.Component {
     }
   }
   render() {
+    console.log(this.props);
     return (
       <div>
           {this.textArea()}
