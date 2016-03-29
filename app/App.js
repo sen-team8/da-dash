@@ -16,18 +16,16 @@ function mapDispatchToProps(dispatch) {
 }
 
 class App extends Component {
-  foo() {
-    return 'good';
-  }
+
   render() {
-    console.log(this.props);
     return (
       <div className="commentBox">
-          Hello,wosld! I am a CmentBox.
+          <p>Hello, world! </p>
           <ToDo actions={this.props.actions} todos={this.props.todo.todos}/>
       </div>
     );
   }
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

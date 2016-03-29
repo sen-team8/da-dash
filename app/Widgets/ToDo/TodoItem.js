@@ -21,7 +21,7 @@ const styleB = {
   float: 'right',
 };
 
-class TodoItem extends React.Component {
+export default class TodoItem extends React.Component {
   constructor(props) {
     super(props);
     this.handleDeleteTodo= this.handleDeleteTodo.bind(this);
@@ -84,7 +84,6 @@ class TodoItem extends React.Component {
           <div style= {styleP}>
               <TextField value= {this.state.text} onChange= {this.handleTextChange} />
           </div>
-
           <RaisedButton type="submit" label="Save" style={styleB} onClick={this.handleSave} />
         </div>
     );
@@ -98,5 +97,3 @@ class TodoItem extends React.Component {
    );
   }
 }
-
-export default TodoItem;
