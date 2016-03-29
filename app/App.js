@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 function mapStateToProps(state) {
-  return state;
+  console.log(state);
+  return { login: state.login, todo: state.todo };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -19,10 +20,11 @@ class App extends Component {
     return 'good';
   }
   render() {
+    console.log(this.props);
     return (
       <div className="commentBox">
-          Hello,wosld! I am a CommentBox.
-          <ToDo actions={this.props.actions} todos={this.props.todos}/>
+          Hello,wosld! I am a CmentBox.
+          <ToDo actions={this.props.actions} todos={this.props.todo.todos}/>
       </div>
     );
   }
