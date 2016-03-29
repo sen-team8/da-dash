@@ -91,7 +91,6 @@ export default class TodoItem extends React.Component {
     }
   }
   render() {
-    console.log(this.props);
     return (
       <div>
           {this.textArea()}

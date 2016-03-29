@@ -26,6 +26,7 @@ class Todo extends React.Component {
     );
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch),
