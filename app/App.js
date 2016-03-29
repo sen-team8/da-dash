@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="commentBox">
           Hello,wosld! I am a CommentBox.
-          <ToDo actions={this.props.actions} todos={this.props.todos}/>
+          <ToDo actions={this.props.actions} todos={this.props.reducer.todos}/>
       </div>
     );
   }

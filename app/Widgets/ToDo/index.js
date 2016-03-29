@@ -7,6 +7,7 @@ export default class Todo extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="centered" id="todoApp">
         <div id="todoHeader">

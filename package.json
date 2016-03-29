@@ -40,6 +40,8 @@
   "dependencies": {
     "material-ui": "^0.14.4",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "react-router": "^2.0.1",
+    "react-router-redux": "^4.0.0"
   }
 }
