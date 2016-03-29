@@ -7,7 +7,7 @@ import { Router, Route } from 'react-router';
 import Login from './Components/Login';
 
 function mapStateToProps(state) {
-  console.log(state);
+  // console.log(state);
   return { ...state.reducer };
 }
 
@@ -18,7 +18,7 @@ function mapDispatchToProps(dispatch) {
 }
 class App extends Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="commentBox">
         <Router history={this.props.history}>
