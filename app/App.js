@@ -19,6 +19,10 @@ class App extends Component {
   foo() {
     return 'good';
   }
+
+ /**
+  * This function re-renders the components whenever it's state changes.
+  */
   render() {
     console.log(this.props);
     return (
