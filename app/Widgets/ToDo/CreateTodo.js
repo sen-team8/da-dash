@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import { Button, Input } from 'react-bootstrap';
 
 const style = {
   margin: 12,
@@ -30,11 +30,11 @@ export default class CreateTodo extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <TextField
-            hintText="Hint Text"
-            onChange={this.handleChange}
-          />
-          <RaisedButton type="submit" label="Add" style={style} />
+            <TextField
+              hintText="Hint Text"
+              onChange={this.handleChange}
+            />
+          <Button className="raised" bsStyle="primary" type="submit" style={style}>Add</Button>
         </form>
     </div>
     );

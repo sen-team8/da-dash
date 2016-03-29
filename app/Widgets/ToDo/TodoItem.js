@@ -1,25 +1,8 @@
 import React from 'react';
 import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import { ButtonToolbar, Button } from 'react-bootstrap';
 
-const styleD = {
-  width: '100%',
-  margin: '0.5em auto',
-  borderRadius: '1em',
-};
-
-const styleP = {
-  width: '70%',
-  padding: '2px',
-  backgroundColor: '#fff',
-  borderRadius: '1em',
-};
-
-const styleB = {
-  position: 'relative',
-  top: '-45px',
-  float: 'right',
-};
+let style;
 
 export default class TodoItem extends React.Component {
   constructor(props) {
@@ -70,21 +53,23 @@ export default class TodoItem extends React.Component {
         return <div></div>;
       }
       return (
-        <div style={styleD} onDoubleClick={this.handleDoubleClick}>
-          <div style= {styleP}>
+        <div style={style.styleD} onDoubleClick={this.handleDoubleClick}>
+          <div style= {style.styleP}>
             <p> {this.state.text} </p>
           </div>
-          <RaisedButton type="submit" label="Del" style={styleB} onClick={this.handleDeleteTodo} />
-          <RaisedButton type="submit" label="Done" style={styleB} onClick={this.handleCompleteTodo} />
+          <ButtonToolbar style={style.styleB}>
+            <Button type="submit" onClick={this.handleDeleteTodo}>Del</Button>
+            <Button type="submit" onClick={this.handleCompleteTodo}>Done</Button>
+          </ButtonToolbar>
         </div>
       );
     } else {
       return (
-        <div style={styleD} onDoubleClick={this.handleDoubleClick}>
-          <div style= {styleP}>
+        <div style={style.styleD} onDoubleClick={this.handleDoubleClick}>
+          <div style= {style.styleP}>
               <TextField value= {this.state.text} onChange= {this.handleTextChange} />
           </div>
-          <RaisedButton type="submit" label="Save" style={styleB} onClick={this.handleSave} />
+          <Button type="submit" style={style.styleB} onClick={this.handleSave}>Save</Button>
         </div>
     );
     }
@@ -97,3 +82,24 @@ export default class TodoItem extends React.Component {
    );
   }
 }
+
+style = {
+  styleD: {
+    width: '100%',
+    margin: '0.5em auto',
+    borderRadius: '1em',
+  },
+
+  styleP: {
+    width: '70%',
+    padding: '2px',
+    backgroundColor: '#fff',
+    borderRadius: '1em',
+  },
+
+  styleB: {
+    position: 'relative',
+    top: '-45px',
+    float: 'right',
+  },
+};

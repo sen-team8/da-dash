@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateTodo from './CreateTodo';
 import TodoList from './TodoList';
+import './todo.css';
 export default class Todo extends React.Component {
   constructor(props) {
     super(props);
