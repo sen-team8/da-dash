@@ -4,10 +4,12 @@ import TodoList from './TodoList';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import './todo.css';
 
 import { actions } from '../../redux/actions';
 
 class Todo extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = { show: 'All' };
@@ -29,9 +31,9 @@ class Todo extends React.Component {
   render() {
     console.log(this.props);
     return (
-      <div className="centered" id="todoApp">
+      <div className="centered todo container" id="todoApp">
         <Link to="login"> This link </Link>
-        <div id="todoHeader">
+        <div className="todo" id="todoHeader">
           <span>Todo App</span>
         </div>
         {this.showCreateTodo()}
