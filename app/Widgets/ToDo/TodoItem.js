@@ -1,6 +1,5 @@
 import React from 'react';
-import TextField from 'material-ui/lib/text-field';
-import { ButtonToolbar, Button } from 'react-bootstrap';
+import { ButtonToolbar, Button, Input } from 'react-bootstrap';
 
 let style;
 
@@ -16,6 +15,7 @@ export default class TodoItem extends React.Component {
     this.state= {
       isEditing: false,
       text: this.props.todo.TEXT,
+      buttonState: "default",
     };
   }
 
@@ -32,6 +32,12 @@ export default class TodoItem extends React.Component {
 
   handleCompleteTodo() {
     this.props.actions.completeTodo(this.props.todo.ID);
+    if (!this.props.todo.completed) {
+      this.state.buttonState="success";
+    }
+    else {
+      this.state.buttonState="default";
+    }
   }
 
   handleSave() {
@@ -58,8 +64,8 @@ export default class TodoItem extends React.Component {
             <p> {this.state.text} </p>
           </div>
           <ButtonToolbar style={style.styleB}>
-            <Button type="submit" onClick={this.handleDeleteTodo}>Del</Button>
-            <Button type="submit" onClick={this.handleCompleteTodo}>Done</Button>
+            <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleDeleteTodo}>Del</Button>
+            <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleCompleteTodo}>Done</Button>
           </ButtonToolbar>
         </div>
       );
@@ -67,9 +73,10 @@ export default class TodoItem extends React.Component {
       return (
         <div style={style.styleD} onDoubleClick={this.handleDoubleClick}>
           <div style= {style.styleP}>
-              <TextField value= {this.state.text} onChange= {this.handleTextChange} />
+              {/* <TextField value= {this.state.text} onChange= {this.handleTextChange} /> */}
+              <Input className="todo textfield" type="text" value={this.state.text} onChange={this.handleTextChange}/>
           </div>
-          <Button type="submit" style={style.styleB} onClick={this.handleSave}>Save</Button>
+          <Button type="submit" style={style.styleC} onClick={this.handleSave}>Save</Button>
         </div>
     );
     }
@@ -100,6 +107,12 @@ style = {
   styleB: {
     position: 'relative',
     top: '-45px',
+    float: 'right',
+  },
+
+  styleC: {
+    position: 'relative',
+    top: '-52px',
     float: 'right',
   },
 };

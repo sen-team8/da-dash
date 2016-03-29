@@ -1,8 +1,8 @@
-.btn-primary.raised {
+.todo.btn-primary.raised {
     box-shadow: 0 3px 0 0 #007299;
 }
 
-.btn-primary.raised:active, .btn-primary.raised.active {
+.todo.btn-primary.raised:active, .btn-primary.raised.active {
   background: #33a6cc;
   box-shadow: none;
   margin-bottom: -3px !important;
@@ -11,5 +11,14 @@
 
 .todo.list {
   float: left;
-  margin-left: 90px;
+  margin-left: 20%;
+  margin-bottom: 5%;
+}
+
+.todo.textfield {
+  max-width: 100%;
+}
+
+.todo.container{
+  width: 300px !important;
 }

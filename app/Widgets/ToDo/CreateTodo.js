@@ -1,5 +1,4 @@
 import React from 'react';
-import TextField from 'material-ui/lib/text-field';
 import { Button, Input } from 'react-bootstrap';
 
 const style = {
@@ -30,10 +29,11 @@ export default class CreateTodo extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-            <TextField
+            {/* <TextField
               hintText="Hint Text"
               onChange={this.handleChange}
-            />
+            /> */}
+            <Input className="todo textfield" type="text" placeholder="Enter text" onChange={this.handleChange}/>
           <Button className="raised" bsStyle="primary" type="submit" style={style}>Add</Button>
         </form>
     </div>

@@ -9,7 +9,7 @@ export default class Todo extends React.Component {
 
   render() {
     return (
-      <div className="centered" id="todoApp">
+      <div className="centered todo container" id="todoApp">
         <div id="todoHeader">
           <span>Todo App</span>
         </div>
