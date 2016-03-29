@@ -20,8 +20,11 @@ class App extends Component {
   render() {
     return (
       <div className="commentBox">
-          <p>Hello, world! </p>
-          <ToDo actions={this.props.actions} todos={this.props.todo.todos}/>
+        <p>Hello, world! </p>
+        <ToDo
+          actions={this.props.actions}
+          todos={this.props.todo.todos}
+        />
       </div>
     );
   }

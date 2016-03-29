@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './main.css';
 
 import React from 'react';
@@ -15,7 +16,7 @@ document.body.appendChild(node);
 const store = createStore(reducer);
 
 render(
-  <Provider store = {store}>
+  <Provider store={store}>
     <App />
   </Provider>,
   node
