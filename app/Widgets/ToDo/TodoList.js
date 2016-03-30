@@ -1,7 +1,6 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 import RaisedButton from 'material-ui/lib/raised-button';
-
 const styleB = {
   float: 'left',
 };
@@ -32,8 +31,8 @@ export default class TodoList extends React.Component {
       showCompleted: true,
     });
   }
+
   render() {
-    // console.log(this.props.todos);
     return (
       <div>
         {
@@ -44,6 +43,7 @@ export default class TodoList extends React.Component {
                   todo={todo}
                   actions={this.props.actions}
                   status = {this.state}
+                  verifyTodo = {this.verifyTodo}
                 />
           );
           })

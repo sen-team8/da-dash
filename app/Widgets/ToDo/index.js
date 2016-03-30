@@ -12,18 +12,53 @@ class Todo extends React.Component {
     super(props);
     this.state = { show: 'All' };
     this.handleStateChange = this.handleStateChange.bind(this);
+    this.actionHandler = this.actionHandler.bind(this);
   }
 
   showCreateTodo() {
     if (this.state.show === 'All') {
       return (
-          <CreateTodo actions={this.props.actions}/>
+          <CreateTodo actions={this.actionHandler}/>
         );
     }
     return <div></div>;
   }
   handleStateChange(text) {
     this.setState({ show: text });
+  }
+
+
+  actionHandler(action, id, text) {
+    switch (action) {
+      case 'complete':
+        this.props.actions.completeTodo(id);
+        break;
+      case 'delete':
+        this.props.actions.deleteTodo(id);
+        break;
+      case 'edit':
+        const x = this.props.todo.todos.filter((todoItem) => todoItem.TEXT === text);
+        if (x.length === 0) {
+          if (text) {
+            this.props.actions.editTodo(text, id);
+          }
+        } else {
+          console.log('Same TODO!');
+        }
+        break;
+      case 'Create':
+        const y = this.props.todo.todos.filter((todoItem) => todoItem.TEXT === text);
+        if (y.length === 0) {
+          if (text) {
+            this.props.actions.createTodo(text);
+          }
+        } else {
+          console.log('Same TODO!');
+        }
+        break;
+      default :
+        break;
+    }
   }
 
   render() {
@@ -35,7 +70,7 @@ class Todo extends React.Component {
           <span>Todo App</span>
         </div>
         {this.showCreateTodo()}
-        <TodoList actions={this.props.actions} todos={this.props.todo.todos}
+        <TodoList actions={this.actionHandler} todos={this.props.todo.todos}
           handleStateChange={this.handleStateChange}
         />
       </div>

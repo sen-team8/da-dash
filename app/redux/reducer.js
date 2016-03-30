@@ -38,7 +38,6 @@ const todoState ={
   }],
 };
 
-
 function todo(state = todoState, action) {
   switch (action.type) {
 
