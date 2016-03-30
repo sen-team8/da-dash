@@ -1,7 +1,5 @@
 import React from 'react';
-import { ButtonToolbar, Button, Input } from 'react-bootstrap';
-
-let style;
+import { ButtonToolbar, Button, Input, Col } from 'react-bootstrap';
 
 export default class TodoItem extends React.Component {
   constructor(props) {
@@ -59,24 +57,31 @@ export default class TodoItem extends React.Component {
         return <div></div>;
       }
       return (
-        <div style={style.styleD} onDoubleClick={this.handleDoubleClick}>
-          <div style= {style.styleP}>
-            <p> {this.state.text} </p>
-          </div>
-          <ButtonToolbar style={style.styleB}>
-            <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleDeleteTodo}>Del</Button>
-            <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleCompleteTodo}>Done</Button>
-          </ButtonToolbar>
+        <div className="todo todoItem">
+          <Col xs={9} md={6} onDoubleClick={this.handleDoubleClick}>
+            <p className="todo text"> {this.state.text} </p>
+          </Col>
+          <Col xs={9} md={6}>
+            <ButtonToolbar className="todo buttons">
+              <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleDeleteTodo}>Del</Button>
+              <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleCompleteTodo}>Done</Button>
+            </ButtonToolbar>
+          </Col>
         </div>
       );
     } else {
       return (
-        <div style={style.styleD} onDoubleClick={this.handleDoubleClick}>
-          <div style= {style.styleP}>
-              {/* <TextField value= {this.state.text} onChange= {this.handleTextChange} /> */}
-              <Input className="todo textfield" type="text" value={this.state.text} onChange={this.handleTextChange}/>
-          </div>
-          <Button type="submit" style={style.styleC} onClick={this.handleSave}>Save</Button>
+        <div className="todo todoItem">
+          <Col xs={12} md={8}>
+            <Input
+              type="text" value={this.state.text}
+              onDoubleClick={this.handleDoubleClick}
+              onChange={this.handleTextChange}
+            />
+          </Col>
+          <Col xs={6} md={4}>
+            <Button type="submit" onClick={this.handleSave}>Save</Button>
+          </Col>
         </div>
     );
     }
@@ -90,30 +95,3 @@ export default class TodoItem extends React.Component {
    );
   }
 }
-
-style = {
-  styleD: {
-    width: '100%',
-    margin: '0.5em auto',
-    borderRadius: '1em',
-  },
-
-  styleP: {
-    width: '70%',
-    padding: '2px',
-    backgroundColor: '#fff',
-    borderRadius: '1em',
-  },
-
-  styleB: {
-    position: 'relative',
-    top: '-45px',
-    float: 'right',
-  },
-
-  styleC: {
-    position: 'relative',
-    top: '-52px',
-    float: 'right',
-  },
-};

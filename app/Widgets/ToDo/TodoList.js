@@ -1,6 +1,6 @@
 import React from 'react';
 import TodoItem from './TodoItem';
-import { ButtonToolbar, Button } from 'react-bootstrap';
+import { ButtonToolbar, Button, Col } from 'react-bootstrap';
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -44,10 +44,12 @@ export default class TodoList extends React.Component {
           );
           })
         }
-        <ButtonToolbar className="todo list">
-          <Button type="submit" bsStyle="primary" onClick={this.handleShowAll}>All</Button>
-          <Button type="submit" bsStyle="primary" onClick={this.handleShowCompleted}>Completed</Button>
-        </ButtonToolbar>
+        <Col md={4} mdOffset={4}>
+          <ButtonToolbar className="todo list">
+            <Button type="submit" bsStyle="primary" onClick={this.handleShowAll}>All</Button>
+            <Button type="submit" bsStyle="primary" onClick={this.handleShowCompleted}>Completed</Button>
+          </ButtonToolbar>
+        </Col>
       </div>
     );
   }

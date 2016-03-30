@@ -1,40 +1,36 @@
-/*.todo.btn-primary.raised {
-    box-shadow: 0 3px 0 0 #007299;
-}
-
-.todo.btn-primary.raised:active, .btn-primary.raised.active {
-  background: #33a6cc;
-  box-shadow: none;
-  margin-bottom: -3px !important;
-  margin-top: 3px !important;
-}*/
-
 .todo.list {
-  float: left;
-  margin-top: 5%;
-  margin-left: 20%;
-  margin-bottom: 10px;
   position: fixed;
-  bottom: -5px;
+  margin-left: -12%;
+  bottom: 5%;
 }
 
-.todo.textfield {
-  max-width: 100%;
+.todo.todoItem {
+  margin-bottom: 5% !important;
 }
 
-.todo.container{
-  width: 300px !important;
-  min-height: 350px;
+.todo.container {
+  min-width: 320px;
+  min-height: 320px;
+  max-width: 320px;
+  max-height: 320px;
 }
 
-.todo#todoHeader{
-  margin: 5% 5% 10% 5%;
+.todo#todoHeader span{
+  text-align: center;
 }
 
-.todo#add{
-  margin: 1% 0 5% 40%;
+.todo#add {
+  margin-top: 5% !important;
+}
+
+.todo.buttons {
+  margin-bottom: 5%;
+}
+
+.todo.text{
+  margin-top: 5%;
 }
 
 .btn:focus,.btn:active {
-   outline: none !important;
+  outline: none !important;
 }
