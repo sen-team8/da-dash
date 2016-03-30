@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import { FlatButton, TextField } from 'material-ui';
 // import image from 'react';
@@ -86,6 +87,26 @@ export default class Login extends Component {
             </div>
           </div>
         </div>
+=======
+import React from 'react';
+
+
+const styleContainer= {
+  display: 'flex',
+  margin: 'auto',
+};
+
+export default class Login extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    console.log(this.props);
+    return (
+      <div style={styleContainer}>
+        MyComponent
+>>>>>>> 459900a15695b59759c88fa111912151f636d360
       </div>
     );
   }
