@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import ToDo from './Widgets/ToDo';
+// import ToDo from './Widgets/ToDo';
+import Login from './Components/Login';
 
-export default class Bapp extends Component {
-  foo() {
-    return 'good';
-  }
+export default class App extends Component {
   render() {
     return (
-      <div className="commentBox">
-          Hello,wosld! I am a CommentBox.
-          <ToDo/>
+      <div>
+          <Login/>
       </div>
     );
   }
