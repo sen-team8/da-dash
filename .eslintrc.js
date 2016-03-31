@@ -26,7 +26,6 @@ module.exports = {
     'default-case': 0,
     'no-else-return': 0,
     'no-param-reassign': 0,
-    'quotes': 0,
     'space-before-function-paren': 0,
     'react/arrow-body-style': 0,
     'arrow-body-style': 0,

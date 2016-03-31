@@ -1,10 +1,5 @@
 import React, { PropTypes } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-
-const style = {
-  margin: 12,
-};
+import { Button, Input, Col } from 'react-bootstrap';
 
 export default class CreateTodo extends React.Component {
 
@@ -29,13 +24,14 @@ export default class CreateTodo extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="todo" id="add">
         <form onSubmit={this.handleSubmit}>
-          <TextField
-            hintText="What needs to be done?"
-            onChange={this.handleChange}
-          />
-          <RaisedButton type="submit" label="Add" style={style} />
+          <Col xs={12} md={8}>
+          <Input className="todo textfield" type="text" placeholder="Enter text" onChange={this.handleChange}/>
+          </Col>
+          <Col xs={6} md={4}>
+          <Button className="todo raised" bsStyle="primary" type="submit">Add</Button>
+          </Col>
         </form>
       </div>
     );

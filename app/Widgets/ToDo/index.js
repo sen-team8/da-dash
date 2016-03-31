@@ -4,6 +4,8 @@ import TodoList from './TodoList';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Grid, Row } from 'react-bootstrap';
+import './todo.css';
 
 import { actions } from '../../redux/actions';
 
@@ -14,14 +16,11 @@ class Todo extends Component {
     todos: PropTypes.array.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = { show: 'All' };
-    this.handleStateChange = this.handleStateChange.bind(this);
-    this.actionHandler = this.actionHandler.bind(this);
-  }
+  state = {
+    show: 'All',
+  };
 
-  showCreateTodo() {
+  showCreateTodo = () => {
     if (this.state.show === 'All') {
       return (
           <CreateTodo actions={this.actionHandler}/>
@@ -30,11 +29,11 @@ class Todo extends Component {
     return <div></div>;
   }
 
-  handleStateChange(text) {
+  handleStateChange = (text) => {
     this.setState({ show: text });
   }
 
-  actionHandler(action, id, text) {
+  actionHandler = (action, id, text) => {
     switch (action) {
       case 'complete':
         this.props.actions.completeTodo(id);
@@ -65,16 +64,22 @@ class Todo extends Component {
 
   render() {
     return (
-      <div className="centered" id="todoApp">
-        <Link to="login"> This link </Link>
-        <div id="todoHeader">
-          <span>Todo App</span>
-        </div>
+      <Grid className="centered todo container" id="todoApp">
+        <Row className="show-grid">
+          <Link to="login"> This link </Link>
+          <div className="todo" id="todoHeader">
+            <span>Todo App</span>
+          </div>
+        </Row>
+        <Row className="show-grid">
         {this.showCreateTodo()}
+      </Row>
+      <Row className="show-grid">
         <TodoList actions={this.actionHandler} todos={this.props.todos}
           handleStateChange={this.handleStateChange}
         />
-      </div>
+      </Row>
+    </Grid>
     );
   }
 }

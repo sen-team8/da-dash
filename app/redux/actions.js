@@ -10,6 +10,8 @@ import {
   setLogout,
   setLoggedIn,
   setLoginError,
+  verifyUser,
+  setCredentials,
 } from './loginActions';
 
 export const actions = {
@@ -21,4 +23,6 @@ export const actions = {
   setLogout,
   setLoggedIn,
   setLoginError,
+  verifyUser,
+  setCredentials,
 };
