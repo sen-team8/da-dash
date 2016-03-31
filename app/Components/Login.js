@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const styleContainer= {
   display: 'flex',
   margin: 'auto',

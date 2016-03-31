@@ -1,14 +1,10 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-
-
+import { NavItem } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
+import Icon from '../other/Icon';
 
 export default class DaDash extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.styles = this.styles();
-  }
 
   // styles() {
   //   return {
@@ -34,21 +30,25 @@ export default class DaDash extends React.Component {
   //   };
   // }
 
+
   navbarInstance = (
+    <div>
      <Navbar style= {{ backgroundColor: '#FB5012', marginBottom: '0' }}>
        <Navbar.Header>
          <Navbar.Brand>
-           <a style={{ color: 'white', fontSize: '34px', fontFamily: 'Comic Sans MS', fontWeight: '10' }}>DA-Dash</a>
+           <a style={{ color: 'white', fontSize: '2.125em', fontFamily: 'Comic Sans MS', fontWeight: '10', marginLeft: '33px' }}>DA-Dash</a>
          </Navbar.Brand>
        </Navbar.Header>
-       <Navbar.Text pullRight style= {{ color: 'white' }}><Button>SidePanel</Button>
-       </Navbar.Text>
+         <Nav pullRight>
+                 <NavItem eventKey={1} href="menu"><Icon size="3rem" icon="menu" style= {{ color: 'white' }}/></NavItem>
+         </Nav>
      </Navbar>
+     </div>
    );
 
     render() {
       return (
-        this.navbarInstance
+       this.navbarInstance
       );
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import DaDash from './DaDash';
 import CurrentPage from './CurrentPage';
-import SideBars from './SideBars';
+// import SideBars from './SideBars';
 
 export default class HomePage extends React.Component {
   constructor(props) {
@@ -12,7 +12,6 @@ export default class HomePage extends React.Component {
       <div>
         <DaDash />
         <CurrentPage />
-        <SideBars />
       </div>
     );
   }
