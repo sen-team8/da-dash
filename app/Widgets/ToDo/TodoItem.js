@@ -59,10 +59,10 @@ export default class TodoItem extends React.Component {
       }
       return (
         <div className="todo todoItem">
-          <Col xs={9} md={6} onDoubleClick={this.handleDoubleClick}>
+          <Col xs={6} sm={6} md={6} onDoubleClick={this.handleDoubleClick}>
             <p className="todo text"> {this.state.text} </p>
           </Col>
-           <Col xs={9} md={6}>
+           <Col xs={6} sm={6} md={6}>
              <ButtonToolbar className="todo buttons">
                <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleDeleteTodo}>Del</Button>
                <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleCompleteTodo}>Done</Button>
@@ -73,14 +73,14 @@ export default class TodoItem extends React.Component {
     } else {
       return (
         <div className="todo todoItem">
-          <Col xs={12} md={8}>
+          <Col xs={8} sm={8} md={8}>
             <Input
               type="text" value={this.state.text}
               onDoubleClick={this.handleDoubleClick}
               onChange={this.handleTextChange}
             />
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={8} sm={8} md={8}>
             <Button type="submit" onClick={this.handleSave}>Save</Button>
           </Col>
         </div>
