@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 
@@ -22,52 +22,53 @@ const styleB = {
 };
 
 export default class TodoItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleDeleteTodo= this.handleDeleteTodo.bind(this);
-    this.handleDoubleClick= this.handleDoubleClick.bind(this);
-    this.handleCompleteTodo = this.handleCompleteTodo.bind(this);
-    this.textArea = this.textArea.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.state= {
+
+  static propTypes = {
+    todo: PropTypes.object.isRequired,
+    actions: PropTypes.func.isRequired,
+    showCompleted: PropTypes.bool.isRequired,
+  }
+
+  state = {
+    isEditing: false,
+    text: this.props.todo.TEXT,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
       isEditing: false,
-      text: this.props.todo.TEXT,
-    };
+      text: nextProps.todo.TEXT,
+    });
   }
 
-  handleDeleteTodo() {
-    console.log(this.props.todo.ID);
-    this.props.actions.deleteTodo(this.props.todo.ID);
+  handleDeleteTodo = () => {
+    this.props.actions('delete', this.props.todo.ID);
   }
 
-  handleDoubleClick() {
+  handleDoubleClick = () => {
     this.setState({
       isEditing: true,
       text: this.props.todo.TEXT,
     });
   }
 
-  handleCompleteTodo() {
-    this.props.actions.completeTodo(this.props.todo.ID);
+  handleCompleteTodo = () => {
+    this.props.actions('complete', this.props.todo.ID);
   }
 
-  handleSave() {
-    this.setState({
-      isEditing: false,
-    });
-    this.props.actions.editTodo(this.state.text, this.props.todo.ID);
+  handleSave = () => {
+    this.props.actions('edit', this.props.todo.ID, this.state.text);
   }
 
-  handleTextChange(e) {
+  handleTextChange = (e) => {
     this.setState({
       text: e.target.value,
     });
   }
 
-  textArea() {
+  textArea = () => {
     if (this.state.isEditing === false) {
-      if (this.props.status.showCompleted===true && this.props.todo.completed===false) {
+      if (this.props.showCompleted===true && this.props.todo.completed===false) {
         return <div></div>;
       }
       return (
