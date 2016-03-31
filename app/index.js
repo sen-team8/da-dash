@@ -14,7 +14,7 @@ import App from './App';
 import { hashHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
-const loggerMiddleware  = createLogger();
+const loggerMiddleware = createLogger();
 
 const store = createStore(
   combineReducers({
