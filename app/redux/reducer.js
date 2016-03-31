@@ -12,6 +12,7 @@ import {
   LOGGED_OUT,
   LOGGING,
   LOGIN_ERROR,
+  SET_CREDENTIALS,
 } from './loginActions';
 
 const initialLoginState = {
@@ -96,6 +97,11 @@ function login(state = initialLoginState, action) {
     case LOGIN_ERROR:
       return Object.assign({}, state, {
         STATUS: action.type,
+      });
+    case SET_CREDENTIALS:
+      return Object.assign({}, state, {
+        ID: action.id,
+        PASS: action.pass,
       });
     default:
       return state;

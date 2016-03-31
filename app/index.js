@@ -23,6 +23,7 @@ const store = createStore(
   }),
   undefined,
   compose(
+    // comment persistState to remove persistence
     persistState('reducer', {
       slicer: (paths) => (state) => {
         return state;
