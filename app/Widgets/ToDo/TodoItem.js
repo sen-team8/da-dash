@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 
@@ -22,53 +22,53 @@ const styleB = {
 };
 
 export default class TodoItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleDeleteTodo= this.handleDeleteTodo.bind(this);
-    this.handleDoubleClick= this.handleDoubleClick.bind(this);
-    this.handleCompleteTodo = this.handleCompleteTodo.bind(this);
-    this.textArea = this.textArea.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.state= {
-      isEditing: false,
-      text: this.props.todo.TEXT,
-    };
+
+  static propTypes = {
+    todo: PropTypes.object.isRequired,
+    actions: PropTypes.func.isRequired,
+    showCompleted: PropTypes.bool.isRequired,
   }
+
+  state = {
+    isEditing: false,
+    text: this.props.todo.TEXT,
+  };
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       isEditing: false,
       text: nextProps.todo.TEXT,
     });
   }
-  handleDeleteTodo() {
+
+  handleDeleteTodo = () => {
     this.props.actions('delete', this.props.todo.ID);
   }
 
-  handleDoubleClick() {
+  handleDoubleClick = () => {
     this.setState({
       isEditing: true,
       text: this.props.todo.TEXT,
     });
   }
 
-  handleCompleteTodo() {
+  handleCompleteTodo = () => {
     this.props.actions('complete', this.props.todo.ID);
   }
 
-  handleSave() {
+  handleSave = () => {
     this.props.actions('edit', this.props.todo.ID, this.state.text);
   }
 
-  handleTextChange(e) {
+  handleTextChange = (e) => {
     this.setState({
       text: e.target.value,
     });
   }
 
-  textArea() {
+  textArea = () => {
     if (this.state.isEditing === false) {
-      if (this.props.status.showCompleted===true && this.props.todo.completed===false) {
+      if (this.props.showCompleted===true && this.props.todo.completed===false) {
         return <div></div>;
       }
       return (
@@ -92,7 +92,6 @@ export default class TodoItem extends React.Component {
     }
   }
   render() {
-    console.log(this.props);
     return (
       <div>
           {this.textArea()}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 
@@ -7,27 +7,27 @@ const style = {
 };
 
 export default class CreateTodo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange=this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state={
-      text: '',
-    };
+
+  static propTypes = {
+    actions: PropTypes.func.isRequired,
   }
 
-  handleChange(e) {
+  state = {
+    text: '',
+  }
+
+  handleChange = (e) => {
     this.setState({
       text: e.target.value,
     });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.actions('Create', 1, this.state.text);
   }
+
   render() {
-    // console.log(this.props);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -37,7 +37,7 @@ export default class CreateTodo extends React.Component {
           />
           <RaisedButton type="submit" label="Add" style={style} />
         </form>
-    </div>
+      </div>
     );
   }
 }

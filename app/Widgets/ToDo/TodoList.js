@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+
 import TodoItem from './TodoItem';
 import RaisedButton from 'material-ui/lib/raised-button';
 const styleB = {
@@ -6,17 +7,18 @@ const styleB = {
 };
 
 export default class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state ={
-      showAll: true,
-      showCompleted: false,
-    };
-    this.handleShowAll = this.handleShowAll.bind(this);
-    this.handleShowCompleted = this.handleShowCompleted.bind(this);
+  static propTypes = {
+    handleStateChange: PropTypes.func.isRequired,
+    todos: PropTypes.array.isRequired,
+    actions: PropTypes.func.isRequired,
   }
 
-  handleShowAll() {
+  state = {
+    showAll: true,
+    showCompleted: false,
+  }
+
+  handleShowAll = () => {
     this.props.handleStateChange('All');
     this.setState({
       showAll: true,
@@ -24,7 +26,7 @@ export default class TodoList extends React.Component {
     });
   }
 
-  handleShowCompleted() {
+  handleShowCompleted = () => {
     this.props.handleStateChange('Completed');
     this.setState({
       showAll: false,
@@ -42,7 +44,7 @@ export default class TodoList extends React.Component {
                   key={todo.ID}
                   todo={todo}
                   actions={this.props.actions}
-                  status = {this.state}
+                  showCompleted = {this.state.showCompleted}
                   verifyTodo = {this.verifyTodo}
                 />
           );
