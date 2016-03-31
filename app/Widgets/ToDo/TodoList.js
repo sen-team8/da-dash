@@ -46,7 +46,7 @@ export default class TodoList extends React.Component {
           );
           })
         }
-        <Col md={4} mdOffset={4}>
+        <Col xs={4} sm={4} md={4} mdOffset={4} smOffset={4} xsOffset={4}>
           <ButtonToolbar className="todo list">
             <Button type="submit" bsStyle="primary" onClick={this.handleShowAll}>All</Button>
             <Button type="submit" bsStyle="primary" onClick={this.handleShowCompleted}>Completed</Button>

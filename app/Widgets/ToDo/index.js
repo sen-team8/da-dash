@@ -64,7 +64,7 @@ class Todo extends Component {
 
   render() {
     return (
-      <Grid className="centered todo container" id="todoApp">
+      <Grid className="centered todo container resizable" id="todoApp">
         <Row className="show-grid">
           <Link to="login"> This link </Link>
           <div className="todo" id="todoHeader">
