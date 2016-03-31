@@ -8,6 +8,9 @@ let styles;
 
 class Loading extends React.Component {
 
+  static propTypes = {
+    actions: React.PropTypes.object,
+  };
   state = {
     progress: 0,
   };
@@ -19,7 +22,6 @@ class Loading extends React.Component {
   timeout = null;
 
   render() {
-    console.log(this.props);
     this.timeout = setTimeout(() => {
       this.setState({ progress: this.state.progress + (9 * Math.random()) });
     }, 1000);

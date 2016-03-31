@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 
 const Login = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <div className="login-wrapper">
       <div className="form-signin" style={{ verticalAlign: 'middle' }}>
@@ -21,7 +21,12 @@ const Login = (props) => {
         <label className="checkbox">
           <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe" /> Remember me
         </label>
-        <Link className="btn btn-lg btn-primary btn-block" onClick={function() {props.actions.setCredentials();}} to={'loading'}>Login</Link>
+        <Link className="btn btn-lg btn-primary btn-block"
+          onClick={function foo() {props.actions.setCredentials();}}
+          to={'loading'}
+        >
+          Login
+        </Link>
       </div>
     </div>
   );

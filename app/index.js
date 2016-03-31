@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import persistState from 'redux-localstorage';
+// import persistState from 'redux-localstorage';
 
 import { Provider } from 'react-redux';
 import reducer from './redux/reducer';
@@ -24,11 +24,11 @@ const store = createStore(
   undefined,
   compose(
     // comment persistState to remove persistence
-    persistState('reducer', {
-      slicer: (paths) => (state) => {
-        return state;
-      },
-    }),
+    // persistState('reducer', {
+    //   slicer: (paths) => (state) => {
+    //     return state;
+    //   },
+    // }),
     applyMiddleware(
       thunkMiddleware, // lets us dispatch() functions
       loggerMiddleware // neat middleware that logs actions
