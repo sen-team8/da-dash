@@ -1,25 +1,5 @@
 import React, { PropTypes } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-
-const styleD = {
-  width: '100%',
-  margin: '0.5em auto',
-  borderRadius: '1em',
-};
-
-const styleP = {
-  width: '70%',
-  padding: '2px',
-  backgroundColor: '#fff',
-  borderRadius: '1em',
-};
-
-const styleB = {
-  position: 'relative',
-  top: '-45px',
-  float: 'right',
-};
+import { ButtonToolbar, Button, Input, Col } from 'react-bootstrap';
 
 export default class TodoItem extends React.Component {
 
@@ -32,6 +12,7 @@ export default class TodoItem extends React.Component {
   state = {
     isEditing: false,
     text: this.props.todo.TEXT,
+    buttonState: "default",
   };
 
   componentWillReceiveProps(nextProps) {
@@ -54,6 +35,11 @@ export default class TodoItem extends React.Component {
 
   handleCompleteTodo = () => {
     this.props.actions('complete', this.props.todo.ID);
+    if (!this.props.todo.completed) {
+      this.state.buttonState="success";
+    } else {
+      this.state.buttonState="default";
+    }
   }
 
   handleSave = () => {
@@ -72,21 +58,31 @@ export default class TodoItem extends React.Component {
         return <div></div>;
       }
       return (
-        <div style={styleD} onDoubleClick={this.handleDoubleClick}>
-          <div style= {styleP}>
-            <p> {this.state.text} </p>
-          </div>
-          <RaisedButton type="submit" label="Del" style={styleB} onClick={this.handleDeleteTodo} />
-          <RaisedButton type="submit" label="Done" style={styleB} onClick={this.handleCompleteTodo} />
+        <div className="todo todoItem">
+          <Col xs={9} md={6} onDoubleClick={this.handleDoubleClick}>
+            <p className="todo text"> {this.state.text} </p>
+          </Col>
+           <Col xs={9} md={6}>
+             <ButtonToolbar className="todo buttons">
+               <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleDeleteTodo}>Del</Button>
+               <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleCompleteTodo}>Done</Button>
+            </ButtonToolbar>
+          </Col>
         </div>
       );
     } else {
       return (
-        <div style={styleD} onDoubleClick={this.handleDoubleClick}>
-          <div style= {styleP}>
-              <TextField value= {this.state.text} onChange= {this.handleTextChange} />
-          </div>
-          <RaisedButton type="submit" label="Save" style={styleB} onClick={this.handleSave} />
+        <div className="todo todoItem">
+          <Col xs={12} md={8}>
+            <Input
+              type="text" value={this.state.text}
+              onDoubleClick={this.handleDoubleClick}
+              onChange={this.handleTextChange}
+            />
+          </Col>
+          <Col xs={6} md={4}>
+            <Button type="submit" onClick={this.handleSave}>Save</Button>
+          </Col>
         </div>
     );
     }
