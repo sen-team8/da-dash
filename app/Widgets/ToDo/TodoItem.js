@@ -12,7 +12,7 @@ export default class TodoItem extends React.Component {
   state = {
     isEditing: false,
     text: this.props.todo.TEXT,
-    buttonState: "default",
+    buttonState: 'default',
   };
 
   componentWillReceiveProps(nextProps) {
@@ -36,9 +36,9 @@ export default class TodoItem extends React.Component {
   handleCompleteTodo = () => {
     this.props.actions('complete', this.props.todo.ID);
     if (!this.props.todo.completed) {
-      this.state.buttonState="success";
+      this.state.buttonState='success';
     } else {
-      this.state.buttonState="default";
+      this.state.buttonState='default';
     }
   }
 
