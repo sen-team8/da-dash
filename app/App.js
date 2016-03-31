@@ -5,10 +5,11 @@ import Login from './Components/Login';
 
 const App = (props) => {
   return (
-    <div className="commentBox">
+    <div className="app">
       <Router history={props.history}>
           <Route path="/" component={ToDo}/>
-          <Route path="/login" component={Login} />
+          <Route path="/login" component={Login} index/>
+          <Route path="/watcher" component={Login} />
       </Router>
     </div>
   );

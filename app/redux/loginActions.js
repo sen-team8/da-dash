@@ -11,12 +11,6 @@ export function setLogging(user) {
   };
 }
 
-export function setLogout() {
-  localStorage.removeItem('user');
-  return {
-    type: LOGGED_OUT,
-  };
-}
 export function setLoggedIn() {
   return {
     type: LOGGED_IN,
@@ -27,5 +21,12 @@ export function setLoginError() {
   localStorage.removeItem('user');
   return {
     type: LOGIN_ERROR,
+  };
+}
+
+export function setLogout() {
+  localStorage.removeItem('user');
+  return {
+    type: LOGGED_OUT,
   };
 }

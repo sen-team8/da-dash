@@ -26,15 +26,15 @@ const getId = (state) => {
   }, -1) + 1;
 };
 
-const todoState ={
+const todoState = {
   todos: [{
     ID: 0,
     completed: false,
-    TEXT: "First Todo",
+    TEXT: 'First Todo',
   }, {
     ID: 1,
     completed: false,
-    TEXT: "Second Todo",
+    TEXT: 'Second Todo',
   }],
 };
 
@@ -102,5 +102,4 @@ function login(state = initialLoginState, action) {
   }
 }
 
-// const reducer= combineReducers({ todo });
 export default combineReducers({ todo, login });
