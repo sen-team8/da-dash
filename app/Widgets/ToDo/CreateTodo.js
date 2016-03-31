@@ -24,7 +24,7 @@ export default class CreateTodo extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.actions.createTodo(this.state.text);
+    this.props.actions('Create', 1, this.state.text);
   }
   render() {
     // console.log(this.props);
@@ -32,7 +32,7 @@ export default class CreateTodo extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <TextField
-            hintText="Hint Text"
+            hintText="What needs to be done?"
             onChange={this.handleChange}
           />
           <RaisedButton type="submit" label="Add" style={style} />

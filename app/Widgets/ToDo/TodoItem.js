@@ -35,10 +35,14 @@ export default class TodoItem extends React.Component {
       text: this.props.todo.TEXT,
     };
   }
-
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      isEditing: false,
+      text: nextProps.todo.TEXT,
+    });
+  }
   handleDeleteTodo() {
-    console.log(this.props.todo.ID);
-    this.props.actions.deleteTodo(this.props.todo.ID);
+    this.props.actions('delete', this.props.todo.ID);
   }
 
   handleDoubleClick() {
@@ -49,14 +53,11 @@ export default class TodoItem extends React.Component {
   }
 
   handleCompleteTodo() {
-    this.props.actions.completeTodo(this.props.todo.ID);
+    this.props.actions('complete', this.props.todo.ID);
   }
 
   handleSave() {
-    this.setState({
-      isEditing: false,
-    });
-    this.props.actions.editTodo(this.state.text, this.props.todo.ID);
+    this.props.actions('edit', this.props.todo.ID, this.state.text);
   }
 
   handleTextChange(e) {
