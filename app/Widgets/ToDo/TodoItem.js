@@ -1,97 +1,93 @@
-import React from 'react';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-
-const styleD = {
-  width: '100%',
-  margin: '0.5em auto',
-  borderRadius: '1em',
-};
-
-const styleP = {
-  width: '70%',
-  padding: '2px',
-  backgroundColor: '#fff',
-  borderRadius: '1em',
-};
-
-const styleB = {
-  position: 'relative',
-  top: '-45px',
-  float: 'right',
-};
+import React, { PropTypes } from 'react';
+import { ButtonToolbar, Button, Input, Col } from 'react-bootstrap';
 
 export default class TodoItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleDeleteTodo= this.handleDeleteTodo.bind(this);
-    this.handleDoubleClick= this.handleDoubleClick.bind(this);
-    this.handleCompleteTodo = this.handleCompleteTodo.bind(this);
-    this.textArea = this.textArea.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.state= {
+
+  static propTypes = {
+    todo: PropTypes.object.isRequired,
+    actions: PropTypes.func.isRequired,
+    showCompleted: PropTypes.bool.isRequired,
+  }
+
+  state = {
+    isEditing: false,
+    text: this.props.todo.TEXT,
+    buttonState: "default",
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
       isEditing: false,
-      text: this.props.todo.TEXT,
-    };
+      text: nextProps.todo.TEXT,
+    });
   }
 
-  handleDeleteTodo() {
-    console.log(this.props.todo.ID);
-    this.props.actions.deleteTodo(this.props.todo.ID);
+  handleDeleteTodo = () => {
+    this.props.actions('delete', this.props.todo.ID);
   }
 
-  handleDoubleClick() {
+  handleDoubleClick = () => {
     this.setState({
       isEditing: true,
       text: this.props.todo.TEXT,
     });
   }
 
-  handleCompleteTodo() {
-    this.props.actions.completeTodo(this.props.todo.ID);
+  handleCompleteTodo = () => {
+    this.props.actions('complete', this.props.todo.ID);
+    if (!this.props.todo.completed) {
+      this.state.buttonState="success";
+    } else {
+      this.state.buttonState="default";
+    }
   }
 
-  handleSave() {
-    this.setState({
-      isEditing: false,
-    });
-    this.props.actions.editTodo(this.state.text, this.props.todo.ID);
+  handleSave = () => {
+    this.props.actions('edit', this.props.todo.ID, this.state.text);
   }
 
-  handleTextChange(e) {
+  handleTextChange = (e) => {
     this.setState({
       text: e.target.value,
     });
   }
 
-  textArea() {
+  textArea = () => {
     if (this.state.isEditing === false) {
-      if (this.props.status.showCompleted===true && this.props.todo.completed===false) {
+      if (this.props.showCompleted===true && this.props.todo.completed===false) {
         return <div></div>;
       }
       return (
-        <div style={styleD} onDoubleClick={this.handleDoubleClick}>
-          <div style= {styleP}>
-            <p> {this.state.text} </p>
-          </div>
-          <RaisedButton type="submit" label="Del" style={styleB} onClick={this.handleDeleteTodo} />
-          <RaisedButton type="submit" label="Done" style={styleB} onClick={this.handleCompleteTodo} />
+        <div className="todo todoItem">
+          <Col xs={9} md={6} onDoubleClick={this.handleDoubleClick}>
+            <p className="todo text"> {this.state.text} </p>
+          </Col>
+           <Col xs={9} md={6}>
+             <ButtonToolbar className="todo buttons">
+               <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleDeleteTodo}>Del</Button>
+               <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleCompleteTodo}>Done</Button>
+            </ButtonToolbar>
+          </Col>
         </div>
       );
     } else {
       return (
-        <div style={styleD} onDoubleClick={this.handleDoubleClick}>
-          <div style= {styleP}>
-              <TextField value= {this.state.text} onChange= {this.handleTextChange} />
-          </div>
-          <RaisedButton type="submit" label="Save" style={styleB} onClick={this.handleSave} />
+        <div className="todo todoItem">
+          <Col xs={12} md={8}>
+            <Input
+              type="text" value={this.state.text}
+              onDoubleClick={this.handleDoubleClick}
+              onChange={this.handleTextChange}
+            />
+          </Col>
+          <Col xs={6} md={4}>
+            <Button type="submit" onClick={this.handleSave}>Save</Button>
+          </Col>
         </div>
     );
     }
   }
   render() {
-    console.log(this.props);
     return (
       <div>
           {this.textArea()}

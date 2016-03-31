@@ -30,9 +30,8 @@ module.exports = {
     'space-before-function-paren': 0,
     'react/arrow-body-style': 0,
     'arrow-body-style': 0,
-    'react/prop-types': 0,
-    // 'react/jsx-boolean-value': 0,
-    'no-console': 0,
+    // 'react/prop-types': 0,
+    'no-console': 1,
   },
   'parser': 'babel-eslint'
 };

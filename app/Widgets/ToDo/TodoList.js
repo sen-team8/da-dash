@@ -1,23 +1,20 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TodoItem from './TodoItem';
-import RaisedButton from 'material-ui/lib/raised-button';
-
-const styleB = {
-  float: 'left',
-};
+import { ButtonToolbar, Button, Col } from 'react-bootstrap';
 
 export default class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state ={
-      showAll: true,
-      showCompleted: false,
-    };
-    this.handleShowAll = this.handleShowAll.bind(this);
-    this.handleShowCompleted = this.handleShowCompleted.bind(this);
+  static propTypes = {
+    handleStateChange: PropTypes.func.isRequired,
+    todos: PropTypes.array.isRequired,
+    actions: PropTypes.func.isRequired,
   }
 
-  handleShowAll() {
+  state = {
+    showAll: true,
+    showCompleted: false,
+  }
+
+  handleShowAll = () => {
     this.props.handleStateChange('All');
     this.setState({
       showAll: true,
@@ -25,15 +22,15 @@ export default class TodoList extends React.Component {
     });
   }
 
-  handleShowCompleted() {
+  handleShowCompleted = () => {
     this.props.handleStateChange('Completed');
     this.setState({
       showAll: false,
       showCompleted: true,
     });
   }
+
   render() {
-    // console.log(this.props.todos);
     return (
       <div>
         {
@@ -43,13 +40,18 @@ export default class TodoList extends React.Component {
                   key={todo.ID}
                   todo={todo}
                   actions={this.props.actions}
-                  status = {this.state}
+                  showCompleted = {this.state.showCompleted}
+                  verifyTodo = {this.verifyTodo}
                 />
           );
           })
         }
-        <RaisedButton type="submit" label="All" style={styleB} onClick={this.handleShowAll} />
-        <RaisedButton type="submit" label="Completed" style={styleB} onClick={this.handleShowCompleted} />
+        <Col md={4} mdOffset={4}>
+          <ButtonToolbar className="todo list">
+            <Button type="submit" bsStyle="primary" onClick={this.handleShowAll}>All</Button>
+            <Button type="submit" bsStyle="primary" onClick={this.handleShowCompleted}>Completed</Button>
+          </ButtonToolbar>
+        </Col>
       </div>
     );
   }

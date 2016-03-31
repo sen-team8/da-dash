@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const pkg = require('./package.json');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Clean = require('clean-webpack-plugin');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -52,7 +52,7 @@ const common = {
 
 if (TARGET === 'start' || !TARGET) {
   module.exports = merge(common, {
-    devtool: 'source-map',
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
 
       historyApiFallback: true,
@@ -98,6 +98,7 @@ if (TARGET === 'build') {
       new webpack.optimize.CommonsChunkPlugin({
         names: ['vendor', 'manifest'],
       }),
+      new ExtractTextPlugin('[name].css'),
       // Setting DefinePlugin affects React library size!
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production'),
