@@ -8,7 +8,7 @@ html, body {
 }
 
 .app {
-  display: flex;
+  /*display: flex;*/
 }
 
 #todoApp {
@@ -29,6 +29,25 @@ html, body {
   left: 50%;
   transform: translate(-50%, -50%);
 
+}
+/* Navbar */
+
+@media (min-width: 768px)
+{
+    .navbar-header
+    {
+        float: none;
+    }
+
+    .navbar-toggle
+    {
+        display: block;
+    }
+
+    .navbar-collapse.collapse
+    {
+        display: none !important;
+    }
 }
 
 /* Login */

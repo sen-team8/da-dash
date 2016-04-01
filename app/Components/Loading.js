@@ -10,18 +10,24 @@ class Loading extends React.Component {
 
   static propTypes = {
     actions: React.PropTypes.object,
+    history: React.PropTypes.object,
   };
+
   state = {
     progress: 0,
   };
 
   componentDidMount() {
+    // debugger;
     this.props.actions.verifyUser();
   }
 
   timeout = null;
 
   render() {
+    if (this.state.progress > 15) {
+      this.props.history.push('/todo');
+    }
     this.timeout = setTimeout(() => {
       this.setState({ progress: this.state.progress + (9 * Math.random()) });
     }, 1000);

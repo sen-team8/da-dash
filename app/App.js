@@ -5,9 +5,13 @@ import { connect } from 'react-redux';
 
 import Login from './Components/Login';
 import Loading from './Components/Loading';
+import Home from './Components/Home';
 
 class App extends React.Component {
 
+  shouldComponentUpdate() {
+    return false;
+  }
   requireAuth = (nextState, replace) => {
     if (this.props.login.STATUS !== 'LOGGED_IN') {
       replace({
@@ -16,13 +20,12 @@ class App extends React.Component {
       });
     }
   }
-
   render() {
     // console.log(this.props);
     return (
       <div className="app">
         <Router history={this.props.history}>
-            <Route path="/" component={ToDo} onEnter={this.requireAuth}>
+            <Route path="/" component={Home} onEnter={this.requireAuth}>
               <Route path="todo" component={ToDo} />
             </Route>
             <Route path="login" component={Login} />
