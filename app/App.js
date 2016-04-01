@@ -1,11 +1,14 @@
 import React from 'react';
-import ToDo from './Widgets/ToDo';
-import { Router, Route } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import { connect } from 'react-redux';
 
 import Login from './Components/Login';
 import Loading from './Components/Loading';
 import Home from './Components/Home';
+import Dashboard from './Components/Dashboard';
+
+import Todo from './Widgets/Todo';
+
 
 class App extends React.Component {
 
@@ -26,11 +29,11 @@ class App extends React.Component {
       <div className="app">
         <Router history={this.props.history}>
             <Route path="/" component={Home} onEnter={this.requireAuth}>
-              <Route path="todo" component={ToDo} />
+              <IndexRoute component={Dashboard}/>
+              <Route path="todo" component={Todo} />
             </Route>
             <Route path="login" component={Login} />
             <Route path="loading" component={Loading} />
-
         </Router>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Button, Input, Col } from 'react-bootstrap';
+import { Button, Input } from 'react-bootstrap';
 
+let style;
 export default class CreateTodo extends React.Component {
 
   static propTypes = {
@@ -24,16 +25,21 @@ export default class CreateTodo extends React.Component {
 
   render() {
     return (
-      <div className="todo" id="add">
-        <form onSubmit={this.handleSubmit}>
-          <Col xs={8} sm={8} md={8}>
+      <div >
+        <form onSubmit={this.handleSubmit} style={style.form}>
           <Input className="todo textfield" type="text" placeholder="Enter text" onChange={this.handleChange}/>
-          </Col>
-          <Col xs={4} sm={4} md={4}>
-          <Button className="todo raised" bsStyle="primary" type="submit">Add</Button>
-          </Col>
+          <div>
+            <Button className="todo raised" bsStyle="primary" type="submit">Add</Button>
+          </div>
         </form>
       </div>
     );
   }
 }
+style = {
+  form: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+};

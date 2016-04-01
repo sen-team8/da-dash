@@ -41,7 +41,6 @@
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
-    "material-ui": "^0.14.4",
     "react": "^0.14.7",
     "react-bootstrap": "^0.28.4",
     "react-dom": "^0.14.7",

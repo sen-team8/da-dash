@@ -11,6 +11,12 @@ html, body {
   /*display: flex;*/
 }
 
+.bootstrap-border {
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+  box-shadow: none;
+}
+
 #todoApp {
   background-color:white;
   width: auto;
@@ -23,13 +29,6 @@ html, body {
   background-color: grey;
 }
 
-.centered {
-  position: fixed; /* or absolute */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-}
 /* Navbar */
 
 @media (min-width: 768px)
@@ -101,4 +100,63 @@ html, body {
   margin-bottom: 20px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+
+/* Todo */
+
+.todo.list {
+  position: fixed;
+  margin-left: -12%;
+  bottom: 5%;
+}
+
+.todo.todoItem {
+  margin-bottom: 5% !important;
+}
+
+.todo.container {
+  min-width: 320px;
+  min-height: 320px;
+  max-width: 320px;
+  max-height: 320px;
+}
+
+.todo#todoHeader span{
+  text-align: center;
+}
+
+.todo#add {
+  margin-top: 5% !important;
+}
+
+.todo.buttons {
+  margin-bottom: 5%;
+}
+
+.todo.text{
+  margin-top: 5%;
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+}
+
+.resizable {
+  width:100%;
+}
+
+@media (min-width:1024px) {
+/* (768 * 12) / 9 */
+  .resizable {
+   width:50%;
+   float:left;
+  }
+}
+@media (min-width:1280px) {
+/* (960 * 12) / 9 */
+  .resizable {
+   width:33.33%;
+   float:left;
+  }
 }
