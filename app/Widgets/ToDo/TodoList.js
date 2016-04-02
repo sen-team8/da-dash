@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import TodoItem from './TodoItem';
-import { ButtonToolbar, Button, Col } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 
 export default class TodoList extends React.Component {
   static propTypes = {
@@ -32,7 +32,7 @@ export default class TodoList extends React.Component {
 
   render() {
     return (
-      <div>
+        <ListGroup style={{ overflowY: 'scroll', maxHeight: '300px' }}>
         {
           this.props.todos.map((todo) => {
             return (
@@ -46,13 +46,7 @@ export default class TodoList extends React.Component {
           );
           })
         }
-        <Col md={4} mdOffset={4}>
-          <ButtonToolbar className="todo list">
-            <Button type="submit" bsStyle="primary" onClick={this.handleShowAll}>All</Button>
-            <Button type="submit" bsStyle="primary" onClick={this.handleShowCompleted}>Completed</Button>
-          </ButtonToolbar>
-        </Col>
-      </div>
+        </ListGroup>
     );
   }
 }
