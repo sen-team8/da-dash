@@ -4,6 +4,11 @@ import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
 import { Link } from 'react-router';
 
+<<<<<<< HEAD
+const styleContainer= {
+  display: 'flex',
+  margin: 'auto',
+=======
 const Login = (props) => {
   // console.log(props);
   return (
@@ -32,6 +37,7 @@ const Login = (props) => {
       </div>
     </div>
   );
+>>>>>>> upstream/master
 };
 
 function mapDispatchToProps(dispatch) {
