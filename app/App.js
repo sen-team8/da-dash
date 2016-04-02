@@ -11,10 +11,6 @@ import Todo from './Widgets/Todo';
 
 
 class App extends React.Component {
-
-  shouldComponentUpdate() {
-    return false;
-  }
   requireAuth = (nextState, replace) => {
     if (this.props.login.STATUS !== 'LOGGED_IN') {
       replace({
@@ -23,17 +19,17 @@ class App extends React.Component {
       });
     }
   }
+
   render() {
-    // console.log(this.props);
     return (
       <div className="app">
         <Router history={this.props.history}>
-            <Route path="/" component={Home} onEnter={this.requireAuth}>
-              <IndexRoute component={Dashboard}/>
-              <Route path="todo" component={Todo} />
-            </Route>
-            <Route path="login" component={Login} />
-            <Route path="loading" component={Loading} />
+          <Route path="/" component={Home} onEnter={this.requireAuth}>
+            <IndexRoute component={Dashboard}/>
+            <Route path="todo" component={Todo} />
+          </Route>
+          <Route path="login" component={Login} />
+          <Route path="loading" component={Loading} />
         </Router>
       </div>
     );

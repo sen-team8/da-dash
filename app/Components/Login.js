@@ -1,11 +1,21 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { actions } from '../redux/actions';
-import { Link } from 'react-router';
 
-const Login = (props) => {
-  // console.log(props);
+import {
+  LOGIN_ERROR,
+} from '../redux/loginActions';
+
+import { actions } from '../redux/actions';
+
+const Login = (props, context) => {
+  if (props.login.STATUS === LOGIN_ERROR) {
+    // show error
+  } else if (props.login.ID && props.login.PASS) {
+    context.router.push('/loading');
+  }
+
   return (
     <div style={{ display: 'flex', height: '100%' }}>
       <div className="login-wrapper">
@@ -22,16 +32,23 @@ const Login = (props) => {
           <label className="checkbox">
             <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe" /> Remember me
           </label>
-          <Link className="btn btn-lg btn-primary btn-block"
+          <Button className="btn btn-lg btn-primary btn-block"
             onClick={function foo() {props.actions.setCredentials();}}
-            to={'loading'}
           >
             Login
-          </Link>
+          </Button>
         </div>
       </div>
     </div>
   );
+};
+
+Login.contextTypes = {
+  router: React.PropTypes.object.isRequired,
+};
+
+Login.propTypes = {
+  login: React.PropTypes.object.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -41,7 +58,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { ...state.reducer.todo };
+  return { ...state.reducer };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
