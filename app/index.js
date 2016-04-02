@@ -11,7 +11,7 @@ import persistState from 'redux-localstorage';
 import { Provider } from 'react-redux';
 import reducer from './redux/reducer';
 import App from './App';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 const loggerMiddleware = createLogger();
@@ -23,10 +23,9 @@ const store = createStore(
   }),
   undefined,
   compose(
-    // comment persistState to remove persistence
     persistState('reducer', {
       slicer: (paths) => (state) => {
-        return state;
+        return state.reducer;
       },
     }),
     applyMiddleware(
@@ -37,7 +36,7 @@ const store = createStore(
   )
 );
 
-const history = syncHistoryWithStore(hashHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 const node = document.createElement('div');
 
 node.setAttribute('id', 'node');

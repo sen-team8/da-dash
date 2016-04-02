@@ -1,13 +1,20 @@
 import React from 'react';
-import ToDo from './Widgets/ToDo';
-import { Router, Route } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import { connect } from 'react-redux';
 
 import Login from './Components/Login';
 import Loading from './Components/Loading';
+import Home from './Components/Home';
+import Dashboard from './Components/Dashboard';
+
+import Todo from './Widgets/Todo';
+
 
 class App extends React.Component {
 
+  shouldComponentUpdate() {
+    return false;
+  }
   requireAuth = (nextState, replace) => {
     if (this.props.login.STATUS !== 'LOGGED_IN') {
       replace({
@@ -16,18 +23,17 @@ class App extends React.Component {
       });
     }
   }
-
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="app">
         <Router history={this.props.history}>
-            <Route path="/" component={ToDo} onEnter={this.requireAuth}>
-              <Route path="todo" component={ToDo} />
+            <Route path="/" component={Home} onEnter={this.requireAuth}>
+              <IndexRoute component={Dashboard}/>
+              <Route path="todo" component={Todo} />
             </Route>
             <Route path="login" component={Login} />
             <Route path="loading" component={Loading} />
-
         </Router>
       </div>
     );

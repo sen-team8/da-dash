@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
-import { ButtonToolbar, Button, Input, Col } from 'react-bootstrap';
+import { ButtonToolbar, Button, Input, ListGroupItem } from 'react-bootstrap';
+
+let style;
 
 export default class TodoItem extends React.Component {
 
@@ -55,43 +57,54 @@ export default class TodoItem extends React.Component {
   textArea = () => {
     if (this.state.isEditing === false) {
       if (this.props.showCompleted===true && this.props.todo.completed===false) {
-        return <div></div>;
+        return null;
       }
       return (
-        <div className="todo todoItem">
-          <Col xs={9} md={6} onDoubleClick={this.handleDoubleClick}>
-            <p className="todo text"> {this.state.text} </p>
-          </Col>
-           <Col xs={9} md={6}>
-             <ButtonToolbar className="todo buttons">
+        <div style={style.item}>
+          <div onDoubleClick={this.handleDoubleClick}>
+            {this.state.text}
+          </div>
+           <div>
+             <ButtonToolbar>
                <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleDeleteTodo}>Del</Button>
                <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleCompleteTodo}>Done</Button>
             </ButtonToolbar>
-          </Col>
+          </div>
         </div>
       );
     } else {
       return (
-        <div className="todo todoItem">
-          <Col xs={12} md={8}>
+        <div style={style.edit}>
             <Input
               type="text" value={this.state.text}
               onDoubleClick={this.handleDoubleClick}
               onChange={this.handleTextChange}
             />
-          </Col>
-          <Col xs={6} md={4}>
+          <div>
             <Button type="submit" onClick={this.handleSave}>Save</Button>
-          </Col>
+            </div>
         </div>
     );
     }
   }
   render() {
     return (
-      <div>
+      <ListGroupItem>
           {this.textArea()}
-      </div>
+      </ListGroupItem>
    );
   }
 }
+
+style = {
+  item: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  edit: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+};

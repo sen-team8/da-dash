@@ -6,7 +6,7 @@ export const SET_CREDENTIALS = 'SET_CREDENTIALS';
 
 export function setLogging(user) {
   localStorage.removeItem('user');
-  console.log('user');
+  // console.log('user');
   return {
     type: LOGGING,
     ...user,
