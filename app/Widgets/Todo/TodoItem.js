@@ -73,6 +73,9 @@ export default class TodoItem extends React.Component {
         </div>
       );
     } else {
+      if (this.props.showCompleted===true && this.props.todo.completed===false) {
+        return null;
+      }
       return (
         <div style={style.edit}>
             <Input
