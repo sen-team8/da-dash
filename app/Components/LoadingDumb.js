@@ -16,9 +16,7 @@ export default class LoadingDumb extends React.Component {
 
   render() {
     this.timeout = setTimeout(() => {
-      if (this.isMounted()) {
-        this.setState({ progress: this.state.progress + (3 * Math.random()) });
-      }
+      this.setState({ progress: this.state.progress + (3 * Math.random()) });
     }, 500);
 
     return (
