@@ -11,6 +11,7 @@ class Loading extends React.Component {
   static propTypes = {
     actions: React.PropTypes.object,
     history: React.PropTypes.object,
+    login: React.PropTypes.object,
   };
 
   static contextTypes = {
@@ -22,8 +23,8 @@ class Loading extends React.Component {
   };
 
   componentDidMount() {
-    // debugger;
-    this.props.actions.verifyUser();
+    const user = { id: this.props.login.ID, pass: this.props.login.PASS };
+    this.props.actions.verifyUser(user);
   }
 
   timeout = null;

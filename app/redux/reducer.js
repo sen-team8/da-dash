@@ -79,6 +79,7 @@ function todo(state = todoState, action) {
 }
 
 function login(state = initialLoginState, action) {
+  console.log(action.type);
   switch (action.type) {
     case LOGGED_IN:
       return Object.assign({}, state, {
@@ -99,6 +100,7 @@ function login(state = initialLoginState, action) {
         STATUS: action.type,
       });
     case SET_CREDENTIALS:
+      console.log(action);
       return Object.assign({}, state, {
         ID: action.id,
         PASS: action.pass,

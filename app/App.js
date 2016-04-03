@@ -17,6 +17,7 @@ class App extends React.Component {
   }
   requireAuth = (nextState, replace) => {
     if (this.props.login.STATUS !== 'LOGGED_IN') {
+      console.log('am i called');
       replace({
         pathname: '/login',
         state: { nextPathname: nextState.location.pathname },

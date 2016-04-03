@@ -4,8 +4,8 @@ const firebaseRef = new Firebase('https://team8authentication.firebaseio.com/');
 
 function createUser(user) {
   return new Promise((res, rej) => firebaseRef.createUser({
-    id: user.id,
-    pass: user.pass,
+    email: user.id,
+    password: user.pass,
   }, (error, userData) => {
     if (error) {
       switch (error.code) {
@@ -30,10 +30,11 @@ function createUser(user) {
 function authenticateUser(user) {
   return new Promise((resolve, reject) => {
     firebaseRef.authWithPassword({
-      id: user.id,
-      pass: user.pass,
+      email: user.id,
+      password: user.pass,
     }, (error, authData) => {
       if (error) {
+        console.log(error.code);
         switch (error.code) {
           case 'INVALID_EMAIL':
             console.log('The specified user account email is invalid.');
@@ -47,7 +48,7 @@ function authenticateUser(user) {
           default:
             console.log('Error logging user in:', error);
         }
-        reject(user);
+        return reject(error.code);
       } else {
         console.log('Authenticated successfully with payload:', authData);
         return resolve(user);
@@ -57,9 +58,15 @@ function authenticateUser(user) {
 }
 
 export default function login(user) {
-  console.log('auth: login');
   const promise = Promise.resolve(user);
 
   return promise.then(authenticateUser)
-  .catch(createUser);
+  .catch((error) => {
+    if (error === 'INVALID_USER') {
+      createUser(user);
+      return Promise.resolve(user);
+    } else {
+      return Promise.reject(error.code);
+    }
+  });
 }
