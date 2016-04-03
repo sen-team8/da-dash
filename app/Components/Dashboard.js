@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
+
 import Todo from '../Widgets/Todo/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

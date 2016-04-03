@@ -18,6 +18,7 @@ class Loading extends React.Component {
 
   static propTypes = {
     actions: React.PropTypes.object,
+    history: React.PropTypes.object,
     login: React.PropTypes.object,
   };
 
@@ -30,10 +31,12 @@ class Loading extends React.Component {
   };
 
   componentDidMount() {
+    const user = { id: this.props.login.ID, pass: this.props.login.PASS };
+
     if (this.props.login.STATUS === LOGIN_ERROR) {
       this.context.router.push('/login');
     } else if (this.props.login.ID && this.props.login.PASS) {
-      this.props.actions.verifyUser();
+      this.props.actions.verifyUser(user);
     } else {
       this.context.router.push(decideRoute(this.props.login.STATUS));
     }
