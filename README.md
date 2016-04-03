@@ -13,4 +13,7 @@
 ### Deploy
     $ npm run build
 
+### Test
+    $ npm test
+
 bundled app would be in build directory
