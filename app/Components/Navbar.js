@@ -1,12 +1,13 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 const Nav = ({ toggleSideBar }) => {
   return (
     <Navbar fluid onToggle={toggleSideBar}>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#">Da-Dash</a>
+          <Link to={'/'}>Da-Dash</Link>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>

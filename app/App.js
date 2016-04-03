@@ -7,34 +7,29 @@ import Loading from './Components/Loading';
 import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
 
-import Todo from './Widgets/ToDo';
+import Todo from './Widgets/Todo';
 
 
 class App extends React.Component {
-
-  shouldComponentUpdate() {
-    return false;
-  }
   requireAuth = (nextState, replace) => {
     if (this.props.login.STATUS !== 'LOGGED_IN') {
-      console.log('am i called');
       replace({
         pathname: '/login',
         state: { nextPathname: nextState.location.pathname },
       });
     }
   }
+
   render() {
-    // console.log(this.props);
     return (
       <div className="app">
         <Router history={this.props.history}>
-            <Route path="/" component={Home} onEnter={this.requireAuth}>
-              <IndexRoute component={Dashboard}/>
-              <Route path="todo" component={Todo} />
-            </Route>
-            <Route path="login" component={Login} />
-            <Route path="loading" component={Loading} />
+          <Route path="/" component={Home} onEnter={this.requireAuth}>
+            <IndexRoute component={Dashboard}/>
+            <Route path="todo" component={Todo} />
+          </Route>
+          <Route path="login" component={Login} />
+          <Route path="loading" component={Loading} />
         </Router>
       </div>
     );

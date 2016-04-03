@@ -1,10 +1,18 @@
 import React from 'react';
-import { ProgressBar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
 
-let styles;
+import { decideRoute } from '../loginStateHandler';
+
+import LoadingDumb from './LoadingDumb';
+
+import {
+  // LOGGED_IN,
+  // LOGGED_OUT,
+  LOGGING,
+  LOGIN_ERROR,
+} from '../redux/loginActions';
 
 class Loading extends React.Component {
 
@@ -15,7 +23,7 @@ class Loading extends React.Component {
   };
 
   static contextTypes = {
-    router: React.PropTypes.func.isRequired,
+    router: React.PropTypes.object.isRequired,
   };
 
   state = {
@@ -24,63 +32,29 @@ class Loading extends React.Component {
 
   componentDidMount() {
     const user = { id: this.props.login.ID, pass: this.props.login.PASS };
-    this.props.actions.verifyUser(user);
+
+    if (this.props.login.STATUS === LOGIN_ERROR) {
+      this.context.router.push('/login');
+    } else if (this.props.login.ID && this.props.login.PASS) {
+      this.props.actions.verifyUser(user);
+    } else {
+      this.context.router.push(decideRoute(this.props.login.STATUS));
+    }
   }
 
-  timeout = null;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.login.STATUS !== LOGGING) {
+      // console.log(nextProps.login.STATUS, decideRoute(nextProps.login.STATUS));
+      this.context.router.push(decideRoute(nextProps.login.STATUS));
+    }
+  }
 
   render() {
-    if (this.state.progress > 15) {
-      // console.log(this.context);
-      this.context.router.push('/');
-    }
-    this.timeout = setTimeout(() => {
-      this.setState({ progress: this.state.progress + (9 * Math.random()) });
-    }, 1000);
     return (
-      <div style={{ display: 'flex', height: '100%' }}>
-        <div style={styles.container}>
-          <div style={styles.welcome}>
-            Loading !!
-          </div>
-          <div style={styles.instructions}>
-            Going to cafe
-          </div>
-          <div style={styles.instructions}>
-            Grabbing some vadas
-            from padma kamal
-          </div>
-          <ProgressBar
-            backgroundStyle={{ backgroundColor: '#cccccc', borderRadius: 2 }}
-            style={{ marginTop: 10, width: 300 }}
-            now={this.state.progress}
-          />
-        </div>
-      </div>
+      <LoadingDumb />
     );
   }
 }
-
-styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-};
 
 
 function mapDispatchToProps(dispatch) {

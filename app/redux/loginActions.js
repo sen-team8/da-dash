@@ -6,38 +6,33 @@ export const LOGGED_OUT = 'LOGGED_OUT';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const SET_CREDENTIALS = 'SET_CREDENTIALS';
 
-export function setLogging(user) {
-  localStorage.removeItem('user');
-  // console.log('user');
+export function setLogging() {
   return {
     type: LOGGING,
-    ...user,
   };
 }
 
-export function setLoggedIn(user, json) {
+export function setLoggedIn() {
   return {
     type: LOGGED_IN,
   };
 }
 
+
 export function setLoginError(error) {
-  localStorage.removeItem('user');
   return {
     type: LOGIN_ERROR,
-    error: '',
+    error,
   };
 }
 
 export function setLogout() {
-  localStorage.removeItem('user');
   return {
     type: LOGGED_OUT,
   };
 }
 
 export function setCredentials(user) {
-  console.log(user);
   return {
     type: SET_CREDENTIALS,
     ...user,

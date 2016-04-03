@@ -4,6 +4,7 @@ import TodoList from './TodoList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ButtonToolbar, Button } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 import { actions } from '../../redux/actions';
 
@@ -65,6 +66,9 @@ class Todo extends Component {
   render() {
     return (
       <div style={style.todo} className="bootstrap-border">
+        <Link to={'todo'} >
+          Todo
+        </Link>
         <div>
           {this.showCreateTodo()}
         </div>

@@ -17,6 +17,7 @@ import {
 
 const initialLoginState = {
   STATUS: LOGGED_OUT,
+  ERROR: '',
   ID: null,
   PASS: null,
 };
@@ -79,7 +80,6 @@ function todo(state = todoState, action) {
 }
 
 function login(state = initialLoginState, action) {
-  console.log(action.type);
   switch (action.type) {
     case LOGGED_IN:
       return Object.assign({}, state, {
@@ -98,10 +98,11 @@ function login(state = initialLoginState, action) {
     case LOGIN_ERROR:
       return Object.assign({}, state, {
         STATUS: action.type,
+        ERROR: action.error,
       });
     case SET_CREDENTIALS:
-      console.log(action);
       return Object.assign({}, state, {
+        STATUS: LOGGED_OUT,
         ID: action.id,
         PASS: action.pass,
       });
