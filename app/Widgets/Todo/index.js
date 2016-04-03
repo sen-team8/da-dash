@@ -18,6 +18,8 @@ class Todo extends Component {
 
   state = {
     show: 'All',
+    showAll: true,
+    showCompleted: false,
   };
 
   showCreateTodo = () => {
@@ -62,6 +64,24 @@ class Todo extends Component {
     }
   }
 
+  handleShowAll = () => {
+    this.handleStateChange('All');
+    this.setState({
+      show: 'All',
+      showAll: true,
+      showCompleted: false,
+    });
+  }
+
+  handleShowCompleted = () => {
+    this.handleStateChange('Completed');
+    this.setState({
+      show: 'Completed',
+      showAll: false,
+      showCompleted: true,
+    });
+  }
+
   render() {
     return (
       <div style={style.todo} className="bootstrap-border">
@@ -69,12 +89,12 @@ class Todo extends Component {
           {this.showCreateTodo()}
         </div>
         <TodoList actions={this.actionHandler} todos={this.props.todos}
-          handleStateChange={this.handleStateChange}
+          showCompleted={this.state.showCompleted}
         />
         <ButtonToolbar>
             <Button type="submit" bsStyle="primary" onClick={this.handleShowAll}>All</Button>
             <Button type="submit" bsStyle="primary" onClick={this.handleShowCompleted}>Completed</Button>
-          </ButtonToolbar>
+        </ButtonToolbar>
       </div>
     );
   }
