@@ -17,6 +17,7 @@ import {
 
 const initialLoginState = {
   STATUS: LOGGED_OUT,
+  ERROR: '',
   ID: null,
   PASS: null,
 };
@@ -97,9 +98,11 @@ function login(state = initialLoginState, action) {
     case LOGIN_ERROR:
       return Object.assign({}, state, {
         STATUS: action.type,
+        ERROR: action.error,
       });
     case SET_CREDENTIALS:
       return Object.assign({}, state, {
+        STATUS: LOGGED_OUT,
         ID: action.id,
         PASS: action.pass,
       });

@@ -1,3 +1,5 @@
+import login from '../network/auth';
+
 export const LOGGED_IN = 'LOGGED_IN';
 export const LOGGING = 'LOGGING';
 export const LOGGED_OUT = 'LOGGED_OUT';
@@ -16,9 +18,11 @@ export function setLoggedIn() {
   };
 }
 
-export function setLoginError() {
+
+export function setLoginError(error) {
   return {
     type: LOGIN_ERROR,
+    error,
   };
 }
 
@@ -28,18 +32,18 @@ export function setLogout() {
   };
 }
 
-export function setCredentials(user = { id: 'kushan', pass: 'ojo' }) {
+export function setCredentials(user) {
   return {
     type: SET_CREDENTIALS,
     ...user,
   };
 }
 
-export function verifyUser(user = { id: 'kushan', pass: 'ojo' }) {
+export function verifyUser(user) {
   return dispatch => {
-    dispatch(setLogging());
-    return fetch(`http://www.reddit.com/r/science.json`)
-      .then(response => response.json())
-      .then(json => dispatch(setLoggedIn(user, json)));
+    dispatch(setLogging(user));
+    return login(user)
+      .then(() => dispatch(setLoggedIn()))
+      .catch((error) => dispatch(setLoginError(error)));
   };
 }
