@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import Todo from '../Widgets/Todo/index';
+import Todo from '../Widgets/ToDo';
 
 const Nav = ({ toggleSideBar }) => {
   return (

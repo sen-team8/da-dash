@@ -7,7 +7,7 @@ import Loading from './Components/Loading';
 import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
 
-import Todo from './Widgets/Todo';
+import Todo from './Widgets/ToDo';
 
 
 class App extends React.Component {
