@@ -14,6 +14,15 @@ import {
   setCredentials,
 } from './loginActions';
 
+import {
+  requestIntranetTree,
+  receiveIntranetTree,
+  receiveIntranetError,
+  getIntranet,
+  goForward,
+  goToStringPath,
+}from './intranetActions';
+
 export const actions = {
   createTodo,
   deleteTodo,
@@ -25,4 +34,10 @@ export const actions = {
   setLoginError,
   verifyUser,
   setCredentials,
+  requestIntranetTree,
+  receiveIntranetTree,
+  receiveIntranetError,
+  getIntranet,
+  goForward,
+  goToStringPath,
 };

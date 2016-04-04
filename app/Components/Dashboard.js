@@ -1,7 +1,9 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import Todo from '../Widgets/Todo/index';
+import Todo from '../Widgets/Todo';
+import Intranet from '../Widgets/Intranet';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
@@ -33,6 +35,9 @@ class Dashboard extends React.Component {
         <Row className="show-grid">
           <Col xs={6} md={4}>
             <Todo />
+          </Col>
+          <Col xs={6} md={4}>
+            <Intranet />
           </Col>
         </Row>
       </Grid>

@@ -22,7 +22,9 @@ class Home extends React.Component {
     return (
       <div>
         <Nav toggleSideBar={this.toggleSideBar}/>
-        {this.props.children}
+        <div style={{ marginTop: '60px' }}>
+          {this.props.children}
+        </div>
       </div>
     );
   }

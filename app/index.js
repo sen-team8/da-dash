@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import { Provider } from 'react-redux';
 import reducer from './redux/reducer';
@@ -14,11 +15,12 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 const loggerMiddleware = createLogger();
+injectTapEventPlugin();
 
 let oldState;
 
 // toggle this to switch off persistence
-const persistence = false;
+const persistence = true; // false;
 
 try {
   oldState = { reducer: JSON.parse(localStorage.getItem('redux1')) };

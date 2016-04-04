@@ -8,7 +8,7 @@ import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
 
 import Todo from './Widgets/Todo';
-
+import Intranet from './Widgets/Intranet';
 
 class App extends React.Component {
   requireAuth = (nextState, replace) => {
@@ -26,6 +26,7 @@ class App extends React.Component {
         <Router history={this.props.history}>
           <Route path="/" component={Home} onEnter={this.requireAuth}>
             <IndexRoute component={Dashboard}/>
+            <Route path="intranet" component={Intranet} />
             <Route path="todo" component={Todo} />
           </Route>
           <Route path="login" component={Login} />

@@ -15,6 +15,14 @@ import {
   SET_CREDENTIALS,
 } from './loginActions';
 
+import {
+  REQUEST_INTRANET_TREE,
+  RECEIVE_INTRANET_TREE,
+  RECEIVE_INTRANET_ERROR,
+  GO_FORWARD,
+  GOTO_STRINGPATH,
+} from './intranetActions';
+
 const initialLoginState = {
   STATUS: LOGGED_OUT,
   ERROR: '',
@@ -92,8 +100,6 @@ function login(state = initialLoginState, action) {
     case LOGGING:
       return Object.assign({}, state, {
         STATUS: action.type,
-        ID: action.id,
-        PASS: action.pass,
       });
     case LOGIN_ERROR:
       return Object.assign({}, state, {
@@ -111,4 +117,61 @@ function login(state = initialLoginState, action) {
   }
 }
 
-export default combineReducers({ todo, login });
+const initialIntranetState = {
+  isFetching: false,
+  path: [],
+  pathString: [],
+  tree: null,
+  error: null,
+  timeStamp: null,
+};
+
+function intranet(state=initialIntranetState, action) {
+  switch (action.type) {
+
+    case REQUEST_INTRANET_TREE:
+      return Object.assign({}, state, {
+        isFetching: true,
+        error: null,
+      });
+
+    case RECEIVE_INTRANET_TREE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: null,
+        tree: action.tree,
+        path: action.path,
+        pathString: [],
+        timeStamp: action.timeStamp,
+      });
+
+    case RECEIVE_INTRANET_ERROR:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+
+    case GO_FORWARD:
+      return Object.assign({}, state, {
+        path: state.path.concat(state.path[state.path.length-1][action.location]),
+        pathString: state.pathString.concat(action.location),
+      });
+
+    case GOTO_STRINGPATH:
+      let gaPath = action.toPath.toString();
+      gaPath = gaPath === '' ? '/home' : gaPath;
+      const pathString = action.toPath.split('/');
+      const path = [state.tree];
+      pathString.forEach((subDir) => {
+        path.push(path[path.length - 1][subDir]);
+      });
+      return Object.assign({}, state, {
+        path,
+        pathString,
+      });
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ todo, login, intranet });

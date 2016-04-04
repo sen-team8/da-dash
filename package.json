@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-register --recursive",
     "build": "webpack",
     "start": "webpack-dev-server --content-base build",
     "lint": "eslint . --ext .js --ext .jsx  ",
     "deploy": "gh-pages -d build -b master",
-    "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch"
   },
   "keywords": [],
@@ -45,6 +44,8 @@
     "webpack-merge": "^0.7.3"
   },
   "dependencies": {
+    "firebase": "^2.4.2",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^0.14.7",
     "react-bootstrap": "^0.28.4",
     "react-dom": "^0.14.7",
@@ -52,6 +53,7 @@
     "react-router-redux": "^4.0.0",
     "react-tap-event-plugin": "^0.2.2",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "superagent": "^1.8.3"
   }
 }
