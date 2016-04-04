@@ -14,6 +14,8 @@ import {
   setCredentials,
 } from './loginActions';
 
+import { getChat, sendChat, getUpdatedChat } from './chatActions';
+
 export const actions = {
   createTodo,
   deleteTodo,
@@ -25,4 +27,7 @@ export const actions = {
   setLoginError,
   verifyUser,
   setCredentials,
+  getChat,
+  sendChat,
+  getUpdatedChat,
 };

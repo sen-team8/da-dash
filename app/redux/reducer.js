@@ -15,12 +15,7 @@ import {
   SET_CREDENTIALS,
 } from './loginActions';
 
-const initialLoginState = {
-  STATUS: LOGGED_OUT,
-  ERROR: '',
-  ID: null,
-  PASS: null,
-};
+import { ALL_CHAT, UPDATE_CHAT } from './chatActions';
 
 const getId = (state) => {
   return state.todos.reduce((maxId, todoItem) => {
@@ -39,6 +34,23 @@ const todoState = {
     TEXT: 'Second Todo',
   }],
 };
+
+const initialLoginState = {
+  STATUS: LOGGED_OUT,
+  ERROR: '',
+  ID: null,
+  PASS: null,
+};
+
+const chatState = {
+  chats: [{
+    id: 'First',
+    message: 'message',
+    time: '01',
+  },
+  ],
+};
+
 
 function todo(state = todoState, action) {
   switch (action.type) {
@@ -92,8 +104,6 @@ function login(state = initialLoginState, action) {
     case LOGGING:
       return Object.assign({}, state, {
         STATUS: action.type,
-        ID: action.id,
-        PASS: action.pass,
       });
     case LOGIN_ERROR:
       return Object.assign({}, state, {
@@ -111,4 +121,19 @@ function login(state = initialLoginState, action) {
   }
 }
 
-export default combineReducers({ todo, login });
+function chat(state = chatState, action) {
+  switch (action.type) {
+    case ALL_CHAT:
+      return Object.assign({}, state, {
+        chats: [...state.chats, ...action.chat],
+      });
+    case UPDATE_CHAT:
+      return Object.assign({}, state, {
+        chats: [...state.chats, action.chat],
+      });
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ todo, login, chat });

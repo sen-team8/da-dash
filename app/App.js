@@ -6,7 +6,7 @@ import Login from './Components/Login';
 import Loading from './Components/Loading';
 import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
-
+import Chatroom from './Widgets/Chatroom';
 import Todo from './Widgets/Todo';
 
 
@@ -25,8 +25,9 @@ class App extends React.Component {
       <div className="app">
         <Router history={this.props.history}>
           <Route path="/" component={Home} onEnter={this.requireAuth}>
-            <IndexRoute component={Dashboard}/>
+            <IndexRoute component={Chatroom}/>
             <Route path="todo" component={Todo} />
+            <Route path="chatroom" component={Chatroom} />
           </Route>
           <Route path="login" component={Login} />
           <Route path="loading" component={Loading} />

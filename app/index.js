@@ -18,7 +18,7 @@ const loggerMiddleware = createLogger();
 let oldState;
 
 // toggle this to switch off persistence
-const persistence = false;
+const persistence = undefined;
 
 try {
   oldState = { reducer: JSON.parse(localStorage.getItem('redux1')) };
