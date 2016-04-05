@@ -3,16 +3,16 @@ import TodoItem from './TodoItem';
 import { ListGroup } from 'react-bootstrap';
 
 export default class TodoList extends React.Component {
+
   static propTypes = {
     todos: PropTypes.array.isRequired,
     actions: PropTypes.func.isRequired,
     showCompleted: PropTypes.bool.isRequired,
   }
 
-
   render() {
     return (
-        <ListGroup style={{ overflowY: 'scroll', maxHeight: '300px' }}>
+        <ListGroup className="todo listgroup">
         {
           this.props.todos.map((todo) => {
             return (

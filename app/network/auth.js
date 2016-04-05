@@ -1,6 +1,6 @@
 import Firebase from 'firebase';
 
-const firebaseRef = new Firebase('https://team8authentication.firebaseio.com/');
+const firebaseRef = new Firebase('https://senteam8.firebaseio.com/');
 
 function createUser(user) {
   return new Promise((res, rej) => firebaseRef.createUser({

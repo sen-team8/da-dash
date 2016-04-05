@@ -24,12 +24,15 @@ class Todo extends Component {
   };
 
   showCreateTodo = () => {
-    if (this.state.show === 'All') {
-      return (
-          <CreateTodo actions={this.actionHandler}/>
-        );
-    }
-    return <div></div>;
+    // if (this.state.show === 'All') {
+    //   return (
+    //       <CreateTodo actions={this.actionHandler}/>
+    //     );
+    // }
+    // return <div></div>;
+    return (
+        <CreateTodo actions={this.actionHandler}/>
+      );
   }
 
   handleStateChange = (text) => {
@@ -59,6 +62,7 @@ class Todo extends Component {
             this.props.actions.createTodo(text);
           }
         }
+        this.handleShowAll();
         break;
       default :
         break;
@@ -83,9 +87,17 @@ class Todo extends Component {
     });
   }
 
+  bsStyle = () => {
+    return {
+      buttonAll: this.state.showCompleted ? 'default' : 'primary',
+      buttonComplete: this.state.showCompleted ? 'primary' : 'default',
+    };
+  }
+
   render() {
+    const bsStyle = this.bsStyle();
     return (
-      <div style={style.todo} className="bootstrap-border">
+      <div style={style.todo} className="bootstrap-border todo container">
         <Link to={'todo'} >
           Todo
         </Link>
@@ -93,11 +105,11 @@ class Todo extends Component {
           {this.showCreateTodo()}
         </div>
         <TodoList actions={this.actionHandler} todos={this.props.todos}
-          showCompleted={this.state.showCompleted}
+          showCompleted={this.state.showCompleted} className="todo list"
         />
-        <ButtonToolbar>
-            <Button type="submit" bsStyle="primary" onClick={this.handleShowAll}>All</Button>
-            <Button type="submit" bsStyle="primary" onClick={this.handleShowCompleted}>Completed</Button>
+      <ButtonToolbar className="todo category">
+            <Button type="submit" bsStyle={bsStyle.buttonAll} onClick={this.handleShowAll}>All</Button>
+            <Button type="submit" bsStyle={bsStyle.buttonComplete} onClick={this.handleShowCompleted}>Completed</Button>
         </ButtonToolbar>
       </div>
     );
