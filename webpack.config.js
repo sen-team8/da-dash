@@ -141,5 +141,10 @@ if (TARGET === 'test' || TARGET === 'tdd') {
         },
       ],
     },
+    externals: {
+      'cheerio': 'window',
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': true,
+    },
   });
 }

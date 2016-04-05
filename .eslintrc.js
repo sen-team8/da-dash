@@ -1,6 +1,13 @@
 /*eslint-disable*/
 module.exports = {
   'extends': 'airbnb',
+  'globals': {
+    'expect': true,
+    'it': true,
+    'describe': true,
+    'sinon': true,
+    'afterEach': true,
+  },
   'rules': {
     'max-len': [
       1,

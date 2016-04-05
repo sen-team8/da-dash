@@ -14,6 +14,7 @@ class IntranetWidget extends React.Component {
       pathString: React.PropTypes.array,
       timeStamp: React.PropTypes.string,
       actions: React.PropTypes.object.isRequired,
+      fetch: React.PropTypes.bool.isRequired,
     }
 
     componentDidMount() {

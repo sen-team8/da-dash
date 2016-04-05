@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for redux/todoActions.js</title>
+    <title>Code coverage report for Components/Navbar.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,28 +16,32 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">redux/</a> todoActions.js
+      <a href="../index.html">all files</a> / <a href="index.html">Components/</a> Navbar.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>52/52</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">96.97% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>32/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>11/11</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>13/13</span>
+        <span class='fraction'>7/7</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">4 statements, 11 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
       </div>
     </div>
   </div>
@@ -76,12 +80,8 @@
 31
 32
 33
-34</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+34
+35</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -89,14 +89,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,37 +108,45 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const CREATE_TODO = 'CREATE_TODO';
-export const DELETE_TODO = 'DELETE_TODO';
-export const COMPLETE_TODO = 'COMPLETE_TODO';
-export const EDIT_TODO = 'EDIT_TODO';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component, PropTypes } from 'react';
+import { Navbar } from 'react-bootstrap';
+import { Link } from 'react-router';
 &nbsp;
+export default class Nav extends Component {
 &nbsp;
-export function createTodo(text) {
-  return {
-    type: CREATE_TODO,
-    TEXT: text,
-  };
-}
+  static propTypes = {
+    toggleSideBar: PropTypes.func.isRequired,
+    sidebarOpen: PropTypes.bool.isRequired,
+  }
 &nbsp;
-export function deleteTodo(id) {
-  return {
-    type: DELETE_TODO,
-    ID: id,
-  };
-}
-export function completeTodo(id) {
-  return {
-    type: COMPLETE_TODO,
-    ID: id,
-  };
-}
+  style = () =&gt; {
+    return {
+      navbar: {
+        maxWidth: t</span>his.props.sidebarOpen ? <span class="branch-0 cbranch-no" title="branch not covered" >'75%' : '100%',
+      },
+    };
+  }
 &nbsp;
-export function editTodo(text, id) {
-  return {
-    type: EDIT_TODO,
-    TODO: { TEXT: text, ID: id },
-  };
+  render() {
+    const style = this.style();
+    return (
+      &lt;Navbar fixedTop className="side-content" style={style.navbar} fluid onToggle={this.props.toggleSideBar}&gt;
+        &lt;Navbar.Header&gt;
+          &lt;Navbar.Brand&gt;
+            &lt;Link to={'/'}&gt;Da-Dash&lt;/Link&gt;
+          &lt;/Navbar.Brand&gt;
+          &lt;Navbar.Toggle /&gt;
+        &lt;/Navbar.Header&gt;
+      &lt;/Navbar&gt;
+    );
+  }
 }
 &nbsp;
 &nbsp;</pre></td></tr>
