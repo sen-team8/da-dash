@@ -7,7 +7,7 @@ import { expect } from 'chai';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('async todo actions', () => {
+describe('async intranet actions', () => {
   afterEach(() => {
     nock.cleanAll();
   });
