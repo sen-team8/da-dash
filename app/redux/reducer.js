@@ -49,7 +49,7 @@ const todoState = {
   }],
 };
 
-function todo(state = todoState, action) {
+export function todo(state = todoState, action) {
   switch (action.type) {
 
     case CREATE_TODO:
@@ -88,7 +88,7 @@ function todo(state = todoState, action) {
   }
 }
 
-function login(state = initialLoginState, action) {
+export function login(state = initialLoginState, action) {
   switch (action.type) {
     case LOGGED_IN:
       return Object.assign({}, state, {
