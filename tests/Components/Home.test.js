@@ -2,7 +2,7 @@ import React from 'react';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 chai.use(chaiEnzyme());
-import sinon from 'sinon';
+// import sinon from 'sinon';
 import { mount } from 'enzyme';
 import Home from '../../app/Components/Home';
 
