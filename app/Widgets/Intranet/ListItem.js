@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { ListGroupItem } from 'react-bootstrap';
 import Icon from '../../helper/Icons';
 
 let style;
@@ -11,16 +11,15 @@ export default class ListItem extends React.Component {
       goForward: React.PropTypes.func.isRequired,
       showAttachment: React.PropTypes.func.isRequired,
       pathString: React.PropTypes.array.isRequired,
-      path: React.PropTypes.array.isRequired,
     }
 
     render() {
       const obj = this.props.items;
-      const grid = Object.keys(obj);
+      const grid = Array.from(obj.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
       const list = grid.map((item, key) => {
-        const isFile = obj[item] === 'file';
+        const isFile = obj.get(item) === 'file';
         let showIcon;
-        if (this.props.path.length > 2) {
+        if (this.props.pathString.length > 1) {
           showIcon = (<div style={style.icon}>{isFile ?
               <Icon icon="pdf" style={{ fill: '#ff8a65' }}/> :
               <Icon icon="folder" style={{ fill: '#ffcc80' }}/>}</div>);
@@ -45,7 +44,7 @@ export default class ListItem extends React.Component {
       });
       list.push(<div key={9999} style={{ ...style.main, borderBottom: 'solid 0px' }}/>);
       list.push(<div key={9998} style={{ ...style.main, borderBottom: 'solid 0px' }}/>);
-      return <div>{list}</div>;
+      return <ListGroupItem>{list}</ListGroupItem>;
     }
 }
 

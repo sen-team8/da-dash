@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import Immutable from 'immutable';
 
 import {
   CREATE_TODO,
@@ -123,12 +124,18 @@ const initialIntranetState = {
   pathString: [],
   tree: null,
   error: null,
+  location: null,
   timeStamp: null,
 };
 
+function traverseIntranet(tree, path) {
+  return path.reduce((prev, cur) => {
+    return prev.get(cur);
+  }, tree);
+}
+
 function intranet(state=initialIntranetState, action) {
   switch (action.type) {
-
     case REQUEST_INTRANET_TREE:
       return Object.assign({}, state, {
         isFetching: true,
@@ -136,13 +143,14 @@ function intranet(state=initialIntranetState, action) {
       });
 
     case RECEIVE_INTRANET_TREE:
+      const tree = Immutable.fromJS(action.tree);
       return Object.assign({}, state, {
         isFetching: false,
         error: null,
-        tree: action.tree,
-        path: action.path,
+        tree,
         pathString: [],
         timeStamp: action.timeStamp,
+        location: tree,
       });
 
     case RECEIVE_INTRANET_ERROR:
@@ -152,22 +160,17 @@ function intranet(state=initialIntranetState, action) {
       });
 
     case GO_FORWARD:
+      let pathString = state.pathString.concat(action.location);
       return Object.assign({}, state, {
-        path: state.path.concat(state.path[state.path.length-1][action.location]),
-        pathString: state.pathString.concat(action.location),
+        pathString,
+        location: traverseIntranet(state.tree, pathString),
       });
 
     case GOTO_STRINGPATH:
-      let gaPath = action.toPath.toString();
-      gaPath = gaPath === '' ? '/home' : gaPath;
-      const pathString = action.toPath.split('/');
-      const path = [state.tree];
-      pathString.forEach((subDir) => {
-        path.push(path[path.length - 1][subDir]);
-      });
+      pathString = action.toPath.split('/');
       return Object.assign({}, state, {
-        path,
         pathString,
+        location: traverseIntranet(state.tree, pathString),
       });
     default:
       return state;

@@ -1,6 +1,6 @@
 /* global define, it, describe */
 import expect from 'expect';
-import * as actions from '../app/redux/todoActions';
+import * as actions from 'app/redux/todoActions';
 describe('todo actions', () => {
   it('createTodo should create ADD_TODO action', () => {
     expect(actions.createTodo('Use Redux')).toEqual({

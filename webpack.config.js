@@ -9,6 +9,7 @@ const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
+  test: path.join(__dirname, 'tests'),
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -43,7 +44,7 @@ const common = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'node_modules/html-webpack-template/index.html',
-      title: 'Kanban app',
+      title: 'Dadash',
       appMountId: 'app',
       inject: false,
     }),
@@ -113,5 +114,32 @@ if (TARGET === 'build') {
         },
       }),
     ],
+  });
+}
+
+if (TARGET === 'test' || TARGET === 'tdd') {
+  module.exports = merge(common, {
+    devtool: 'inline-source-map',
+    resolve: {
+      alias: {
+        app: PATHS.app,
+      },
+    },
+    module: {
+      preLoaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: ['isparta-instrumenter'],
+          include: PATHS.app,
+        },
+      ],
+      loaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: ['babel?cacheDirectory'],
+          include: PATHS.test,
+        },
+      ],
+    },
   });
 }

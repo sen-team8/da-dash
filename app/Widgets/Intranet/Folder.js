@@ -1,5 +1,6 @@
 import React from 'react';
-import { List } from 'material-ui';
+import { ListGroup } from 'react-bootstrap';
+
 // import { flexCenter } from '../../Flex';
 
 import ListItem from './ListItem';
@@ -11,10 +12,8 @@ export default class Folder extends React.Component {
     static propTypes = {
       location: React.PropTypes.object.isRequired,
       goForward: React.PropTypes.func.isRequired,
-      path: React.PropTypes.array.isRequired,
       pathString: React.PropTypes.array.isRequired,
       timeStamp: React.PropTypes.string,
-      searching: React.PropTypes.bool.isRequired,
       showAttachment: React.PropTypes.func.isRequired,
       goToStringPath: React.PropTypes.func.isRequired,
     }
@@ -34,7 +33,6 @@ export default class Folder extends React.Component {
         goForward: this.goForward,
         showAttachment: this.showAttachment,
         pathString: this.props.pathString,
-        path: this.props.path,
       };
       return (<ListItem {...params}/>);
     }
@@ -51,9 +49,9 @@ export default class Folder extends React.Component {
             <div style={style.updated}>
               {statusDisplay}
             </div>
-            <List style={style.list}>
+            <ListGroup style={{ overflowY: 'scroll', maxHeight: '300px' }}>
               {this.displayStructure(this.props.location)}
-            </List>
+            </ListGroup>
           </div>
       );
     }

@@ -33,10 +33,10 @@ class Dashboard extends React.Component {
       <Grid>
         <Row>hello world</Row>
         <Row className="show-grid">
-          <Col xs={6} md={4}>
+          <Col xs={12} md={6}>
             <Todo />
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={6}>
             <Intranet />
           </Col>
         </Row>

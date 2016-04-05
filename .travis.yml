@@ -3,8 +3,9 @@ node_js:
 - "stable"
 
 script:
+  - npm run lin
+  - npm run test
   - npm run build
-  - npm run lint
 
 branches:
   only:

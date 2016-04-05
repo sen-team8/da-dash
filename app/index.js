@@ -20,7 +20,7 @@ injectTapEventPlugin();
 let oldState;
 
 // toggle this to switch off persistence
-const persistence = true; // false;
+const persistence = undefined; // false;
 
 try {
   oldState = { reducer: JSON.parse(localStorage.getItem('redux1')) };

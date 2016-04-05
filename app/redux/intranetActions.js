@@ -17,7 +17,6 @@ export function receiveIntranetTree(response) {
   return {
     type: RECEIVE_INTRANET_TREE,
     tree: response.intranet,
-    path: new Array(response.intranet),
     timeStamp: ParseDate.timeSince(response.timeStamp),
   };
 }
