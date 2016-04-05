@@ -14,7 +14,6 @@ export default class TodoItem extends React.Component {
   state = {
     isEditing: false,
     text: this.props.todo.TEXT,
-    buttonState: 'default',
   };
 
   componentWillReceiveProps(nextProps) {
@@ -37,11 +36,6 @@ export default class TodoItem extends React.Component {
 
   handleCompleteTodo = () => {
     this.props.actions('complete', this.props.todo.ID);
-    if (!this.props.todo.completed) {
-      this.state.buttonState='success';
-    } else {
-      this.state.buttonState='default';
-    }
   }
 
   handleSave = () => {
@@ -55,6 +49,7 @@ export default class TodoItem extends React.Component {
   }
 
   textArea = () => {
+    const bsStyle = this.bsStyle();
     if (this.state.isEditing === false) {
       if (this.props.showCompleted===true && this.props.todo.completed===false) {
         return null;
@@ -66,8 +61,8 @@ export default class TodoItem extends React.Component {
           </div>
            <div>
              <ButtonToolbar>
-               <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleDeleteTodo}>Del</Button>
-               <Button type="submit" bsStyle={this.state.buttonState} onClick={this.handleCompleteTodo}>Done</Button>
+               <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleDeleteTodo}>Del</Button>
+               <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleCompleteTodo}>Done</Button>
             </ButtonToolbar>
           </div>
         </div>
@@ -90,12 +85,23 @@ export default class TodoItem extends React.Component {
     );
     }
   }
+
+  bsStyle = () => {
+    return {
+      button: this.props.todo.completed ? 'success' : 'default',
+    };
+  }
+
   render() {
-    return (
-      <ListGroupItem>
-          {this.textArea()}
-      </ListGroupItem>
-   );
+    if (this.textArea()) {
+      return (
+        <ListGroupItem>
+            {this.textArea()}
+        </ListGroupItem>
+     );
+    } else {
+      return null;
+    }
   }
 }
 
