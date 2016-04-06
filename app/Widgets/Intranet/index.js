@@ -10,7 +10,6 @@ import Toolbar from './Toolbar';
 class IntranetWidget extends React.Component {
 
     static propTypes = {
-      user: React.PropTypes.object.isRequired,
       location: React.PropTypes.object,
       pathString: React.PropTypes.array,
       timeStamp: React.PropTypes.string,

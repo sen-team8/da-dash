@@ -13,20 +13,19 @@ export default class ListItem extends React.Component {
       pathString: React.PropTypes.array.isRequired,
     }
 
+    getIcon(isFile) {
+      if (isFile) {
+        return <Icon icon="pdf" style={{ fill: '#ff8a65' }}/>;
+      }
+      return <Icon icon="folder" style={{ fill: '#ffcc80' }}/>;
+    }
+
     render() {
       const obj = this.props.items;
       const props = this.props;
       const grid = Array.from(obj.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
       const list = grid.map((item, key) => {
         const isFile = obj.get(item) === 'file';
-        let showIcon;
-        if (this.props.pathString.length > 1) {
-          showIcon = (<div style={style.icon}>{isFile ?
-              <Icon icon="pdf" style={{ fill: '#ff8a65' }}/> :
-              <Icon icon="folder" style={{ fill: '#ffcc80' }}/>}</div>);
-        } else {
-          showIcon = null;
-        }
         return (
           <ListGroupItem
             key={key}
@@ -37,7 +36,7 @@ export default class ListItem extends React.Component {
             }
           >
             <div style={style.content}>
-              {showIcon}
+              {this.getIcon(isFile)}
               {item}
             </div>
           </ListGroupItem>
