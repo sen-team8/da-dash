@@ -3,7 +3,7 @@ DA-Dash is open to contribute for following 9 developers.
 - Kushan (@kepta)
 - Kuljeet (@KuljeetJ)
 - Nihit (@Nihitavr)
-- Vadhir (@fibertigibet)
+- Vadhir (@flibertigibet)
 - Dushyant (@Dushyant7)
 - Barkha (@barkhabhojak)
 - Nidhi (@berzentine)

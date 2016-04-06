@@ -6,6 +6,10 @@ import Login from './Components/Login';
 import Loading from './Components/Loading';
 import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
+import Profile from './Components/Profile';
+import Widgets from './Components/Widgets';
+import Settings from './Components/Settings';
+import Help from './Components/Help';
 
 import Todo from './Widgets/Todo';
 import Intranet from './Widgets/Intranet';
@@ -28,6 +32,10 @@ class App extends React.Component {
             <IndexRoute component={Dashboard}/>
             <Route path="intranet" component={Intranet} />
             <Route path="todo" component={Todo} />
+            <Route path="profile" component={Profile} />
+            <Route path="widgets" component={Widgets} />
+            <Route path="settings" component={Settings} />
+            <Route path="help" component={Help} />
           </Route>
           <Route path="login" component={Login} />
           <Route path="loading" component={Loading} />
