@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { ButtonToolbar, Button, Input, ListGroupItem } from 'react-bootstrap';
+import Icon from '../../helper/Icons.js';
 
 let style;
 
@@ -61,8 +62,8 @@ export default class TodoItem extends React.Component {
           </div>
            <div>
              <ButtonToolbar>
-               <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleDeleteTodo}>Del</Button>
-               <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleCompleteTodo}>Done</Button>
+               <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleDeleteTodo} style={style.buttons}><Icon size="1.5em" icon="delete"/></Button>
+               <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleCompleteTodo} style={style.buttons}><Icon size="1.5em" icon="done"/></Button>
             </ButtonToolbar>
           </div>
         </div>
@@ -115,5 +116,8 @@ style = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  buttons: {
+    border: 'none',
   },
 };

@@ -12,7 +12,7 @@ export default class Nav extends Component {
   style = () => {
     return {
       navbar: {
-        maxWidth: this.props.sidebarOpen ? '75%' : '100%',
+        maxWidth: this.props.sidebarOpen ? '80%' : '100%',
       },
     };
   }

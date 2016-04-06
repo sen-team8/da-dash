@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Button, Input } from 'react-bootstrap';
+import Icon from '../../helper/Icons.js';
 
 let style;
 export default class CreateTodo extends React.Component {
@@ -29,7 +30,7 @@ export default class CreateTodo extends React.Component {
         <form onSubmit={this.handleSubmit} style={style.form}>
           <Input className="todo textfield" type="text" placeholder="Enter text" onChange={this.handleChange}/>
           <div>
-            <Button className="todo raised" bsStyle="primary" type="submit">Add</Button>
+            <Button className="todo raised" bsStyle="primary" type="submit"><Icon size="1.65em" icon="add" style={{ color: 'white' }}>Add</Icon></Button>
           </div>
         </form>
       </div>

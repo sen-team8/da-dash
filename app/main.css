@@ -12,9 +12,9 @@ html, body {
 }
 
 .bootstrap-border {
-  border: 1px solid #ddd;
-  border-radius: 4px 4px 0 0;
-  box-shadow: none;
+  border: 2px solid #ddd;
+  border-radius: 5px 10px 0 0;
+  box-shadow: 2px 2px 7px rgba(0,0,0,0.8);;
 }
 
 #todoApp {
@@ -182,7 +182,7 @@ html, body {
   width: 300px;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #1a1a1a;
+  background: #191919;
   position: absolute;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -222,7 +222,7 @@ html, body {
 .sidebar-nav {
     position: relative;
     top: 0;
-    width: 220px;
+    width: 250px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -243,14 +243,14 @@ html, body {
     z-index: -1;
     height: 100%;
     width: 3px;
-    background-color: #1c1c1c;
+    background-color: #009ACD;
     -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
        -ms-transition:  width .2s ease-in;
             transition: width .2s ease-in;
 
 }
-.sidebar-nav li:first-child a {
+/*.sidebar-nav li:first-child a {
     color: #fff;
     background-color: #1a1a1a;
 }
@@ -277,7 +277,7 @@ html, body {
 }
 .sidebar-nav li:nth-child(9):before {
     background-color: #35acdf;
-}
+}*/
 .sidebar-nav li:hover:before,
 .sidebar-nav li.open:hover:before {
     width: 100%;
