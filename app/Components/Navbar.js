@@ -13,6 +13,7 @@ export default class Nav extends Component {
     return {
       navbar: {
         maxWidth: this.props.sidebarOpen ? '75%' : '100%',
+        backgroundColor: 'white',
       },
     };
   }

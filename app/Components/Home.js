@@ -43,7 +43,7 @@ class Home extends React.Component {
       <div className="wrapper0">
         <div className="side-content">
           <Nav toggleSideBar={this.toggleSideBar} sidebarOpen={this.state.sidebarOpen} />
-          <div style={{ marginTop: '60px', height: 'calc(100vh - 60px)' }}>
+          <div style={{ marginTop: '50px', height: 'calc(100vh - 50px)' }}>
             {this.props.children}
           </div>
         </div>

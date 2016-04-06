@@ -16,6 +16,7 @@ export default class Intranet extends React.Component {
       showAttachment: React.PropTypes.func.isRequired,
       goToStringPath: React.PropTypes.func.isRequired,
       goBack: React.PropTypes.func.isRequired,
+      dashboard: React.PropTypes.bool.isRequired,
     }
 
     render() {
@@ -28,6 +29,7 @@ export default class Intranet extends React.Component {
             timeStamp={this.props.timeStamp}
             showAttachment={this.props.showAttachment}
             goToStringPath={this.props.goToStringPath}
+            dashboard={this.props.dashboard}
           />
         </div>
       );

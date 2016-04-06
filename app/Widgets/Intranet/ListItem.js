@@ -14,7 +14,7 @@ export default class ListItem extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
-      return nextProps.items != this.props.items;
+      return nextProps.items !== this.props.items;
     }
     getIcon(isFile) {
       if (isFile) {

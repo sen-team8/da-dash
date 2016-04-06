@@ -4,6 +4,8 @@ import React from 'react';
 
 import ListItem from './ListItem';
 // import LocationBar from './LocationBar';
+import Toolbar from './Toolbar';
+import { Link } from 'react-router';
 
 let style;
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -16,6 +18,7 @@ export default class Folder extends React.Component {
       timeStamp: React.PropTypes.string,
       showAttachment: React.PropTypes.func.isRequired,
       goToStringPath: React.PropTypes.func.isRequired,
+      dashboard: React.PropTypes.bool.isRequired,
     }
 
     showAttachment = (path, file) => {
@@ -33,20 +36,26 @@ export default class Folder extends React.Component {
       };
       return (<ListItem {...params}/>);
     }
+
     render() {
-      const lastUpdated = (
-        <span>
-          Last updated &nbsp;{this.props.timeStamp} &nbsp; ago
-        </span>
-      );
-      const statusDisplay = lastUpdated;
+      const isDashboard = this.props.dashboard ?
+        (
+          <Link to={'intranet'} >
+            Intranet
+          </Link>
+        ) :
+        (
+          <Toolbar pathString={this.props.pathString}
+            goToStringPath={this.props.goToStringPath}
+            timeStamp={this.props.timeStamp}
+            folders={this.props.location.length}
+          />
+        );
       return (
           <div style={style.main} id="scroller">
-            <div style={style.updated}>
-              {statusDisplay}
-            </div>
-              <Scrollbars style={{ height: window.innerHeight - 120 }}>
-              {this.displayStructure(this.props.location)}
+              <Scrollbars style={{ height: window.innerHeight - 50 }}>
+                {isDashboard}
+                {this.displayStructure(this.props.location)}
               </Scrollbars>
           </div>
       );
@@ -66,13 +75,7 @@ style = {
     paddingTop: '10px',
     paddingBottom: '10px',
   },
-  updated: {
-    display: 'flex',
-    justifyContent: 'center',
-    color: 'grey',
-    fontSize: '0.75em',
-    marginTop: '5px',
-  },
+
   avatarFile: {
     backgroundColor: '#9c27b0',
   },

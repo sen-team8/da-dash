@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router';
 import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
 import Intranet from './Intranet';
-import Toolbar from './Toolbar';
 
 class IntranetWidget extends React.Component {
 
@@ -47,23 +45,12 @@ class IntranetWidget extends React.Component {
             goBack={this.goBack}
             timeStamp={this.props.timeStamp}
             showAttachment={this.showAttachment}
+            dashboard={this.props.dashboard}
           />
       );
 
-      const isDashboard = this.props.dashboard ?
-        (
-          <Link to={'intranet'} >
-            Intranet
-          </Link>
-        ) :
-        (
-          <Toolbar pathString={this.props.pathString}
-            goToStringPath={this.props.actions.goToStringPath}
-          />
-        );
       return (
         <div style={{ height: '100%' }}>
-          {isDashboard}
           {!this.props.location ? progress : IntranetDumbRef}
         </div>
       );

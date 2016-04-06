@@ -50,6 +50,10 @@ export default class Icon extends Component {
         return (
           <g><path d="M10 20v-6h4v6h5v-8h3l-10-9-10 9h3v8z"></path></g>
         );
+      case 'trending-up':
+        return (
+          <g><path d="M16 6l2.29 2.29-4.88 4.88-4-4-7.41 7.42 1.41 1.41 6-6 4 4 6.3-6.29 2.29 2.29v-6z"></path></g>
+        );
       default:
         return (
           <g><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6h-2v-13h-6v-2h18v2z"></path></g> // eslint-disable-line
