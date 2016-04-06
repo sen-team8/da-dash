@@ -23,7 +23,7 @@ describe('async intranet actions', () => {
 
     const expectedActions = [
       { type: 'REQUEST_INTRANET_TREE' },
-      { type: 'RECEIVE_INTRANETTREE',
+      { type: 'RECEIVE_INTRANET_TREE',
         tree: { Academic: {}, Lecture: {} },
         timeStamp: 'NaN hours ' },
     ];

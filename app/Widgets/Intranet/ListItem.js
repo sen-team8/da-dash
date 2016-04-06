@@ -13,6 +13,9 @@ export default class ListItem extends React.Component {
       pathString: React.PropTypes.array.isRequired,
     }
 
+    shouldComponentUpdate(nextProps) {
+      return nextProps.items != this.props.items;
+    }
     getIcon(isFile) {
       if (isFile) {
         return <Icon icon="pdf" style={{ fill: '#ff8a65' }}/>;
