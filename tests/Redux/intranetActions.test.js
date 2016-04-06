@@ -23,17 +23,18 @@ describe('async todo actions', () => {
 
     const expectedActions = [
       { type: 'REQUEST_INTRANET_TREE' },
-      { type: 'RECEIVE_INTRANET_TREE',
+      { type: 'RECEIVE_INTRANETTREE',
         tree: { Academic: {}, Lecture: {} },
         timeStamp: 'NaN hours ' },
     ];
     const store = mockStore({ reducer: { intranet: {} } });
 
-    store.dispatch(actions.getIntranet())
-     .then(() => { // return of async actions
-       expect(store.getActions()).to.deep.equal(expectedActions);
-     })
-     .then(done) // test passed
-     .catch(done); // test failed
+    store.dispatch(
+      actions.getIntranet())
+       .then(() => { // return of async actions
+         expect(store.getActions()).to.deep.equal(expectedActions);
+       })
+       .then(done) // test passed
+       .catch(done); // test failed
   });
 });

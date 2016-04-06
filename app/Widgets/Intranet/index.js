@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import { Link } from 'react-router';
 import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
 import Intranet from './Intranet';
+import Toolbar from './Toolbar';
 
 class IntranetWidget extends React.Component {
 
@@ -14,7 +15,7 @@ class IntranetWidget extends React.Component {
       pathString: React.PropTypes.array,
       timeStamp: React.PropTypes.string,
       actions: React.PropTypes.object.isRequired,
-      fetch: React.PropTypes.bool.isRequired,
+      dashboard: React.PropTypes.bool,
     }
 
     componentDidMount() {
@@ -29,20 +30,6 @@ class IntranetWidget extends React.Component {
       window.open(formQuery(path), '_blank');
     }
 
-    // TODO goback
-    // goBack = () => {
-    //   if (this.props.path.length === 1) return;
-    //   const tempArray = this.props.path.slice(0, this.props.path.length - 1);
-    //   const tempPathString = this.props.pathString.slice(0, this.props.pathString.length - 1);
-    //   this.setState({
-    //     path: tempArray,
-    //     pathString: tempPathString,
-    //     search: false,
-    //     home: true,
-    //     hot: false,
-    //   });
-    // }
-
     render() {
       const progress = (
         <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
@@ -51,8 +38,8 @@ class IntranetWidget extends React.Component {
           </div>
         </div>
       );
+
       const IntranetDumbRef = (
-        <div>
           <Intranet
             location={this.props.location}
             pathString={this.props.pathString}
@@ -62,10 +49,22 @@ class IntranetWidget extends React.Component {
             timeStamp={this.props.timeStamp}
             showAttachment={this.showAttachment}
           />
-        </div>
       );
+
+      const isDashboard = this.props.dashboard ?
+        (
+          <Link to={'intranet'} >
+            Intranet
+          </Link>
+        ) :
+        (
+          <Toolbar pathString={this.props.pathString}
+            goToStringPath={this.props.actions.goToStringPath}
+          />
+        );
       return (
         <div style={{ height: '100%' }}>
+          {isDashboard}
           {!this.props.location ? progress : IntranetDumbRef}
         </div>
       );

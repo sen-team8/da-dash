@@ -46,6 +46,10 @@ export default class Icon extends Component {
         return (
           <g><path d="M6 2c-1.1 0-1.99.9-1.99 2l-.01 16c0 1.1.89 2 1.99 2h12.01c1.1 0 2-.9 2-2v-12l-6-6h-8zm7 7v-5.5l5.5 5.5h-5.5z"></path></g> // eslint-disable-line
         );
+      case 'home':
+        return (
+          <g><path d="M10 20v-6h4v6h5v-8h3l-10-9-10 9h3v8z"></path></g>
+        );
       default:
         return (
           <g><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6h-2v-13h-6v-2h18v2z"></path></g> // eslint-disable-line

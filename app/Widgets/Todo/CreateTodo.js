@@ -25,14 +25,12 @@ export default class CreateTodo extends React.Component {
 
   render() {
     return (
-      <div >
-        <form onSubmit={this.handleSubmit} style={style.form}>
+        <div style={style.form}>
           <Input className="todo textfield" type="text" placeholder="Enter text" onChange={this.handleChange}/>
           <div>
-            <Button className="todo raised" bsStyle="primary" type="submit">Add</Button>
+            <Button className="todo raised" bsStyle="primary" type="submit" onClick={this.handleSubmit}>Add</Button>
           </div>
-        </form>
-      </div>
+        </div>
     );
   }
 }

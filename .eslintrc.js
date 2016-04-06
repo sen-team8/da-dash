@@ -5,7 +5,6 @@ module.exports = {
     'expect': true,
     'it': true,
     'describe': true,
-    'sinon': true,
     'afterEach': true,
   },
   'rules': {

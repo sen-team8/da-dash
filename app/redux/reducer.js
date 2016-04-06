@@ -140,6 +140,7 @@ function intranet(state=initialIntranetState, action) {
       return Object.assign({}, state, {
         isFetching: true,
         error: null,
+        location: null,
       });
 
     case RECEIVE_INTRANET_TREE:
@@ -167,7 +168,7 @@ function intranet(state=initialIntranetState, action) {
       });
 
     case GOTO_STRINGPATH:
-      pathString = action.toPath.split('/');
+      pathString = action.toPath;
       return Object.assign({}, state, {
         pathString,
         location: traverseIntranet(state.tree, pathString),

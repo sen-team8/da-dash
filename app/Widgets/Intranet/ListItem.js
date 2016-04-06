@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroupItem } from 'react-bootstrap';
+import { ListGroupItem, ListGroup } from 'react-bootstrap';
 import Icon from '../../helper/Icons';
 
 let style;
@@ -15,6 +15,7 @@ export default class ListItem extends React.Component {
 
     render() {
       const obj = this.props.items;
+      const props = this.props;
       const grid = Array.from(obj.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
       const list = grid.map((item, key) => {
         const isFile = obj.get(item) === 'file';
@@ -27,24 +28,22 @@ export default class ListItem extends React.Component {
           showIcon = null;
         }
         return (
-          <div
+          <ListGroupItem
             key={key}
-            className="list-mobile"
             style={style.main}
             onTouchTap={ isFile ?
-            this.props.showAttachment.bind(this, this.props.pathString, item)
-          : this.props.goForward.bind(this, item)}
+              function foo() {props.showAttachment(props.pathString, item);}
+            : function foo() {props.goForward(item);}
+            }
           >
             <div style={style.content}>
               {showIcon}
               {item}
             </div>
-          </div>
+          </ListGroupItem>
         );
       });
-      list.push(<div key={9999} style={{ ...style.main, borderBottom: 'solid 0px' }}/>);
-      list.push(<div key={9998} style={{ ...style.main, borderBottom: 'solid 0px' }}/>);
-      return <ListGroupItem>{list}</ListGroupItem>;
+      return <ListGroup>{list}</ListGroup>;
     }
 }
 

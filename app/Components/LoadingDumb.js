@@ -8,7 +8,12 @@ export default class LoadingDumb extends React.Component {
     progress: 0,
   };
 
+  componentDidMount() {
+    this.mounted = true;
+  }
+
   componentWillUnmount() {
+    this.mounted = false;
     clearTimeout(this.timeout);
   }
 
@@ -16,7 +21,9 @@ export default class LoadingDumb extends React.Component {
 
   render() {
     this.timeout = setTimeout(() => {
-      this.setState({ progress: this.state.progress + (3 * Math.random()) });
+      if (this.mounted) {
+        this.setState({ progress: this.state.progress + (3 * Math.random()) });
+      }
     }, 500);
 
     return (

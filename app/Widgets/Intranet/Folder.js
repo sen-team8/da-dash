@@ -4,9 +4,10 @@ import { ListGroup } from 'react-bootstrap';
 // import { flexCenter } from '../../Flex';
 
 import ListItem from './ListItem';
-import LocationBar from './LocationBar';
+// import LocationBar from './LocationBar';
 
 let style;
+import { Scrollbars } from 'react-custom-scrollbars';
 
 export default class Folder extends React.Component {
     static propTypes = {
@@ -16,9 +17,6 @@ export default class Folder extends React.Component {
       timeStamp: React.PropTypes.string,
       showAttachment: React.PropTypes.func.isRequired,
       goToStringPath: React.PropTypes.func.isRequired,
-    }
-    goForward = (item) => {
-      this.props.goForward(item);
     }
 
     showAttachment = (path, file) => {
@@ -30,7 +28,7 @@ export default class Folder extends React.Component {
     displayStructure = (obj) => {
       const params = {
         items: obj,
-        goForward: this.goForward,
+        goForward: this.props.goForward,
         showAttachment: this.showAttachment,
         pathString: this.props.pathString,
       };
@@ -45,13 +43,12 @@ export default class Folder extends React.Component {
       const statusDisplay = lastUpdated;
       return (
           <div style={style.main} id="scroller">
-            <LocationBar goToStringPath={this.props.goToStringPath} pathString={this.props.pathString}/>
             <div style={style.updated}>
               {statusDisplay}
             </div>
-            <ListGroup style={{ overflowY: 'scroll', maxHeight: '300px' }}>
+              <Scrollbars style={{ height: window.innerHeight - 120 }}>
               {this.displayStructure(this.props.location)}
-            </ListGroup>
+              </Scrollbars>
           </div>
       );
     }
@@ -59,9 +56,9 @@ export default class Folder extends React.Component {
 
 style = {
   main: {
-    height: '100%',
-    overflowY: 'scroll',
-    overflowX: 'hidden',
+    // height: '100%',
+    // overflowY: 'scroll',
+    // overflowX: 'hidden',
     WebkitOverflowScrolling: 'touch',
   },
   list: {

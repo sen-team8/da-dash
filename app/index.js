@@ -26,7 +26,11 @@ try {
   oldState = { reducer: JSON.parse(localStorage.getItem('redux1')) };
 } catch (e) {
   if (e) {
-    oldState = null;
+    oldState = undefined;
+  }
+} finally {
+  if (!oldState.reducer) {
+    oldState = undefined;
   }
 }
 
@@ -47,6 +51,13 @@ const store = createStore(
 
 window.onunload = () => {
   localStorage.setItem('redux1', JSON.stringify(store.getState().reducer));
+};
+
+window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+  window.onunload = undefined;
+  localStorage.removeItem('redux1');
+  // location.reload();
+  return false;
 };
 
 const history = syncHistoryWithStore(browserHistory, store);
