@@ -1,8 +1,20 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 class Sidebar extends Component {
   static propTypes = {
+    actions: PropTypes.object.isRequired,
     sidebarOpen: PropTypes.bool.isRequired,
+    toggleSideBar: PropTypes.func.isRequired,
+  }
+
+  setLogout = () => {
+    const users= {
+      id: null,
+      pass: null,
+    };
+    this.props.actions.setCredentials(users);
+    this.props.actions.setLogout();
   }
 
   style = () => {
@@ -29,36 +41,25 @@ class Sidebar extends Component {
                   </a>
               </li>
               <li>
-                  <a href="#">Home</a>
+                  <Link to={'/'} onClick={this.props.toggleSideBar} >Home</Link>
               </li>
               <li>
-                  <a href="#">About</a>
+                  <Link to={'profile'} onClick={this.props.toggleSideBar} >Profile</Link>
               </li>
               <li>
-                  <a href="#">Events</a>
+                  <Link to={'widgets'} onClick={this.props.toggleSideBar} >Choose Widgets</Link>
               </li>
               <li>
-                  <a href="#">Team</a>
-              </li>
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown">Works <span className="caret"></span></a>
-                <ul className="dropdown-menu" role="menu">
-                  <li className="dropdown-header">Dropdown heading</li>
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
+                  <Link to={'settings'} onClick={this.props.toggleSideBar} >Settings</Link>
               </li>
               <li>
-                  <a href="#">Services</a>
+                  <Link to={'help'} onClick={this.props.toggleSideBar} >Help</Link>
               </li>
               <li>
-                  <a href="#">Contact</a>
+                  <a href="#" onClick={this.props.toggleSideBar} >Report a bug</a>
               </li>
               <li>
-                  <a href="https://twitter.com/maridlcrmn">Follow me</a>
+                  <Link to={'/login'} onClick={this.setLogout} >Logout</Link>
               </li>
           </ul>
       </nav>

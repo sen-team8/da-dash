@@ -2,11 +2,17 @@ import React from 'react';
 import Nav from './Navbar';
 import Sidebar from './Sidebar';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { actions } from '../redux/actions';
+
 
 class Home extends React.Component {
 
   static propTypes = {
     children: React.PropTypes.object.isRequired,
+    actions: React.PropTypes.object.isRequired,
   }
 
   state = {
@@ -43,10 +49,20 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="overlay" style={style.overlay} onClick={this.toggleSideBar}/>
-        <Sidebar sidebarOpen={this.state.sidebarOpen} />
+        <Sidebar actions={this.props.actions} toggleSideBar={this.toggleSideBar} sidebarOpen={this.state.sidebarOpen} />
       </div>
     );
   }
 }
 
-export default Home;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
+function mapStateToProps(state) {
+  return { ...state.reducer };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
