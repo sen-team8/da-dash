@@ -48,6 +48,7 @@ class Login extends React.Component {
       return this.props.login.ERROR;
     }
   }
+
   render() {
     return (
       <div style={{ display: 'flex', height: '100%' }}>
