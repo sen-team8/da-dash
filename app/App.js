@@ -10,7 +10,7 @@ import Profile from './Components/Profile';
 import Widgets from './Components/Widgets';
 import Settings from './Components/Settings';
 import Help from './Components/Help';
-
+import Chatroom from './Widgets/Chatroom';
 import Todo from './Widgets/Todo';
 import Intranet from './Widgets/Intranet';
 
@@ -36,6 +36,7 @@ class App extends React.Component {
             <Route path="widgets" component={Widgets} />
             <Route path="settings" component={Settings} />
             <Route path="help" component={Help} />
+            <Route path="chatroom" component={Chatroom} />
           </Route>
           <Route path="login" component={Login} />
           <Route path="loading" component={Loading} />

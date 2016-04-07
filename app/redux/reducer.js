@@ -24,6 +24,8 @@ import {
   GOTO_STRINGPATH,
 } from './intranetActions';
 
+import { ALL_CHAT, UPDATE_CHAT } from './chatActions';
+
 const initialLoginState = {
   STATUS: LOGGED_OUT,
   ERROR: '',
@@ -48,6 +50,16 @@ const todoState = {
     TEXT: 'Second Todo',
   }],
 };
+
+const chatState = {
+  chats: [{
+    id: 'First',
+    message: 'message',
+    time: '01',
+  },
+  ],
+};
+
 
 export function todo(state = todoState, action) {
   switch (action.type) {
@@ -178,4 +190,19 @@ function intranet(state=initialIntranetState, action) {
   }
 }
 
-export default combineReducers({ todo, login, intranet });
+function chat(state = chatState, action) {
+  switch (action.type) {
+    case ALL_CHAT:
+      return Object.assign({}, state, {
+        chats: [...state.chats, ...action.chat],
+      });
+    case UPDATE_CHAT:
+      return Object.assign({}, state, {
+        chats: [...state.chats, action.chat],
+      });
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ todo, login, intranet, chat });

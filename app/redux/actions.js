@@ -23,6 +23,8 @@ import {
   goToStringPath,
 }from './intranetActions';
 
+import { getChat, sendChat, getUpdatedChat } from './chatActions';
+
 export const actions = {
   createTodo,
   deleteTodo,
@@ -40,4 +42,7 @@ export const actions = {
   getIntranet,
   goForward,
   goToStringPath,
+  getChat,
+  sendChat,
+  getUpdatedChat,
 };

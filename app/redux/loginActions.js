@@ -43,7 +43,7 @@ export function verifyUser(user) {
   return dispatch => {
     dispatch(setLogging(user));
     return login(user)
-      .then(() => dispatch(setLoggedIn()))
+      .then(() => dispatch(setLoggedIn(user)))
       .catch((error) => dispatch(setLoginError(error)));
   };
 }

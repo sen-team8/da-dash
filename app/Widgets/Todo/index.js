@@ -96,6 +96,7 @@ class Todo extends Component {
 
   render() {
     const bsStyle = this.bsStyle();
+
     return (
       <div style={style.todo} className="bootstrap-border todo container">
         <Link to={'todo'} >

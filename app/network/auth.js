@@ -1,6 +1,6 @@
 import Firebase from 'firebase';
 
-const firebaseRef = new Firebase('https://senteam8.firebaseio.com/');
+export const firebaseRef = new Firebase('https://senteam8.firebaseio.com/');
 
 function createUser(user) {
   return new Promise((res, rej) => firebaseRef.createUser({
@@ -48,6 +48,11 @@ function authenticateUser(user) {
 }
 
 export default function login(user) {
+  const index = user.id.indexOf('@');
+  if (index=== -1) {
+    user.id = `${user.id}@daiict.ac.in`;
+  }
+
   const promise = Promise.resolve(user);
 
   return promise.then(authenticateUser)
