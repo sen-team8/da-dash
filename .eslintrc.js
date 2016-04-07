@@ -6,6 +6,7 @@ module.exports = {
     'it': true,
     'describe': true,
     'afterEach': true,
+    'console.error': true,
   },
   'rules': {
     'max-len': [
