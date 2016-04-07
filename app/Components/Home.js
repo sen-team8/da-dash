@@ -34,13 +34,14 @@ class Home extends React.Component {
         zIndex: this.state.sidebarOpen ? '500' : '0',
         pointerEvents: this.state.sidebarOpen ? 'all' : 'none',
       },
+      wrapper: this.state.sidebarOpen ? 'wrapper0 wrapper-open' : 'wrapper0 wrapper-closed',
     };
   }
 
   render() {
     const style = this.style();
     return (
-      <div className="wrapper0">
+      <div className={style.wrapper}>
         <div className="side-content">
           <Nav toggleSideBar={this.toggleSideBar} sidebarOpen={this.state.sidebarOpen} />
           <div style={{ marginTop: '50px', height: 'calc(100vh - 50px)' }}>
