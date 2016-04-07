@@ -183,7 +183,7 @@ html, body {
   overflow-y: auto;
   overflow-x: hidden;
   background: #1a1a1a;
-  position: absolute;
+  position: fixed;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -192,11 +192,20 @@ html, body {
 
 .wrapper0 {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   height: 100%;
 }
 
+.wrapper-closed {
+  overflow-y: auto;
+}
+
+.wrapper-open {
+  overflow-y: hidden;
+}
+
 .side-content {
+  z-index: 600;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -217,6 +226,36 @@ html, body {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+}
+
+.slide-action-open {
+  width: 25%;
+  left: 75%;
+}
+
+.slide-action-closed {
+  width: 0%;
+  left: 100%;
+}
+
+.navbar-open {
+  width: 75%;
+}
+
+.navbar-closed {
+  width: 100%;
+}
+
+@media (max-width:600px) {
+/* (768 * 12) / 9 */
+  .slide-action-open {
+    width: 300px;
+    left: 175px;
+  }
+
+  .navbar-open {
+    width: 175px;
+  }
 }
 
 .sidebar-nav {

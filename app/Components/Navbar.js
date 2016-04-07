@@ -11,17 +11,14 @@ export default class Nav extends Component {
 
   style = () => {
     return {
-      navbar: {
-        maxWidth: this.props.sidebarOpen ? '75%' : '100%',
-        backgroundColor: 'white',
-      },
+      navbar: this.props.sidebarOpen ? 'navbar-open side-content' : 'navbar-closed side-content',
     };
   }
 
   render() {
     const style = this.style();
     return (
-      <Navbar fixedTop className="side-content" style={style.navbar} fluid onToggle={this.props.toggleSideBar}>
+      <Navbar fixedTop className={style.navbar} fluid onToggle={this.props.toggleSideBar}>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to={'/'}>Da-Dash</Link>
