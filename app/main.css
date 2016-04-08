@@ -7,6 +7,13 @@ html, body {
   height: 100%;
 }
 
+  /*Dashboard wrapper widgets*/
+.da-wrapper {
+  margin-top: 30px;
+  height: 600px;
+  width: 450px;
+}
+
 .app {
   /*display: flex;*/
 }
@@ -39,6 +46,7 @@ html, body {
 
     .navbar-toggle
     {
+        margin-top: 12px;
         display: block;
     }
 
@@ -237,7 +245,7 @@ html, body {
     z-index: -1;
     height: 100%;
     width: 3px;
-    background-color: #009ACD;
+    background-color: #323232;
     -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
        -ms-transition:  width .2s ease-in;

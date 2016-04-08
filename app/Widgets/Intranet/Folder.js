@@ -44,7 +44,7 @@ export default class Folder extends React.Component {
     render() {
       const isDashboard = this.props.dashboard ?
         (
-          <Link to={'intranet'} >
+          <Link to={'intranet'} style={style.head}>
             Intranet
           </Link>
         )
@@ -59,12 +59,16 @@ export default class Folder extends React.Component {
           />
         );
       return (
+        <div style={style.intranet} className="bootstrap-border intranet container">
           <div style={style.main} id="scroller">
-              <Scrollbars style={{ height: window.innerHeight - 50 }}>
+              <Scrollbars style={{ height: '500px' }}>
+                <div style={{ marginBottom: '15px', borderBottomStyle: 'solid', borderColor: '#d3d3d3', borderWidth: '2px' }}>
                 {isDashboard}
+                </div>
                 {this.displayStructure(this.props.location)}
               </Scrollbars>
           </div>
+        </div>
       );
     }
 }
@@ -85,5 +89,20 @@ style = {
 
   avatarFile: {
     backgroundColor: '#9c27b0',
+  },
+  head: {
+    fontSize: '24px',
+    marginBottom: '12px',
+    fontColor: '#009ACD',
+    fontStyle: 'bold',
+    position: 'relative',
+  },
+  intranet: {
+    backgroundColor: 'white',
+    padding: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: '1',
+    width: '100%',
   },
 };
