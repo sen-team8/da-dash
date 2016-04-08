@@ -15,10 +15,9 @@ class Sidebar extends Component {
 
   style = () => {
     return {
-      nav: {
-        width: this.props.sidebarOpen ? '25%' : '0%',
-        left: this.props.sidebarOpen ? '80%' : '100%',
-      },
+      nav: this.props.sidebarOpen ?
+      'navbar navbar-inverse navbar-fixed-top sidebar-wrapper sidebar-open' :
+      'navbar navbar-inverse navbar-fixed-top sidebar-wrapper sidebar-closed',
     };
   }
 
@@ -26,8 +25,7 @@ class Sidebar extends Component {
     const style = this.style();
     return (
       <nav
-        style={style.nav}
-        className="navbar navbar-inverse navbar-fixed-top sidebar-wrapper"
+        className={style.nav}
         role="navigation"
       >
           <ul className="nav sidebar-nav">
