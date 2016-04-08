@@ -3,7 +3,7 @@ html, body {
   height: 100%;
 }
 
-#node, .app {
+#app, .app {
   height: 100%;
 }
 
@@ -13,8 +13,7 @@ html, body {
 
 .bootstrap-border {
   border: 1px solid #ddd;
-  border-radius: 4px 4px 0 0;
-  box-shadow: none;
+  border-radius: 4px ;
 }
 
 #todoApp {
@@ -182,7 +181,7 @@ html, body {
   width: 300px;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #1a1a1a;
+  background: #191919;
   position: absolute;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -222,7 +221,7 @@ html, body {
 .sidebar-nav {
     position: relative;
     top: 0;
-    width: 220px;
+    width: 250px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -243,14 +242,14 @@ html, body {
     z-index: -1;
     height: 100%;
     width: 3px;
-    background-color: #1c1c1c;
+    background-color: #009ACD;
     -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
        -ms-transition:  width .2s ease-in;
             transition: width .2s ease-in;
 
 }
-.sidebar-nav li:first-child a {
+/*.sidebar-nav li:first-child a {
     color: #fff;
     background-color: #1a1a1a;
 }
@@ -277,7 +276,7 @@ html, body {
 }
 .sidebar-nav li:nth-child(9):before {
     background-color: #35acdf;
-}
+}*/
 .sidebar-nav li:hover:before,
 .sidebar-nav li.open:hover:before {
     width: 100%;
@@ -320,4 +319,79 @@ html, body {
     border: none;
     background-color: #222;
     box-shadow: none;
+}
+
+/* intranet */
+.intranet-list {
+  /*width: 100%;*/
+  /*-webkit-transition: width .2s ease-in;
+    -moz-transition:  width .2s ease-in;
+     -ms-transition:  width .2s ease-in;*/
+  transition: all 0.55s ease-out;
+}
+.intranet-list:hover {
+  background-color: #F5FCFF;
+  cursor: pointer;
+}
+.intranet-list:active {
+  transition: all 0.3s ease-in;
+  background-color: rgba(228, 166, 0, 0.25);
+  cursor: pointer;
+}
+
+.intranet-search {
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+  position: relative;
+  top: 5px;
+}
+
+.intranet-search .query {
+       padding-right: 3px;
+       padding-right: 4px \9;
+       padding-left: 13px;
+       padding-left: 4px \9;
+       margin-bottom: 0;
+       -webkit-border-radius: 50px;
+       -moz-border-radius: 50px;
+       border-radius: 50px;
+       background-color: inherit;
+       height: 32px
+   }
+
+.intranet-search button {
+       border: 0;
+       background: none;
+       /** belows styles are working good */
+       padding: 2px 5px;
+       margin-top: 6px;
+       position: relative;
+       left: -28px;
+       /* IE7-8 doesn't have border-radius, so don't indent the padding */
+       margin-bottom: 0;
+       -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+       border-radius: 3px;
+       color: grey;
+}
+
+.intranet-breadcrumb .breadcrumb{
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .intranet-heading {
+    font-size: 6vw;
+  }
+
+  .intranet-search {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+    position: relative;
+    top: 5px;
+  }
 }

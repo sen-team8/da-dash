@@ -15,8 +15,7 @@ export default class Intranet extends React.Component {
       timeStamp: React.PropTypes.string,
       showAttachment: React.PropTypes.func.isRequired,
       goToStringPath: React.PropTypes.func.isRequired,
-      goBack: React.PropTypes.func.isRequired,
-      dashboard: React.PropTypes.bool.isRequired,
+      dashboard: React.PropTypes.bool,
     }
 
     render() {

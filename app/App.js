@@ -26,7 +26,6 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
         <Router history={this.props.history}>
           <Route path="/" component={Home} onEnter={this.requireAuth}>
             <IndexRoute component={Dashboard}/>
@@ -41,7 +40,6 @@ class App extends React.Component {
           <Route path="login" component={Login} />
           <Route path="loading" component={Loading} />
         </Router>
-      </div>
     );
   }
 }

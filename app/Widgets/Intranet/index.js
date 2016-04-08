@@ -3,24 +3,39 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
-import Intranet from './Intranet';
+import Folder from './Folder';
 
 class IntranetWidget extends React.Component {
 
     static propTypes = {
+      getIntranet: React.PropTypes.func.isRequired,
+      goToStringPath: React.PropTypes.func.isRequired,
+      goForward: React.PropTypes.func.isRequired,
+      addToFav: React.PropTypes.func.isRequired,
       location: React.PropTypes.object,
       pathString: React.PropTypes.array,
       timeStamp: React.PropTypes.string,
       actions: React.PropTypes.object.isRequired,
+      fav: React.PropTypes.array,
       dashboard: React.PropTypes.bool,
+      search: React.PropTypes.string,
+    }
+
+    state = {
+      search: null,
     }
 
     componentDidMount() {
-      this.props.actions.getIntranet();
+      this.props.getIntranet();
     }
 
-    shouldComponentUpdate(nextProps) {
-      return nextProps.location !== this.props.location;
+    shouldComponentUpdate(nextProps, nextState) {
+      // console.log(nextProps.location !== this.props.location, nextState.search !== this.state.search);
+      return nextProps.location !== this.props.location || nextState.search !== this.state.search;
+    }
+
+    setSearch = (s) => {
+      this.setState({ search: s });
     }
 
     showAttachment = (path, file) => {
@@ -37,16 +52,17 @@ class IntranetWidget extends React.Component {
       );
 
       const IntranetDumbRef = (
-          <Intranet
-            location={this.props.location}
-            pathString={this.props.pathString}
-            goToStringPath={this.props.actions.goToStringPath}
-            goForward={this.props.actions.goForward}
-            goBack={this.goBack}
-            timeStamp={this.props.timeStamp}
-            showAttachment={this.showAttachment}
-            dashboard={this.props.dashboard}
-          />
+        <Folder
+          location={this.props.location}
+          goForward={this.props.goForward}
+          pathString={this.props.pathString}
+          timeStamp={this.props.timeStamp}
+          showAttachment={this.showAttachment}
+          goToStringPath={this.props.goToStringPath}
+          dashboard={this.props.dashboard}
+          setSearch={this.setSearch}
+          search={this.props.search}
+        />
       );
 
       return (
@@ -58,9 +74,7 @@ class IntranetWidget extends React.Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch),
-  };
+  return { ...bindActionCreators(actions, dispatch) };
 }
 
 function mapStateToProps(state) {

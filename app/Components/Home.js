@@ -2,12 +2,12 @@ import React from 'react';
 import Nav from './Navbar';
 import Sidebar from './Sidebar';
 
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { actions } from '../redux/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actions } from '../redux/actions';
 
 
-class Home extends React.Component {
+export class Home extends React.Component {
 
   static propTypes = {
     children: React.PropTypes.object.isRequired,
@@ -54,16 +54,16 @@ class Home extends React.Component {
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(actions, dispatch),
-//   };
-// }
-//
-// function mapStateToProps(state) {
-//   return { ...state.reducer };
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(Home);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
 
-export default Home;
+function mapStateToProps(state) {
+  return { ...state.reducer };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+// export default Home;

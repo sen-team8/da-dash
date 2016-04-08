@@ -14,6 +14,7 @@ export default class ListItem extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
+      // console.log(nextProps.items !== this.props.items);
       return nextProps.items !== this.props.items;
     }
     getIcon(isFile) {
@@ -33,14 +34,15 @@ export default class ListItem extends React.Component {
           <ListGroupItem
             key={key}
             style={style.main}
+            className="intranet-list"
             onTouchTap={ isFile ?
               function foo() {props.showAttachment(props.pathString, item);}
             : function foo() {props.goForward(item);}
             }
           >
-            <div style={style.content}>
+            <div style={style.content} >
               {this.getIcon(isFile)}
-              {item}
+              &nbsp;{ window.innerWidth < 600 && item.length > 50 ? `${item.slice(0, 22)}...${item.slice(-15)}` : item }
             </div>
           </ListGroupItem>
         );

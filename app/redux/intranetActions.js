@@ -6,6 +6,7 @@ export const RECEIVE_INTRANET_TREE = 'RECEIVE_INTRANET_TREE';
 export const RECEIVE_INTRANET_ERROR = 'RECEIVE_INTRANET_ERROR';
 export const GO_FORWARD = 'GO_FORWARD';
 export const GOTO_STRINGPATH = 'GOTO_STRINGPATH';
+export const ADD_FAV = 'ADD_FAV';
 
 export function requestIntranetTree() {
   return {
@@ -39,6 +40,13 @@ export function goToStringPath(toPath) {
   return {
     type: GOTO_STRINGPATH,
     toPath,
+  };
+}
+
+export function addToFav(fav) {
+  return {
+    type: ADD_FAV,
+    fav,
   };
 }
 

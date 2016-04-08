@@ -13,6 +13,7 @@ import reducer from './redux/reducer';
 import App from './App';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import Immutable from 'immutable';
 
 const loggerMiddleware = createLogger();
 injectTapEventPlugin();
@@ -20,10 +21,15 @@ injectTapEventPlugin();
 let oldState;
 
 // toggle this to switch off persistence
-const persistence = undefined; // false;
+const persistence = true; // false;
 
 try {
-  oldState = { reducer: JSON.parse(localStorage.getItem('redux1')) };
+  oldState = { reducer: JSON.parse(localStorage.getItem('redux1'), (k, v) => {
+    if (k === 'tree' || k === 'location') {
+      return Immutable.fromJS(v);
+    }
+    return v;
+  }) };
 } catch (e) {
   if (e) {
     oldState = undefined;
@@ -61,10 +67,7 @@ window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
 };
 
 const history = syncHistoryWithStore(browserHistory, store);
-const node = document.createElement('div');
-
-node.setAttribute('id', 'node');
-document.body.appendChild(node);
+const node = document.getElementById('app');
 
 render(
   <Provider store = {store}>

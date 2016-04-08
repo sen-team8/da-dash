@@ -44,7 +44,6 @@ class Loading extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.login.STATUS !== LOGGING) {
-      // console.log(nextProps.login.STATUS, decideRoute(nextProps.login.STATUS));
       this.context.router.push(decideRoute(nextProps.login.STATUS));
     }
   }

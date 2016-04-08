@@ -1,13 +1,7 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
-import Icon from '../../helper/Icons';
+import { Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
 import Waypoint from 'react-waypoint';
-
-let style;
-
-const handleClick = (key, pathString, goToStringPath) => {
-  return goToStringPath(pathString.slice(0, key+1));
-};
+import Chips from './Chips';
 
 function _handleWaypointEnter() {
   // console.log('holsa enterando');
@@ -17,76 +11,106 @@ function _handleWaypointLeave() {
   // console.log('hola exitando');
 }
 
-export default ({ pathString, goToStringPath, timeStamp, folders }) => {
-  const home = (
-    <BreadcrumbItem onClick={function foo() {goToStringPath([]);}}>
-      <Icon icon="home" style={{ fill: '#000' }}/>
-    </BreadcrumbItem>
-  );
+function isStarred() {
 
-  const lastUpdated = (
-    <span>
-      Last updated &nbsp;{timeStamp} &nbsp; ago
-    </span>
-  );
+}
 
-  const List = pathString.map((e, k) => {
-    return (
-      <BreadcrumbItem
-        onClick={function foo() {handleClick(k, pathString, goToStringPath);}}
-      >
-        {e}
-      </BreadcrumbItem>
+
+export default class Toolbar extends React.Component {
+  static propTypes = {
+    pathString: React.PropTypes.array.isRequired,
+    goToStringPath: React.PropTypes.func.isRequired,
+    timeStamp: React.PropTypes.string,
+    folders: React.PropTypes.number.isRequired,
+    setSearch: React.PropTypes.func,
+  }
+
+  getHeading(pathString) {
+    if (pathString.length === 0) {
+      return 'Intranet';
+    } else if (pathString.length === 1 || pathString.length === 2) {
+      return pathString[pathString.length - 1];
+    } else {
+      return pathString[2];
+    }
+  }
+
+  style = () => {
+    return {
+      wrapper: {
+        height: '200px',
+        backgroundColor: '#f5f5f5',
+      },
+      badge: {
+        backgroundColor: '#e7a800',
+      },
+      updated: {
+        display: 'flex',
+        justifyContent: 'center',
+        color: 'grey',
+        fontSize: '0.75em',
+      },
+      jumbo: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: window.innerWidth < 600 ? '100px' : '140px',
+      },
+      header: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: '12px',
+      },
+    };
+  }
+
+
+  render() {
+    const style = this.style();
+    const { pathString, goToStringPath, timeStamp, folders } = this.props;
+
+    const lastUpdated = (
+      <span>
+        Last updated &nbsp;{timeStamp} &nbsp; ago
+      </span>
     );
-  });
 
-  return (
-    <div style={style.wrapper}>
-      <div style={style.jumbo}>
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-          <h1>&nbsp;&nbsp;{pathString[pathString.length - 1] || 'Intranet'}</h1>&nbsp;
-          <Badge pullRight style={style.badge}>{folders}</Badge>
+    return (
+      <div style={style.wrapper}>
+        <div style={style.jumbo}>
+          <div style={style.header}>
+            <h1 className="intranet-heading">&nbsp;&nbsp;
+              {this.getHeading(pathString)}
+              <span>
+                <Badge pullRight style={style.badge}>{folders}</Badge>
+              </span>
+              </h1>&nbsp;
+          </div>
+          <ButtonToolbar>
+            {isStarred()}
+            <Button key={0} bsSize="small"><Glyphicon glyph="star" /> Star</Button>
+            <Button key={1} bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>
+            <Button key={2} bsSize="small"><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
+          </ButtonToolbar>
         </div>
-        <ButtonToolbar>
-          <Button bsSize="small"><Glyphicon glyph="star" /> Star</Button>
-          <Button bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>
-          <Button bsSize="small"><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
-        </ButtonToolbar>
+        <div style={style.updated}>
+          {lastUpdated}
+        </div>
+        <Chips pathString={pathString}
+          goToStringPath= {goToStringPath}
+          setSearch={this.props.setSearch}
+        />
+        <Waypoint
+          onEnter={_handleWaypointEnter}
+          onLeave={_handleWaypointLeave}
+          threshold={0}
+        />
       </div>
-      <div style={style.updated}>
-        {lastUpdated}
-      </div>
+    );
+  }
+}
 
-      <Breadcrumb>
-        {[home].concat(List)}
-      </Breadcrumb>
-      <Waypoint
-        onEnter={_handleWaypointEnter}
-        onLeave={_handleWaypointLeave}
-        threshold={0}
-      />
-    </div>
-  );
-};
-
-style = {
-  wrapper: {
-    height: '150px',
-    backgroundColor: '#f5f5f5',
-  },
-  badge: {
-    backgroundColor: '#e7a800',
-  },
-  updated: {
-    display: 'flex',
-    justifyContent: 'center',
-    color: 'grey',
-    fontSize: '0.75em',
-  },
-  jumbo: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-};
+// style =

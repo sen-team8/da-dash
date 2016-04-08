@@ -4,7 +4,7 @@ import chaiEnzyme from 'chai-enzyme';
 chai.use(chaiEnzyme());
 // import sinon from 'sinon';
 import { mount } from 'enzyme';
-import Home from '../../app/Components/Home';
+import { Home } from '../../app/Components/Home';
 
 describe('<Home />', () => {
   it('clicking overlay should change state', () => {

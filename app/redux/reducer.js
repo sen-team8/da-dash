@@ -22,6 +22,7 @@ import {
   RECEIVE_INTRANET_ERROR,
   GO_FORWARD,
   GOTO_STRINGPATH,
+  ADD_FAV,
 } from './intranetActions';
 
 import { ALL_CHAT, UPDATE_CHAT } from './chatActions';
@@ -109,6 +110,8 @@ export function login(state = initialLoginState, action) {
     case LOGGED_OUT:
       return Object.assign({}, state, {
         STATUS: action.type,
+        ID: null,
+        PASS: null,
       });
     case LOGGING:
       return Object.assign({}, state, {
@@ -138,9 +141,11 @@ const initialIntranetState = {
   error: null,
   location: null,
   timeStamp: null,
+  fav: [],
 };
 
 function traverseIntranet(tree, path) {
+  // return tree;
   return path.reduce((prev, cur) => {
     return prev.get(cur);
   }, tree);
@@ -161,15 +166,17 @@ function intranet(state=initialIntranetState, action) {
         isFetching: false,
         error: null,
         tree,
-        pathString: [],
         timeStamp: action.timeStamp,
-        location: tree,
+        location: Array.isArray(state.pathString) && state.pathString.length > 0 && state.pathString[0]
+          ? traverseIntranet(tree, state.pathString) : tree,
       });
 
     case RECEIVE_INTRANET_ERROR:
       return Object.assign({}, state, {
         isFetching: false,
         error: action.error,
+        location: [],
+        tree: null,
       });
 
     case GO_FORWARD:
@@ -183,6 +190,11 @@ function intranet(state=initialIntranetState, action) {
       pathString = action.toPath;
       return Object.assign({}, state, {
         pathString,
+        location: traverseIntranet(state.tree, pathString),
+      });
+    case ADD_FAV:
+      return Object.assign({}, state, {
+        fav: action.fav,
         location: traverseIntranet(state.tree, pathString),
       });
     default:

@@ -21,6 +21,7 @@ import {
   getIntranet,
   goForward,
   goToStringPath,
+  addToFav,
 }from './intranetActions';
 
 import { getChat, sendChat, getUpdatedChat } from './chatActions';
@@ -30,18 +31,22 @@ export const actions = {
   deleteTodo,
   completeTodo,
   editTodo,
+
   setLogging,
   setLogout,
   setLoggedIn,
   setLoginError,
   verifyUser,
   setCredentials,
+
   requestIntranetTree,
   receiveIntranetTree,
   receiveIntranetError,
   getIntranet,
   goForward,
   goToStringPath,
+  addToFav,
+
   getChat,
   sendChat,
   getUpdatedChat,

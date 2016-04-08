@@ -39,11 +39,12 @@ export default class LoadingDumb extends React.Component {
             Grabbing some vadas
             from padma kamal
           </div>
-          <ProgressBar
-            backgroundStyle={{ backgroundColor: '#cccccc', borderRadius: 2 }}
-            style={{ marginTop: 10, width: 300 }}
-            now={this.state.progress}
-          />
+          <div style={{ display: 'block', width: '75vw' }}>
+            <ProgressBar
+              active
+              now={this.state.progress}
+            />
+          </div>
         </div>
       </div>
     );

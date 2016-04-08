@@ -18,7 +18,8 @@ export default class Folder extends React.Component {
       timeStamp: React.PropTypes.string,
       showAttachment: React.PropTypes.func.isRequired,
       goToStringPath: React.PropTypes.func.isRequired,
-      dashboard: React.PropTypes.bool.isRequired,
+      dashboard: React.PropTypes.bool,
+      setSearch: React.PropTypes.func,
     }
 
     showAttachment = (path, file) => {
@@ -37,18 +38,24 @@ export default class Folder extends React.Component {
       return (<ListItem {...params}/>);
     }
 
+    search = () => {
+      // console.log(Array.from(this.props.location.keys()).filter(e => e.includes(this.props.search)));
+    }
     render() {
       const isDashboard = this.props.dashboard ?
         (
           <Link to={'intranet'} >
             Intranet
           </Link>
-        ) :
+        )
+        :
         (
-          <Toolbar pathString={this.props.pathString}
+          <Toolbar
+            pathString={this.props.pathString}
             goToStringPath={this.props.goToStringPath}
             timeStamp={this.props.timeStamp}
-            folders={this.props.location.length}
+            folders={this.props.location.count()}
+            setSearch={this.props.setSearch}
           />
         );
       return (
