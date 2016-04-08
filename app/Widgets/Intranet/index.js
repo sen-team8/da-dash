@@ -42,6 +42,7 @@ class IntranetWidget extends React.Component {
       window.open(formQuery(path), '_blank');
     }
 
+
     render() {
       const progress = (
         <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
@@ -64,7 +65,6 @@ class IntranetWidget extends React.Component {
           search={this.props.search}
         />
       );
-
       return (
         <div style={{ height: '100%' }}>
           {!this.props.location ? progress : IntranetDumbRef}

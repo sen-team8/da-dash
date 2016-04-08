@@ -9,7 +9,7 @@ export default class ChatList extends React.Component {
 
   render() {
     return (
-      <ListGroup style={{ overflowY: 'scroll', maxHeight: '300px' }}>
+      <ListGroup style={{ overflowY: 'scroll', minHeight: '400px', maxHeight: '300px', width: '100%' }}>
       {
         this.props.chats.map((chat) => {
           return (
