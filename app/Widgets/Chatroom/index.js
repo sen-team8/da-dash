@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import WriteChat from './WriteChat';
+import Header from './Header';
 import ChatList from './ChatList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,26 +16,50 @@ class Chatroom extends Component {
     actions: PropTypes.object.isRequired,
     chats: PropTypes.array.isRequired,
     ID: PropTypes.number.isRequired,
+    clearChat: PropTypes.func.isRequired,
+  }
+
+  state = {
+    batch: true,
+  }
+
+
+  componentWillMount() {
+    this.props.actions.clearChat();
   }
 
   componentDidMount() {
-    // this.props.actions.getChat();
     this.props.actions.getUpdatedChat(this.props.ID, 0);
   }
 
   sendChat = (message) => {
     const c = { id: this.props.ID, message };
-    this.props.actions.sendChat(c, 0);
+    if (this.state.batch) {
+      this.props.actions.sendChat(c, 0);
+    } else {
+      this.props.actions.sendChat(c, 1);
+    }
+  }
+  toggle = () => {
+    this.props.actions.clearChat();
+    this.state.batch = !this.state.batch;
+    if (this.state.batch) {
+      this.props.actions.getUpdatedChat(this.props.ID, 0);
+    } else {
+      this.props.actions.getUpdatedChat(this.props.ID, 1);
+    }
   }
   render() {
     return (
-      <div style={style.todo} className="bootstrap-border">
-        <ChatList chats={this.props.chats}/>
-        <WriteChat sendChat={this.sendChat}/>
-      </div>
+        <div style={style.todo} className="bootstrap-border">
+          <Header batch={this.state.batch} toggle= {this.toggle}/>
+          <ChatList chats={this.props.chats}/>
+          <WriteChat sendChat={this.sendChat}/>
+        </div>
     );
   }
 }
+
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -50,10 +75,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(Chatroom);
 
 style = {
   todo: {
-    backgroundColor: 'white',
-    padding: '10px',
     display: 'flex',
     flexDirection: 'column',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: '25%',
+    WebkitTransform: 'translate(-50%, -50%)',
+    backgroundColor: 'white',
+    padding: '10px',
+    paddingTop: '0px',
     flexGrow: '1',
   },
 };

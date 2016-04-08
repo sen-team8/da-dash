@@ -3,14 +3,9 @@ import { firebaseRef } from '../network/auth';
 
 // export const ADD_CHAT= 'CHAT';
 export const UPDATE_CHAT= 'UPDATE_CHAT';
-export const ALL_CHAT= 'ALL_CHAT';
+export const CLEAR_CHAT= 'CLEAR_CHAT';
 
-function allChat(c) {
-  return {
-    type: ALL_CHAT,
-    chat: c,
-  };
-}
+let ref = firebaseRef;
 
 function updateChat(c) {
   const userC = { id: c.id, message: c.message, time: c.time };
@@ -20,9 +15,15 @@ function updateChat(c) {
   };
 }
 
+export function clearChat() {
+  ref.off();
+  return {
+    type: CLEAR_CHAT,
+  };
+}
+
 export function getUpdatedChat(id, b) {
   const batch = id.substring(0, 6);
-  let ref;
   if (b === 1) {
     ref = firebaseRef.child('DAIICT');
   } else {
@@ -38,14 +39,5 @@ export function sendChat(userChat, b) {
     return pushChat(userChat, b).catch((error) => {
       // do something
     });
-  };
-}
-
-
-export function getChat() {
-  return dispatch => {
-    return chat()
-            .then((c) => dispatch(allChat(c)))
-            .catch((error) => null);
   };
 }
