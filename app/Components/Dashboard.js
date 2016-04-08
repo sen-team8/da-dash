@@ -3,6 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import Todo from '../Widgets/Todo';
 import Intranet from '../Widgets/Intranet';
+import Chatroom from '../Widgets/Chatroom';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -38,6 +39,9 @@ class Dashboard extends React.Component {
           </Col>
           <Col xs={12} md={6}>
             <Intranet dashboard/>
+          </Col>
+          <Col xs={12} md={6}>
+            <Chatroom />
           </Col>
         </Row>
       </Grid>
