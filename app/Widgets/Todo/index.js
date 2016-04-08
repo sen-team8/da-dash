@@ -24,12 +24,6 @@ class Todo extends Component {
   };
 
   showCreateTodo = () => {
-    // if (this.state.show === 'All') {
-    //   return (
-    //       <CreateTodo actions={this.actionHandler}/>
-    //     );
-    // }
-    // return <div></div>;
     return (
         <CreateTodo actions={this.actionHandler}/>
       );
@@ -136,6 +130,7 @@ style = {
     display: 'flex',
     flexDirection: 'column',
     flexGrow: '1',
+    width: '100%',
   },
   head: {
     fontSize: '24px',
