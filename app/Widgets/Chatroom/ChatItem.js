@@ -11,10 +11,10 @@ export default class ChatItem extends React.Component {
 
   displayChat = () => {
     return (
-      <div>
-        <span className = "ChatSpan">{this.props.chat.id} : </span>
-        <span className = "ChatSpan">{this.props.chat.message} </span>
-        <span className = "ChatSpan">{this.props.chat.time}</span>
+      <div style={{ maxWidth: '75%', wordWrap: 'break-word' }}>
+        <span className = "ChatSpan"><h5 style={{ fontWeight: 'bold' }}>{this.props.chat.id} :</h5> </span>
+        <span className = "ChatSpan">{this.props.chat.message} <br /></span>
+        <span className = "ChatSpan"><sub>{this.props.chat.time}</sub></span>
       </div>
     );
   }

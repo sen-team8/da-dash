@@ -22,13 +22,22 @@ export default class CreateTodo extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.actions('Create', 1, this.state.text);
+    this.setState({
+      text: '',
+    });
   }
 
   render() {
     return (
       <div >
         <form onSubmit={this.handleSubmit} style={style.form}>
-          <Input className="todo textfield" type="text" placeholder="Enter text" onChange={this.handleChange}/>
+          <Input
+            className="todo textfield"
+            type="text"
+            placeholder="Enter text"
+            value={this.state.text}
+            onChange={this.handleChange}
+          />
           <div>
             <Button className="todo raised" bsStyle="primary" type="submit">
               <Icon size="1.65em" icon="add" style={{ color: 'white' }}>Add</Icon>
