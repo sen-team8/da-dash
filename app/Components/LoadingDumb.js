@@ -1,7 +1,26 @@
 import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
 
-let styles;
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+};
 
 export default class LoadingDumb extends React.Component {
   state = {
@@ -50,24 +69,3 @@ export default class LoadingDumb extends React.Component {
     );
   }
 }
-
-styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-};

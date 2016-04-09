@@ -70,7 +70,7 @@ export default class Chips extends React.Component {
     const style = styleFoo();
     const home = (
       <BreadcrumbItem onClick={function foo() {goToPath([]);}}>
-        <Icon icon="home" style={{ fill: '#000' }}/>
+        <Icon icon="home" style={{ fill: '#000' }} />
       </BreadcrumbItem>
     );
 

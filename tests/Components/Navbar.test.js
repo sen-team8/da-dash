@@ -9,7 +9,7 @@ import Navbar from '../../app/Components/Navbar';
 describe('<Navbar />', () => {
   it('allows us to set props', () => {
     const toggleSpy = sinon.spy();
-    const wrapper = mount(<Navbar sidebarOpen toggleSideBar={toggleSpy}/>);
+    const wrapper = mount(<Navbar sidebarOpen toggleSideBar={toggleSpy} />);
     expect(wrapper.props().sidebarOpen).to.equal(true);
     expect(wrapper.props().toggleSideBar).to.equal(toggleSpy);
   });
