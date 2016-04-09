@@ -2,7 +2,21 @@ import React, { PropTypes } from 'react';
 import { ButtonToolbar, Button, Input, ListGroupItem } from 'react-bootstrap';
 import Icon from '../../helper/Icons.js';
 
-let style;
+const style = {
+  item: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  edit: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  buttons: {
+    border: 'none',
+  },
+};
 
 export default class TodoItem extends React.Component {
 
@@ -63,9 +77,9 @@ export default class TodoItem extends React.Component {
            <div>
              <ButtonToolbar style={{ display: 'flex', width: 'auto' }}>
                <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleDeleteTodo} style={style.buttons}>
-                 <Icon size="1.5em" icon="delete"/></Button>
+                 <Icon size="1.5em" icon="delete" /></Button>
                <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleCompleteTodo} style={style.buttons}>
-                 <Icon size="1.5em" icon="done"/></Button>
+                 <Icon size="1.5em" icon="done" /></Button>
             </ButtonToolbar>
           </div>
         </div>
@@ -107,19 +121,3 @@ export default class TodoItem extends React.Component {
     }
   }
 }
-
-style = {
-  item: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  edit: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  buttons: {
-    border: 'none',
-  },
-};

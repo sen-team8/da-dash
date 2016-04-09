@@ -38,37 +38,37 @@ class Sidebar extends Component {
                   <Link to={'/'}
                     onClick={this.props.toggleSideBar}
                   >
-                    <Icon size="1.9em" icon="dashboard" style={{ marginRight: '15px' }}/>Dashboard
+                    <Icon size="1.9em" icon="dashboard" style={{ marginRight: '15px' }} />Dashboard
                   </Link>
               </li>
               <li>
                   <Link to={'profile'} onClick={this.props.toggleSideBar}>
-                    <Icon size="1.9em" icon="account-circle" style={{ marginRight: '15px' }}/>Profile
+                    <Icon size="1.9em" icon="account-circle" style={{ marginRight: '15px' }} />Profile
                   </Link>
               </li>
               <li>
                   <Link to={'widgets'} onClick={this.props.toggleSideBar} >
-                    <Icon size="1.9em" icon="mode-edit" style={{ marginRight: '15px' }}/>Choose Widgets
+                    <Icon size="1.9em" icon="mode-edit" style={{ marginRight: '15px' }} />Choose Widgets
                   </Link>
               </li>
               <li>
                   <Link to={'settings'} onClick={this.props.toggleSideBar} >
-                    <Icon size="1.9em" icon="settings" style={{ marginRight: '15px' }}/>Settings
+                    <Icon size="1.9em" icon="settings" style={{ marginRight: '15px' }} />Settings
                   </Link>
               </li>
               <li>
                   <Link to={'help'} onClick={this.props.toggleSideBar} >
-                    <Icon size="1.9em" icon="help" style={{ marginRight: '15px' }}/>Help
+                    <Icon size="1.9em" icon="help" style={{ marginRight: '15px' }} />Help
                   </Link>
               </li>
               <li>
                   <a href="#" onClick={this.props.toggleSideBar} >
-                    <Icon size="1.9em" icon="bug-report" style={{ marginRight: '15px' }}/>Report a Bug
+                    <Icon size="1.9em" icon="bug-report" style={{ marginRight: '15px' }} />Report a Bug
                   </a>
               </li>
               <li>
                   <Link to={'/login'} onClick={this.setLogout} >
-                    <Icon size="1.9em" icon="redo" style={{ marginRight: '15px' }}/>Logout
+                    <Icon size="1.9em" icon="redo" style={{ marginRight: '15px' }} />Logout
                   </Link>
               </li>
           </ul>

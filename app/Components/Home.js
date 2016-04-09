@@ -47,7 +47,7 @@ export class Home extends React.Component {
             {this.props.children}
           </div>
         </div>
-        <div className="overlay" style={style.overlay} onClick={this.toggleSideBar}/>
+        <div className="overlay" style={style.overlay} onClick={this.toggleSideBar} />
         <Sidebar actions={this.props.actions} toggleSideBar={this.toggleSideBar} sidebarOpen={this.state.sidebarOpen} />
       </div>
     );

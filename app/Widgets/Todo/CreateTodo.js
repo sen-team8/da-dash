@@ -2,7 +2,14 @@ import React, { PropTypes } from 'react';
 import { Button, Input } from 'react-bootstrap';
 import Icon from '../../helper/Icons.js';
 
-let style;
+const style = {
+  form: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+};
+
 export default class CreateTodo extends React.Component {
 
   static propTypes = {
@@ -48,10 +55,3 @@ export default class CreateTodo extends React.Component {
     );
   }
 }
-style = {
-  form: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-};

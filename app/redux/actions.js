@@ -23,7 +23,7 @@ import {
   goToPath,
   addToFav,
   searchFor,
-}from './intranetActions';
+} from './intranetActions';
 
 import { sendChat, getUpdatedChat, clearChat } from './chatActions';
 
