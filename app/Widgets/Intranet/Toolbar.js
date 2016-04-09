@@ -19,7 +19,7 @@ function isStarred() {
 export default class Toolbar extends React.Component {
   static propTypes = {
     pathString: React.PropTypes.array.isRequired,
-    gotToPath: React.PropTypes.func.isRequired,
+    goToPath: React.PropTypes.func.isRequired,
     timeStamp: React.PropTypes.string,
     folders: React.PropTypes.number.isRequired,
     setSearch: React.PropTypes.func,
