@@ -61,7 +61,7 @@ export default class TodoItem extends React.Component {
             {this.state.text}
           </div>
            <div>
-             <ButtonToolbar>
+             <ButtonToolbar style={{ display: 'flex', width: '100%' }}>
                <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleDeleteTodo} style={style.buttons}>
                  <Icon size="1.5em" icon="delete"/></Button>
                <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleCompleteTodo} style={style.buttons}>

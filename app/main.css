@@ -104,15 +104,14 @@ html, body {
 
 /* Todo */
 
-.todo.category {
-  position: absolute;
+/*.todo.category {
+  position: relative;
   margin-left: 20%;
   clear: both;
   bottom: 5%;
 }
 
 .todo.list {
-  /*Nothing here*/
 }
 
 .todo.todoItem {
@@ -120,10 +119,6 @@ html, body {
 }
 
 .todo.container {
-  min-width: 320px;
-  min-height: 380px;
-  max-width: 320px;
-  max-height: 380px;
 }
 
 .todo#todoHeader span{
@@ -135,7 +130,7 @@ html, body {
 }
 
 .todo.listgroup {
-  position: absolute;
+  position: relative;
   width: 300px;
 }
 
@@ -153,7 +148,7 @@ html, body {
 
 .resizable {
   width:100%;
-}
+}*/
 
 @media (min-width:1024px) {
 /* (768 * 12) / 9 */

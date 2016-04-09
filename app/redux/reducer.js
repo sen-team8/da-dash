@@ -28,7 +28,7 @@ import {
   SEARCH_ERROR,
 } from './intranetActions';
 
-import { ALL_CHAT, UPDATE_CHAT } from './chatActions';
+import { UPDATE_CHAT, CLEAR_CHAT } from './chatActions';
 
 const initialLoginState = {
   STATUS: LOGGED_OUT,
@@ -245,13 +245,13 @@ function intranet(state=initialIntranetState, action) {
 
 function chat(state = chatState, action) {
   switch (action.type) {
-    case ALL_CHAT:
-      return Object.assign({}, state, {
-        chats: [...state.chats, ...action.chat],
-      });
     case UPDATE_CHAT:
       return Object.assign({}, state, {
         chats: [...state.chats, action.chat],
+      });
+    case CLEAR_CHAT:
+      return Object.assign({}, {
+        chats: [],
       });
     default:
       return state;

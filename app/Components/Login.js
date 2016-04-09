@@ -43,6 +43,11 @@ class Login extends React.Component {
     this.props.actions.setCredentials(users);
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setCredentials();
+  }
+
   showLoginError = () => {
     if (this.props.login.STATUS==='LOGIN_ERROR') {
       return this.props.login.ERROR;
