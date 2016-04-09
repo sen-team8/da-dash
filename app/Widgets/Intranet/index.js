@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
 import Folder from './Folder';
+import Chatroom from '../Chatroom';
 
 class IntranetWidget extends React.Component {
 
@@ -23,6 +24,7 @@ class IntranetWidget extends React.Component {
 
     state = {
       search: null,
+      discussion: false,
     }
 
     componentDidMount() {
@@ -34,6 +36,17 @@ class IntranetWidget extends React.Component {
       return nextProps.location !== this.props.location || nextState.search !== this.state.search;
     }
 
+    onClickDiscussion = () => {
+      if (this.props.pathString.length=== 3) {
+        this.state.discussion = !this.state.discussion;
+        console.log(this.state.discussion);
+        // console.log(this.props.pathString.length);
+      }
+    }
+    onClickFolderPath = () => {
+      // console.log(this.state.discussion);
+      this.state.discussion = false;
+    }
     setSearch = (s) => {
       this.setState({ search: s });
     }
@@ -51,7 +64,6 @@ class IntranetWidget extends React.Component {
           </div>
         </div>
       );
-
       const IntranetDumbRef = (
         <Folder
           location={this.props.location}
@@ -63,11 +75,14 @@ class IntranetWidget extends React.Component {
           dashboard={this.props.dashboard}
           setSearch={this.setSearch}
           search={this.props.search}
+          onClickFolderPath={this.onClickFolderPath}
+          onClickDiscussion={this.onClickDiscussion}
+          discussion={this.state.discussion}
         />
       );
       return (
         <div style={{ height: '100%' }}>
-          {!this.props.location ? progress : IntranetDumbRef}
+              {!this.props.location ? progress : IntranetDumbRef}
         </div>
       );
     }

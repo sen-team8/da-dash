@@ -6,7 +6,7 @@ import ListItem from './ListItem';
 // import LocationBar from './LocationBar';
 import Toolbar from './Toolbar';
 import { Link } from 'react-router';
-
+import Chatroom from '../Chatroom';
 let style;
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -20,6 +20,19 @@ export default class Folder extends React.Component {
       goToStringPath: React.PropTypes.func.isRequired,
       dashboard: React.PropTypes.bool,
       setSearch: React.PropTypes.func,
+      onClickDiscussion: React.PropTypes.func.isRequired,
+      onClickFolderPath: React.PropTypes.func.isRequired,
+      discussion: React.PropTypes.bool.isRequired,
+    }
+
+    state = {
+      discussion: this.props.discussion,
+    }
+    componentWillReceiveProps(nextProps) {
+      console.log('this is receive props' + nextProps.discussion);
+      this.setState({
+        discussion: nextProps.discussion,
+      });
     }
 
     showAttachment = (path, file) => {
@@ -27,7 +40,6 @@ export default class Folder extends React.Component {
       url = `${url}/${file}`;
       this.props.showAttachment(url);
     }
-
     displayStructure = (obj) => {
       const params = {
         items: obj,
@@ -41,6 +53,7 @@ export default class Folder extends React.Component {
     search = () => {
       // console.log(Array.from(this.props.location.keys()).filter(e => e.includes(this.props.search)));
     }
+
     render() {
       const isDashboard = this.props.dashboard ?
         (
@@ -56,13 +69,19 @@ export default class Folder extends React.Component {
             timeStamp={this.props.timeStamp}
             folders={this.props.location.count()}
             setSearch={this.props.setSearch}
+            onClickDiscussion={this.props.onClickDiscussion}
+            onClickFolderPath={this.props.onClickFolderPath}
           />
         );
+
+      const ChatroomDumb = (
+        <Chatroom pathString={this.props.pathString} />
+      );
       return (
           <div style={style.main} id="scroller">
               <Scrollbars style={{ height: window.innerHeight - 50 }}>
                 {isDashboard}
-                {this.displayStructure(this.props.location)}
+                {this.state.discussion ? ChatroomDumb : this.displayStructure(this.props.location)}
               </Scrollbars>
           </div>
       );

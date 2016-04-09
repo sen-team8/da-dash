@@ -25,7 +25,7 @@ import {
   ADD_FAV,
 } from './intranetActions';
 
-import { UPDATE_CHAT, CLEAR_CHAT } from './chatActions';
+import { CLEAR_CHAT, RECEIVED_CHAT } from './chatActions';
 
 const initialLoginState = {
   STATUS: LOGGED_OUT,
@@ -204,10 +204,9 @@ function intranet(state=initialIntranetState, action) {
 
 function chat(state = chatState, action) {
   switch (action.type) {
-    case UPDATE_CHAT:
-      return Object.assign({}, state, {
-        chats: [...state.chats, action.chat],
-      });
+
+    case RECEIVED_CHAT:
+      return Object.assign({}, { chats: [...action.chatArray] });
     case CLEAR_CHAT:
       return Object.assign({}, {
         chats: [],
