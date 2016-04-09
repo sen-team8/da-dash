@@ -24,7 +24,7 @@ import {
   addToFav,
 }from './intranetActions';
 
-import { sendChat, getUpdatedChat, clearChat } from './chatActions';
+import { sendChat, receivedChat, clearChat } from './chatActions';
 
 export const actions = {
   createTodo,
@@ -47,6 +47,6 @@ export const actions = {
   goToStringPath,
   addToFav,
   sendChat,
-  getUpdatedChat,
   clearChat,
+  receivedChat,
 };

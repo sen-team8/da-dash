@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
 import Waypoint from 'react-waypoint';
 import Chips from './Chips';
+import { Link } from 'react-router';
 
 function _handleWaypointEnter() {
   // console.log('holsa enterando');
@@ -23,6 +24,8 @@ export default class Toolbar extends React.Component {
     timeStamp: React.PropTypes.string,
     folders: React.PropTypes.number.isRequired,
     setSearch: React.PropTypes.func,
+    onClickDiscussion: React.PropTypes.func,
+    onClickFolderPath: React.PropTypes.func,
   }
 
   getHeading(pathString) {
@@ -93,7 +96,7 @@ export default class Toolbar extends React.Component {
             {isStarred()}
             <Button key={0} bsSize="small"><Glyphicon glyph="star" /> Star</Button>
             <Button key={1} bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>
-            <Button key={2} bsSize="small"><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
+            <Button key={2} bsSize="small" onClick={this.props.onClickDiscussion}><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
           </ButtonToolbar>
         </div>
         <div style={style.updated}>
@@ -102,6 +105,7 @@ export default class Toolbar extends React.Component {
         <Chips pathString={pathString}
           goToStringPath= {goToStringPath}
           setSearch={this.props.setSearch}
+          onClick={this.props.onClickFolderPath}
         />
         <Waypoint
           onEnter={_handleWaypointEnter}
