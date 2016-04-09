@@ -1,4 +1,5 @@
 import Request from 'superagent';
+import Immutable from 'immutable';
 
 const PRODUCTON_URL = 'https://bangle.io/api';
 
@@ -120,7 +121,18 @@ export function fuzzySearch(search) {
           if (err) {
             return reject({ response: 401, err });
           }
-          return resolve(JSON.parse(resp.text));
+          const result = JSON.parse(resp.text);
+          if (Array.isArray(result)) {
+            return resolve(Immutable.fromJS(result.map(d => {
+              const path = d.path.split('/').slice(3);
+              return {
+                name: d.name,
+                path,
+                isFile: path[path.length - 1].slice(-4).indexOf('.') > -1,
+              };
+            })));
+          }
+          return reject({ respone: 401, err: 'not an array' });
         });
   });
 }

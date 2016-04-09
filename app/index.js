@@ -25,7 +25,7 @@ const persistence = true; // false;
 
 try {
   oldState = { reducer: JSON.parse(localStorage.getItem('redux1'), (k, v) => {
-    if (k === 'tree' || k === 'location') {
+    if (k === 'tree' || k === 'location' || k === 'search') {
       return Immutable.fromJS(v);
     }
     return v;

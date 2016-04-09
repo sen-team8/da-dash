@@ -4,38 +4,32 @@ import { bindActionCreators } from 'redux';
 import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
 import Folder from './Folder';
-
+import Immutable from 'immutable';
 class IntranetWidget extends React.Component {
-
     static propTypes = {
       getIntranet: React.PropTypes.func.isRequired,
-      goToStringPath: React.PropTypes.func.isRequired,
+      goToPath: React.PropTypes.func.isRequired,
       goForward: React.PropTypes.func.isRequired,
       addToFav: React.PropTypes.func.isRequired,
+      searchFor: React.PropTypes.func.isRequired,
       location: React.PropTypes.object,
       pathString: React.PropTypes.array,
       timeStamp: React.PropTypes.string,
-      actions: React.PropTypes.object.isRequired,
       fav: React.PropTypes.array,
       dashboard: React.PropTypes.bool,
-      search: React.PropTypes.string,
-    }
-
-    state = {
-      search: null,
+      search: React.PropTypes.object,
     }
 
     componentDidMount() {
       this.props.getIntranet();
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-      // console.log(nextProps.location !== this.props.location, nextState.search !== this.state.search);
-      return nextProps.location !== this.props.location || nextState.search !== this.state.search;
+    shouldComponentUpdate(nextProps) {
+      return nextProps.location !== this.props.location || nextProps.search !== this.props.search;
     }
 
     setSearch = (s) => {
-      this.setState({ search: s });
+      this.props.searchFor(s);
     }
 
     showAttachment = (path, file) => {
@@ -44,8 +38,8 @@ class IntranetWidget extends React.Component {
 
     render() {
       const progress = (
-        <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
-          <div style={{ alignSelf: 'center' }}>
+        <div className="intranet-loading" style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
+          <div style={{ alignSelf: 'center' }} >
             Loading
           </div>
         </div>
@@ -58,7 +52,7 @@ class IntranetWidget extends React.Component {
           pathString={this.props.pathString}
           timeStamp={this.props.timeStamp}
           showAttachment={this.showAttachment}
-          goToStringPath={this.props.goToStringPath}
+          goToPath={this.props.goToPath}
           dashboard={this.props.dashboard}
           setSearch={this.setSearch}
           search={this.props.search}

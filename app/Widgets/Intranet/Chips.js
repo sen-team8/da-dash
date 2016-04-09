@@ -2,8 +2,8 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'react-bootstrap';
 import Icon from '../../helper/Icons';
 
-const handleClick = (key, pathString, goToStringPath) => {
-  return goToStringPath(pathString.slice(0, key+1));
+const handleClick = (key, pathString, goToPath) => {
+  return goToPath(pathString.slice(0, key+1));
 };
 const searchStyle = () => {
   return {
@@ -40,24 +40,21 @@ const chipsDisplay = (string, length, k) => {
 export default class Chips extends React.Component {
 
   static propTypes = {
-    goToStringPath: React.PropTypes.func.isRequired,
+    goToPath: React.PropTypes.func.isRequired,
     pathString: React.PropTypes.array,
     setSearch: React.PropTypes.func,
   }
 
   handleSearchChange = () => {
     const value = this.refs.search.value;
-    if (value.length >= 4) {
+    if (value.length >= 1 && value !== '' && value !== ' ') {
       clearTimeout(this.lastQuery);
-      this.lastQuery = setTimeout(() => this.props.setSearch(value));
-      this.setState({
-        search: true,
-      });
+      this.lastQuery = setTimeout(() => this.props.setSearch(value), 400);
     }
   }
 
   render() {
-    const { pathString, goToStringPath } = this.props;
+    const { pathString, goToPath } = this.props;
     const search = (
       <div className="intranet-search" style={searchStyle()}>
         <input type="text" className="query form-control"
@@ -72,7 +69,7 @@ export default class Chips extends React.Component {
     );
     const style = styleFoo();
     const home = (
-      <BreadcrumbItem onClick={function foo() {goToStringPath([]);}}>
+      <BreadcrumbItem onClick={function foo() {goToPath([]);}}>
         <Icon icon="home" style={{ fill: '#000' }}/>
       </BreadcrumbItem>
     );
@@ -81,7 +78,7 @@ export default class Chips extends React.Component {
       return (
         <BreadcrumbItem
           key={k}
-          onClick={function foo() {handleClick(k, pathString, goToStringPath);}}
+          onClick={function foo() {handleClick(k, pathString, goToPath);}}
         >
           {chipsDisplay(e, pathString.length, k)}
         </BreadcrumbItem>

@@ -14,9 +14,9 @@ export default class ListItem extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
-      // console.log(nextProps.items !== this.props.items);
       return nextProps.items !== this.props.items;
     }
+
     getIcon(isFile) {
       if (isFile) {
         return <Icon icon="pdf" style={{ fill: '#ff8a65' }}/>;
@@ -27,26 +27,26 @@ export default class ListItem extends React.Component {
     render() {
       const obj = this.props.items;
       const props = this.props;
-      const grid = Array.from(obj.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
-      const list = grid.map((item, key) => {
-        const isFile = obj.get(item) === 'file';
+      if (!obj) { return null; }
+      const list = obj.map((item, key) => {
         return (
           <ListGroupItem
             key={key}
             style={style.main}
             className="intranet-list"
-            onTouchTap={ isFile ?
-              function foo() {props.showAttachment(props.pathString, item);}
-            : function foo() {props.goForward(item);}
+            onClick={ item.get('isFile') ?
+              function foo() {props.showAttachment(item.get('path').toJS());}
+            : function foo() {console.debug('start', new Date().getTime()); props.goToPath(item.get('path').toJS());}
             }
           >
             <div style={style.content} >
-              {this.getIcon(isFile)}
-              &nbsp;{ window.innerWidth < 600 && item.length > 50 ? `${item.slice(0, 22)}...${item.slice(-15)}` : item }
+              {this.getIcon(item.get('isFile'))}
+              &nbsp;{ window.innerWidth < 600 && item.length > 50 ? `${item.slice(0, 22)}...${item.slice(-15)}` : item.get('name') }
             </div>
           </ListGroupItem>
         );
       });
+      console.debug('render', new Date().getTime())
       return <ListGroup>{list}</ListGroup>;
     }
 }

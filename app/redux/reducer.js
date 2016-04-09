@@ -21,8 +21,11 @@ import {
   RECEIVE_INTRANET_TREE,
   RECEIVE_INTRANET_ERROR,
   GO_FORWARD,
-  GOTO_STRINGPATH,
+  GO_TO_PATH,
   ADD_FAV,
+  QUICK_SEARCH,
+  LONG_SEARCH,
+  SEARCH_ERROR,
 } from './intranetActions';
 
 import { ALL_CHAT, UPDATE_CHAT } from './chatActions';
@@ -145,13 +148,26 @@ const initialIntranetState = {
 };
 
 function traverseIntranet(tree, path) {
-  // return tree;
   return path.reduce((prev, cur) => {
     return prev.get(cur);
   }, tree);
 }
-
+function processLocation(loc, path) {
+  return Immutable.fromJS(Array.from(loc.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0)).map(key => {
+    return {
+      isFile: loc[key] === 'file',
+      data: loc[key],
+      name: key,
+      path: path.concat(key),
+    };
+  }));
+}
 function intranet(state=initialIntranetState, action) {
+  let newSearchObj;
+  let tree;
+  let location;
+  let pathString;
+
   switch (action.type) {
     case REQUEST_INTRANET_TREE:
       return Object.assign({}, state, {
@@ -161,14 +177,14 @@ function intranet(state=initialIntranetState, action) {
       });
 
     case RECEIVE_INTRANET_TREE:
-      const tree = Immutable.fromJS(action.tree);
+      tree = Immutable.fromJS(action.tree);
+      location = traverseIntranet(tree, state.pathString);
       return Object.assign({}, state, {
         isFetching: false,
         error: null,
         tree,
         timeStamp: action.timeStamp,
-        location: Array.isArray(state.pathString) && state.pathString.length > 0 && state.pathString[0]
-          ? traverseIntranet(tree, state.pathString) : tree,
+        location: processLocation(location, state.pathString),
       });
 
     case RECEIVE_INTRANET_ERROR:
@@ -180,22 +196,47 @@ function intranet(state=initialIntranetState, action) {
       });
 
     case GO_FORWARD:
-      let pathString = state.pathString.concat(action.location);
+      pathString = state.pathString.concat(action.location);
       return Object.assign({}, state, {
         pathString,
         location: traverseIntranet(state.tree, pathString),
       });
-
-    case GOTO_STRINGPATH:
-      pathString = action.toPath;
+    case GO_TO_PATH:
+      pathString = action.toPath || [];
       return Object.assign({}, state, {
         pathString,
-        location: traverseIntranet(state.tree, pathString),
+        search: null,
+        location: processLocation(traverseIntranet(state.tree, pathString), pathString),
       });
     case ADD_FAV:
       return Object.assign({}, state, {
         fav: action.fav,
         location: traverseIntranet(state.tree, pathString),
+      });
+    case QUICK_SEARCH:
+      newSearchObj = new Immutable.List();
+      state.location.forEach(v => {
+        if (v.get('name').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1) {
+          newSearchObj = newSearchObj.push(v);
+        }
+      });
+      return Object.assign({}, state, {
+        search: newSearchObj,
+        isSearching: true,
+        searchError: null,
+      });
+    case LONG_SEARCH:
+      // console.log(action.searchResults);
+      return Object.assign({}, state, {
+        search: action.searchResults,
+        isSearching: false,
+        searchError: null,
+      });
+    case SEARCH_ERROR:
+      return Object.assign({}, state, {
+        isSearching: false,
+        search: null,
+        searchError: action.error,
       });
     default:
       return state;

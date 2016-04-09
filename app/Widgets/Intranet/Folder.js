@@ -17,7 +17,7 @@ export default class Folder extends React.Component {
       pathString: React.PropTypes.array.isRequired,
       timeStamp: React.PropTypes.string,
       showAttachment: React.PropTypes.func.isRequired,
-      goToStringPath: React.PropTypes.func.isRequired,
+      goToPath: React.PropTypes.func.isRequired,
       dashboard: React.PropTypes.bool,
       setSearch: React.PropTypes.func,
     }
@@ -31,7 +31,7 @@ export default class Folder extends React.Component {
     displayStructure = (obj) => {
       const params = {
         items: obj,
-        goForward: this.props.goForward,
+        goToPath: this.props.goToPath,
         showAttachment: this.showAttachment,
         pathString: this.props.pathString,
       };
@@ -52,9 +52,9 @@ export default class Folder extends React.Component {
         (
           <Toolbar
             pathString={this.props.pathString}
-            goToStringPath={this.props.goToStringPath}
+            goToPath={this.props.goToPath}
             timeStamp={this.props.timeStamp}
-            folders={this.props.location.count()}
+            folders={this.props.location.count() || 0}
             setSearch={this.props.setSearch}
           />
         );
@@ -62,6 +62,7 @@ export default class Folder extends React.Component {
           <div style={style.main} id="scroller">
               <Scrollbars style={{ height: window.innerHeight - 50 }}>
                 {isDashboard}
+                {this.displayStructure(this.props.search)}
                 {this.displayStructure(this.props.location)}
               </Scrollbars>
           </div>

@@ -20,8 +20,9 @@ import {
   receiveIntranetError,
   getIntranet,
   goForward,
-  goToStringPath,
+  goToPath,
   addToFav,
+  searchFor,
 }from './intranetActions';
 
 import { getChat, sendChat, getUpdatedChat } from './chatActions';
@@ -44,8 +45,9 @@ export const actions = {
   receiveIntranetError,
   getIntranet,
   goForward,
-  goToStringPath,
+  goToPath,
   addToFav,
+  searchFor,
 
   getChat,
   sendChat,

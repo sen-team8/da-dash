@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
         <Router history={this.props.history}>
           <Route path="/" component={Home} onEnter={this.requireAuth}>
-            <IndexRoute component={Dashboard}/>
+            <IndexRoute component={Dashboard} />
             <Route path="intranet" component={Intranet} />
             <Route path="todo" component={Todo} />
             <Route path="profile" component={Profile} />

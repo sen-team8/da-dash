@@ -19,7 +19,7 @@ function isStarred() {
 export default class Toolbar extends React.Component {
   static propTypes = {
     pathString: React.PropTypes.array.isRequired,
-    goToStringPath: React.PropTypes.func.isRequired,
+    gotToPath: React.PropTypes.func.isRequired,
     timeStamp: React.PropTypes.string,
     folders: React.PropTypes.number.isRequired,
     setSearch: React.PropTypes.func,
@@ -70,7 +70,7 @@ export default class Toolbar extends React.Component {
 
   render() {
     const style = this.style();
-    const { pathString, goToStringPath, timeStamp, folders } = this.props;
+    const { pathString, goToPath, timeStamp, folders } = this.props;
 
     const lastUpdated = (
       <span>
@@ -100,7 +100,7 @@ export default class Toolbar extends React.Component {
           {lastUpdated}
         </div>
         <Chips pathString={pathString}
-          goToStringPath= {goToStringPath}
+          goToPath= {goToPath}
           setSearch={this.props.setSearch}
         />
         <Waypoint

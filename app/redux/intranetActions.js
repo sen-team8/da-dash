@@ -1,12 +1,17 @@
-import { fetchIntranet } from '../network/intranet';
+import { fetchIntranet, fuzzySearch } from '../network/intranet';
 import ParseDate from '../helper/dateParse';
 
 export const REQUEST_INTRANET_TREE = 'REQUEST_INTRANET_TREE';
 export const RECEIVE_INTRANET_TREE = 'RECEIVE_INTRANET_TREE';
 export const RECEIVE_INTRANET_ERROR = 'RECEIVE_INTRANET_ERROR';
 export const GO_FORWARD = 'GO_FORWARD';
-export const GOTO_STRINGPATH = 'GOTO_STRINGPATH';
+export const GO_TO_PATH = 'GO_TO_PATH';
 export const ADD_FAV = 'ADD_FAV';
+export const BEGIN_SEARCH = 'BEGIN_SEARCH';
+export const GET_SEARCH_RESULTS = 'GET_SEARCH_RESULTS';
+export const QUICK_SEARCH = 'QUICK_SEARCH';
+export const LONG_SEARCH = 'LONG_SEARCH';
+export const SEARCH_ERROR = 'SEARCH_ERROR';
 
 export function requestIntranetTree() {
   return {
@@ -36,9 +41,9 @@ export function goForward(location) {
   };
 }
 
-export function goToStringPath(toPath) {
+export function goToPath(toPath) {
   return {
-    type: GOTO_STRINGPATH,
+    type: GO_TO_PATH,
     toPath,
   };
 }
@@ -47,6 +52,35 @@ export function addToFav(fav) {
   return {
     type: ADD_FAV,
     fav,
+  };
+}
+
+export function quickSearch(s) {
+  return {
+    type: QUICK_SEARCH,
+    searchToken: s,
+  };
+}
+
+export function longSearch(s) {
+  return {
+    type: LONG_SEARCH,
+    searchResults: s,
+  };
+}
+
+export function searchError(e) {
+  return {
+    type: SEARCH_ERROR,
+    error: e,
+  };
+}
+export function searchFor(s) {
+  return dispatch => {
+    dispatch(quickSearch(s));
+    return fuzzySearch(s)
+      .then(d => dispatch(longSearch(d)))
+      .catch(e => dispatch(searchError(e)));
   };
 }
 
