@@ -57,11 +57,11 @@ export default class TodoItem extends React.Component {
       }
       return (
         <div style={style.item}>
-          <div onDoubleClick={this.handleDoubleClick}>
+          <div onDoubleClick={this.handleDoubleClick} style={{ maxWidth: '75%', wordWrap: 'break-word' }}>
             {this.state.text}
           </div>
            <div>
-             <ButtonToolbar style={{ display: 'flex', width: '100%' }}>
+             <ButtonToolbar style={{ display: 'flex', width: 'auto' }}>
                <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleDeleteTodo} style={style.buttons}>
                  <Icon size="1.5em" icon="delete"/></Button>
                <Button type="submit" bsStyle={bsStyle.button} onClick={this.handleCompleteTodo} style={style.buttons}>

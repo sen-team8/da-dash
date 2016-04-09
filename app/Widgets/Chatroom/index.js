@@ -80,7 +80,7 @@ style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: '25%',
+    width: '100%',
     WebkitTransform: 'translate(-50%, -50%)',
     backgroundColor: 'white',
     padding: '10px',

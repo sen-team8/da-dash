@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 const buttonStyle = {
   height: '45px',
@@ -35,7 +36,7 @@ export default class MyComponent extends React.Component {
       }}
       >
         <div>
-          <p style= {{ paddingTop: '5px' }}>Chat Application</p>
+          <Link to="chatroom" style= {{ paddingTop: '5px' }}>Chat Application</Link>
         </div>
         <Button id="1" style= {buttonStyle} onClick={this.onToggle} active={this.props.batch} >Your Batch</Button>
         <Button id="2" style= {buttonStyle} onClick={this.onToggle} active={!this.props.batch}>Da-iict</Button>
