@@ -45,6 +45,7 @@ export function fetchEmail(id, user) {
           .end((err, resp) => {
             if (err) {
               reject(err);
+              return null;
             } else {
               const email = JSON.parse(resp.text);
               const date = new Date(email.date);

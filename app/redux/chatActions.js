@@ -1,4 +1,4 @@
-import { chat, pushChat } from '../network/chat';
+import { pushChat } from '../network/chat';
 import { firebaseRef } from '../network/auth';
 
 // export const ADD_CHAT= 'CHAT';

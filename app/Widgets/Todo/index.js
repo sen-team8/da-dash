@@ -8,7 +8,26 @@ import { Link } from 'react-router';
 
 import { actions } from '../../redux/actions';
 
-let style;
+const style = {
+  todo: {
+    backgroundColor: 'white',
+    padding: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: '1',
+    width: '100%',
+  },
+  head: {
+    fontSize: '24px',
+    marginBottom: '12px',
+    borderBottomStyle: 'solid',
+    borderColor: '#d3d3d3',
+    textShadow: '2px 1px 3px rgba(0,0,0,0.2), 0px -5px 30px rgba(255,255,255,0.3)',
+    borderWidth: '2px',
+    fontColor: '#009ACD',
+    fontStyle: 'bold',
+  },
+};
 
 class Todo extends Component {
 
@@ -25,7 +44,7 @@ class Todo extends Component {
 
   showCreateTodo = () => {
     return (
-        <CreateTodo actions={this.actionHandler}/>
+        <CreateTodo actions={this.actionHandler} />
       );
   }
 
@@ -41,7 +60,7 @@ class Todo extends Component {
       case 'delete':
         this.props.actions.deleteTodo(id);
         break;
-      case 'edit':
+      case 'edit': {
         const x = this.props.todos.filter((todoItem) => todoItem.TEXT === text);
         if (x.length === 0) {
           if (text) {
@@ -49,7 +68,8 @@ class Todo extends Component {
           }
         }
         break;
-      case 'Create':
+      }
+      case 'Create': {
         const y = this.props.todos.filter((todoItem) => todoItem.TEXT === text);
         if (y.length === 0) {
           if (text) {
@@ -58,6 +78,7 @@ class Todo extends Component {
         }
         this.handleShowAll();
         break;
+      }
       default :
         break;
     }
@@ -122,24 +143,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);
-
-style = {
-  todo: {
-    backgroundColor: 'white',
-    padding: '10px',
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: '1',
-    width: '100%',
-  },
-  head: {
-    fontSize: '24px',
-    marginBottom: '12px',
-    borderBottomStyle: 'solid',
-    borderColor: '#d3d3d3',
-    textShadow: '2px 1px 3px rgba(0,0,0,0.2), 0px -5px 30px rgba(255,255,255,0.3)',
-    borderWidth: '2px',
-    fontColor: '#009ACD',
-    fontStyle: 'bold',
-  },
-};

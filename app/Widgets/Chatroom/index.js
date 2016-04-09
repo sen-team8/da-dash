@@ -7,8 +7,21 @@ import { bindActionCreators } from 'redux';
 
 import { actions } from '../../redux/actions';
 
-let style;
-
+const style = {
+  todo: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: '100%',
+    WebkitTransform: 'translate(-50%, -50%)',
+    backgroundColor: 'white',
+    padding: '10px',
+    paddingTop: '0px',
+    flexGrow: '1',
+  },
+};
 
 class Chatroom extends Component {
 
@@ -52,9 +65,9 @@ class Chatroom extends Component {
   render() {
     return (
         <div style={style.todo} className="bootstrap-border">
-          <Header batch={this.state.batch} toggle= {this.toggle}/>
-          <ChatList chats={this.props.chats}/>
-          <WriteChat sendChat={this.sendChat}/>
+          <Header batch={this.state.batch} toggle= {this.toggle} />
+          <ChatList chats={this.props.chats} />
+          <WriteChat sendChat={this.sendChat} />
         </div>
     );
   }
@@ -72,19 +85,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chatroom);
-
-style = {
-  todo: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    width: '100%',
-    WebkitTransform: 'translate(-50%, -50%)',
-    backgroundColor: 'white',
-    padding: '10px',
-    paddingTop: '0px',
-    flexGrow: '1',
-  },
-};

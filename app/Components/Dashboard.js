@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
             <Todo />
           </Col>
           <Col xs={12} md={6}>
-            <Intranet dashboard/>
+            <Intranet dashboard />
           </Col>
           <Col xs={12} md={6}>
             <Chatroom />
