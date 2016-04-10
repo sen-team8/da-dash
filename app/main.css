@@ -8,9 +8,10 @@ html, body {
   overflow-x: hidden;
 }
 
-.app {
-  /*display: flex;*/
+button:focus {
+  outline:none !important;
 }
+
 
 .bootstrap-border {
   border: 1px solid #ddd;
@@ -360,20 +361,18 @@ html, body {
 }
 
 /* intranet */
-.intranet-list {
-  /*width: 100%;*/
-  /*-webkit-transition: width .2s ease-in;
-    -moz-transition:  width .2s ease-in;
-     -ms-transition:  width .2s ease-in;*/
+.intranet-list button {
   transition: all 0.55s ease-out;
 }
-.intranet-list:hover {
+
+.intranet-list button:hover {
   background-color: #F5FCFF;
   cursor: pointer;
 }
-.intranet-list:active {
+
+.intranet-list button:active {
   transition: all 0.3s ease-in;
-  background-color: rgba(228, 166, 0, 0.25);
+  background-color: rgba(228, 166, 0, 0.2);
   cursor: pointer;
 }
 

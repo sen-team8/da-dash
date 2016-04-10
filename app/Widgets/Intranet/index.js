@@ -34,6 +34,9 @@ class IntranetWidget extends React.Component {
     window.open(formQuery(path), '_blank');
   }
 
+  handleResize() {
+    this.forceUpdate();
+  }
 
   render() {
     const progress = (

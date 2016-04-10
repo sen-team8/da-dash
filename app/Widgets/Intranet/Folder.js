@@ -42,9 +42,9 @@ export default class Folder extends React.Component {
     setSearch: React.PropTypes.func,
   }
 
-  showAttachment = (path, file) => {
+  showAttachment = (path) => {
     let url = path.join('/');
-    url = `${url}/${file}`;
+    url = `${url}`;
     this.props.showAttachment(url);
   }
 

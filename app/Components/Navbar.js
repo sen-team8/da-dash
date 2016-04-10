@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default class Nav extends Component {
 
@@ -8,7 +9,10 @@ export default class Nav extends Component {
     toggleSideBar: PropTypes.func.isRequired,
     sidebarOpen: PropTypes.bool.isRequired,
   }
-
+  constructor(props, state) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
   style = () => {
     return {
       navbar: this.props.sidebarOpen ?

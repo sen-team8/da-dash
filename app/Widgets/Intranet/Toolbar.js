@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
 import Waypoint from 'react-waypoint';
 import Chips from './Chips';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { Link } from 'react-router';
 
 function _handleWaypointEnter() {
   // console.log('holsa enterando');
@@ -23,6 +25,15 @@ export default class Toolbar extends React.Component {
     timeStamp: React.PropTypes.string,
     folders: React.PropTypes.number.isRequired,
     setSearch: React.PropTypes.func,
+  }
+
+  static defaultProps = {
+    pathString: [],
+  }
+
+  constructor(props, state) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
   getHeading(pathString) {
@@ -78,6 +89,17 @@ export default class Toolbar extends React.Component {
       </span>
     );
 
+    const canDiscuss = this.props.pathString.length === 3 ?
+    (
+      <Link to={'discussion/discussions'} >
+        <Button key={2} bsSize="small" ><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
+      </Link>
+    )
+    :
+    (
+      <span></span>
+    );
+
     return (
       <div style={style.wrapper}>
         <div style={style.jumbo}>
@@ -93,7 +115,9 @@ export default class Toolbar extends React.Component {
             {isStarred()}
             <Button key={0} bsSize="small"><Glyphicon glyph="star" /> Star</Button>
             <Button key={1} bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>
-            <Button key={2} bsSize="small"><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
+              {
+                canDiscuss
+              }
           </ButtonToolbar>
         </div>
         <div style={style.updated}>

@@ -21,6 +21,34 @@ const style = {
   },
 };
 
+
+const pdf = (
+  <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" fit
+    style={{
+      fill: '#ff8a65',
+      verticalAlign: 'middle',
+      width: 24,
+      height: 24,
+    }}
+  >
+    <g><path d="M6 2c-1.1 0-1.99.9-1.99 2l-.01 16c0 1.1.89 2 1.99 2h12.01c1.1 0 2-.9 2-2v-12l-6-6h-8zm7 7v-5.5l5.5 5.5h-5.5z"></path></g> // eslint-disable-line
+  </svg>
+);
+
+const folder = (
+  <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" fit
+    style={{
+      fill: '#ffcc80',
+      verticalAlign: 'middle',
+      width: 24,
+      height: 24,
+    }}
+  >
+    <g><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"></path></g> // eslint-disable-line
+  </svg>
+);
+
+
 export default class ListItem extends React.Component {
 
   static propTypes = {
@@ -36,9 +64,9 @@ export default class ListItem extends React.Component {
 
   getIcon(isFile) {
     if (isFile) {
-      return <Icon icon="pdf" style={{ fill: '#ff8a65' }} />;
+      return pdf;
     }
-    return <Icon icon="folder" style={{ fill: '#ffcc80' }} />;
+    return folder;
   }
 
   render() {
@@ -50,20 +78,21 @@ export default class ListItem extends React.Component {
         <ListGroupItem
           key={key}
           style={style.main}
-          className="intranet-list"
           onClick={ item.get('isFile') ?
             function foo() {props.showAttachment(item.get('path').toJS());}
-          : function foo() {console.debug('start', new Date().getTime()); props.goToPath(item.get('path').toJS());}
+          : function foo() {props.goToPath(item.get('path').toJS());}
           }
         >
-          <div style={style.content} >
+          <div style={style.content} className="intranet-item">
             {this.getIcon(item.get('isFile'))}
-            &nbsp;{ window.innerWidth < 600 && item.length > 50 ? `${item.slice(0, 22)}...${item.slice(-15)}` : item.get('name') }
+            &nbsp;
+            { window.innerWidth < 600 && item.get('name').length > 50
+              ? `${item.get('name').slice(0, 22)}...${item.get('name').slice(-15)}` : item.get('name') }
           </div>
         </ListGroupItem>
       );
     });
     // console.debug('render', new Date().getTime())
-    return <ListGroup>{list}</ListGroup>;
+    return <ListGroup className="intranet-list">{list}</ListGroup>;
   }
 }

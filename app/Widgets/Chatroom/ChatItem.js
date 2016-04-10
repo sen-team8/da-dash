@@ -25,5 +25,4 @@ export default class ChatItem extends React.Component {
       </ListGroupItem>
    );
   }
-
 }
