@@ -9,17 +9,12 @@ import { actions } from '../../redux/actions';
 
 const style = {
   todo: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    width: '100%',
-    WebkitTransform: 'translate(-50%, -50%)',
     backgroundColor: 'white',
     padding: '10px',
-    paddingTop: '0px',
+    display: 'flex',
+    flexDirection: 'column',
     flexGrow: '1',
+    width: '100%',
   },
 };
 
