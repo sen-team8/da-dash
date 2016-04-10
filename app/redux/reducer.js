@@ -155,8 +155,8 @@ function traverseIntranet(tree, path) {
 function processLocation(loc, path) {
   return Immutable.fromJS(Array.from(loc.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0)).map(key => {
     return {
-      isFile: loc[key] === 'file',
-      data: loc[key],
+      isFile: loc.get(key) === 'file',
+      data: loc.get(key),
       name: key,
       path: path.concat(key),
     };
@@ -206,6 +206,8 @@ function intranet(state=initialIntranetState, action) {
       return Object.assign({}, state, {
         pathString,
         search: null,
+        quickSearch: null,
+        isSearching: false,
         location: processLocation(traverseIntranet(state.tree, pathString), pathString),
       });
     case ADD_FAV:
@@ -221,14 +223,14 @@ function intranet(state=initialIntranetState, action) {
         }
       });
       return Object.assign({}, state, {
-        search: newSearchObj,
+        quickSearch: newSearchObj,
         isSearching: true,
         searchError: null,
       });
     case LONG_SEARCH:
       // console.log(action.searchResults);
       return Object.assign({}, state, {
-        search: action.searchResults,
+        search: state.isSearching ? action.searchResults : null,
         isSearching: false,
         searchError: null,
       });
@@ -236,6 +238,7 @@ function intranet(state=initialIntranetState, action) {
       return Object.assign({}, state, {
         isSearching: false,
         search: null,
+        quickSearch: null,
         searchError: action.error,
       });
     default:

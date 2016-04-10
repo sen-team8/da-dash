@@ -18,14 +18,12 @@ class IntranetWidget extends React.Component {
     fav: React.PropTypes.array,
     dashboard: React.PropTypes.bool,
     search: React.PropTypes.object,
+    quickSearch: React.PropTypes.object,
+    isSearching: React.PropTypes.bool.isRequired,
   }
 
   componentDidMount() {
     this.props.getIntranet();
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return nextProps.location !== this.props.location || nextProps.search !== this.props.search;
   }
 
   setSearch = (s) => {
@@ -57,6 +55,7 @@ class IntranetWidget extends React.Component {
         dashboard={this.props.dashboard}
         setSearch={this.setSearch}
         search={this.props.search}
+        quickSearch={this.props.quickSearch}
       />
     );
     return (

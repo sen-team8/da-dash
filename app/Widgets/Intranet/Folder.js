@@ -31,7 +31,8 @@ import { Scrollbars } from 'react-custom-scrollbars';
 export default class Folder extends React.Component {
   static propTypes = {
     location: React.PropTypes.object.isRequired,
-    search: React.PropTypes.object.isRequired,
+    search: React.PropTypes.object,
+    quickSearch: React.PropTypes.object,
     goForward: React.PropTypes.func.isRequired,
     pathString: React.PropTypes.array.isRequired,
     timeStamp: React.PropTypes.string,
@@ -78,11 +79,18 @@ export default class Folder extends React.Component {
         />
       );
     return (
-        <div style={style.main} id="scroller">
-            <Scrollbars style={{ height: window.innerHeight - 50 }}>
-              {isDashboard}
-              {this.displayStructure(this.props.search)}
-              {this.displayStructure(this.props.location)}
+        <div style={style.main} >
+            <Scrollbars style={{ height: window.innerHeight - 50 }}
+              autoHide
+              autoHideTimeout={1000}
+              autoHideDuration={400}
+            >
+              <div style={{ overflowX: 'hidden' }}>
+                {isDashboard}
+                {this.displayStructure(this.props.quickSearch)}
+                {this.displayStructure(this.props.search)}
+                {this.displayStructure(this.props.location)}
+              </div>
             </Scrollbars>
         </div>
     );
