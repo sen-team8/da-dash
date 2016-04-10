@@ -22,6 +22,7 @@ const style = {
     marginBottom: '12px',
     borderBottomStyle: 'solid',
     borderColor: '#d3d3d3',
+    textShadow: '2px 1px 3px rgba(0,0,0,0.2), 0px -5px 30px rgba(255,255,255,0.3)',
     borderWidth: '2px',
     fontColor: '#009ACD',
     fontStyle: 'bold',

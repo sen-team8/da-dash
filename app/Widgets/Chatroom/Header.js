@@ -8,18 +8,6 @@ const buttonStyle = {
   marginLeft: '10px',
 };
 
-const style = {
-  head: {
-    marginBottom: '12px',
-    borderBottomStyle: 'solid',
-    borderColor: '#d3d3d3',
-    borderWidth: '2px',
-    fontColor: '#009ACD',
-    fontStyle: 'bold',
-    marginRight: '180px',
-  },
-};
-
 let buttonPressed ='1';
 export default class MyComponent extends React.Component {
 
@@ -41,21 +29,17 @@ export default class MyComponent extends React.Component {
     return (
       <div style= {{
         height: '45px',
-        fontSize: '24px',
+        fontSize: '20px',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'centre',
       }}
       >
         <div>
-          <Link to="chatroom" style= { style.head }>Chats</Link>
+          <Link to="chatroom" style= {{ paddingTop: '5px' }}>Chat Application</Link>
         </div>
-        <Button id="1" bsstyle= {buttonStyle} onClick={this.onToggle} active={this.props.batch}
-          style={{ marginBottom: '10px', marginRight: '10px' }}
-        >Your Batch</Button>
-        <Button id="2" style= {buttonStyle} onClick={this.onToggle} active={!this.props.batch}
-          style={{ marginBottom: '10px', marginRight: '10px' }}
-        >Da-iict</Button>
+        <Button id="1" style= {buttonStyle} onClick={this.onToggle} active={this.props.batch} >Your Batch</Button>
+        <Button id="2" style= {buttonStyle} onClick={this.onToggle} active={!this.props.batch}>Da-iict</Button>
 
     </div>
     );

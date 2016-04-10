@@ -37,9 +37,7 @@ export default class WriteChat extends React.Component {
     return (
       <div style={{ width: '100%' }}>
         <form onSubmit={this.handleSubmit} style={style.form}>
-          <Input className="chat textfield" type="text" placeholder="Enter message"
-            value={this.state.text} onChange={this.handleChange}
-          />
+          <Input className="chat textfield" type="text" value={this.state.text} onChange={this.handleChange} />
           <div>
             <Button className="chat raised" bsStyle="primary" type="submit">Send</Button>
           </div>
