@@ -11,6 +11,12 @@ html, body {
   /*display: flex;*/
 }
 
+/*Wrapper for dashboard*/
+.dadash-wrapper {
+    height: 600px;
+    width: 450px;
+}
+
 .bootstrap-border {
   border: 1px solid #ddd;
   border-radius: 4px ;
