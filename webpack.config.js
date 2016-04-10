@@ -99,7 +99,6 @@ if (TARGET === 'build') {
       new webpack.optimize.CommonsChunkPlugin({
         names: ['vendor', 'manifest'],
       }),
-      new ExtractTextPlugin('[name].css'),
       // Setting DefinePlugin affects React library size!
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production'),

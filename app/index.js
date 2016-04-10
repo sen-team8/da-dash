@@ -5,8 +5,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+// import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import { Provider } from 'react-redux';
 import reducer from './redux/reducer';
@@ -14,9 +13,9 @@ import App from './App';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import Immutable from 'immutable';
+// global.Perf = require('react-addons-perf');
 
-const loggerMiddleware = createLogger();
-injectTapEventPlugin();
+// injectTapEventPlugin();
 
 let oldState;
 
@@ -39,6 +38,12 @@ try {
     oldState = undefined;
   }
 }
+let middleware = [thunkMiddleware];
+if (process.env.NODE_ENV !== 'production') {
+  const createLogger = require('redux-logger');
+  const loggerMiddleware = createLogger();
+  middleware = [...middleware, loggerMiddleware];
+}
 
 const store = createStore(
   combineReducers({
@@ -48,8 +53,7 @@ const store = createStore(
   persistence && oldState,
   compose(
     applyMiddleware(
-      thunkMiddleware, // lets us dispatch() functions
-      loggerMiddleware // neat middleware that logs actions
+      ...middleware
     ),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )

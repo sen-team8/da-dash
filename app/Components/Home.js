@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from './Navbar';
 import Sidebar from './Sidebar';
-
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
@@ -13,14 +13,13 @@ export class Home extends React.Component {
     children: React.PropTypes.object.isRequired,
     actions: React.PropTypes.object.isRequired,
   }
-
+  constructor(props, state) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
   state = {
     sidebarOpen: false,
   }
-
-  // onSetSidebarOpen = (open) => {
-  //   this.setState({ sidebarOpen: open });
-  // }
 
   toggleSideBar = () => {
     // toggles sidebar

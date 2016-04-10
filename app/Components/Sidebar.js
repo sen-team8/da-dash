@@ -1,12 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import Icon from '../helper/Icons.js';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class Sidebar extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
     sidebarOpen: PropTypes.bool.isRequired,
     toggleSideBar: PropTypes.func.isRequired,
+  }
+
+  constructor(props, state) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
   setLogout = () => {

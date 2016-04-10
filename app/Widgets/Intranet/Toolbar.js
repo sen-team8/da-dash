@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
 import Waypoint from 'react-waypoint';
 import Chips from './Chips';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 function _handleWaypointEnter() {
   // console.log('holsa enterando');
@@ -23,6 +24,15 @@ export default class Toolbar extends React.Component {
     timeStamp: React.PropTypes.string,
     folders: React.PropTypes.number.isRequired,
     setSearch: React.PropTypes.func,
+  }
+
+  static defaultProps = {
+    pathString: [],
+  }
+
+  constructor(props, state) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
   getHeading(pathString) {

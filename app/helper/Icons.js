@@ -13,7 +13,9 @@ export default class Icon extends Component {
   static defaultProps = {
     size: 24,
   }
-
+  shouldComponentUpdate(nextProps) {
+    return this.props.icon !== nextProps.icon;
+  }
   _mergeStyles(...args) {
       // This is the m function from "CSS in JS" and can be extracted to a mixin
     return Object.assign({}, ...args);
