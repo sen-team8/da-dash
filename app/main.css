@@ -11,6 +11,10 @@ html, body {
 button:focus {
   outline:none !important;
 }
+.dadashwrapper {
+    height: 600px;
+    width: 500px;
+}
 
 
 .bootstrap-border {
@@ -281,7 +285,7 @@ button:focus {
     z-index: -1;
     height: 100%;
     width: 3px;
-    background-color: #009ACD;
+    background-color: #323232;
     -webkit-transition: width .2s ease-in;
       -moz-transition:  width .2s ease-in;
        -ms-transition:  width .2s ease-in;
