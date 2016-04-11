@@ -64,12 +64,27 @@ export default class Folder extends React.Component {
   render() {
     const isDashboard = this.props.dashboard ?
       (
+        <div className="bootstrap-border intranet container" style={{ width: '550px' }}>
+        <div style={{ fontSize: '24px',
+            marginBottom: '12px',
+            borderBottomStyle: 'solid',
+            borderColor: '#d3d3d3',
+            borderWidth: '2px',
+            fontColor: '#009ACD',
+            fontStyle: 'bold' }}
+        >
         <Link to={'intranet'} >
           Intranet
         </Link>
+      </div>
+      {this.displayStructure(this.props.quickSearch)}
+      {this.displayStructure(this.props.search)}
+      {this.displayStructure(this.props.location)}
+    </div>
       )
       :
       (
+        <div>
         <Toolbar
           pathString={this.props.pathString}
           goToPath={this.props.goToPath}
@@ -77,6 +92,10 @@ export default class Folder extends React.Component {
           folders={this.props.location.count() || 0}
           setSearch={this.props.setSearch}
         />
+        {this.displayStructure(this.props.quickSearch)}
+        {this.displayStructure(this.props.search)}
+        {this.displayStructure(this.props.location)}
+      </div>
       );
     return (
         <div style={style.main} >
@@ -87,9 +106,6 @@ export default class Folder extends React.Component {
             >
               <div style={{ overflowX: 'hidden' }}>
                 {isDashboard}
-                {this.displayStructure(this.props.quickSearch)}
-                {this.displayStructure(this.props.search)}
-                {this.displayStructure(this.props.location)}
               </div>
             </Scrollbars>
         </div>

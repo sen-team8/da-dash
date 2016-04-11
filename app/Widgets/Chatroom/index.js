@@ -14,8 +14,7 @@ const style = {
   todo: {
     display: 'flex',
     flexDirection: 'column',
-    position: 'absolute',
-    top: '50%',
+    position: 'relative',
     left: '50%',
     width: '100%',
     WebkitTransform: 'translate(-50%, -50%)',

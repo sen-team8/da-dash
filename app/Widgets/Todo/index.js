@@ -16,16 +16,22 @@ const style = {
     flexDirection: 'column',
     flexGrow: '1',
     width: '100%',
+    maxHeight: '340px',
+    minHeight: '340px',
   },
   head: {
     fontSize: '24px',
     marginBottom: '12px',
     borderBottomStyle: 'solid',
     borderColor: '#d3d3d3',
-    textShadow: '2px 1px 3px rgba(0,0,0,0.2), 0px -5px 30px rgba(255,255,255,0.3)',
     borderWidth: '2px',
     fontColor: '#009ACD',
     fontStyle: 'bold',
+  },
+  pos: {
+    position: 'absolute',
+    bottom: '10px',
+    marginLeft: '32%',
   },
 };
 
@@ -123,7 +129,7 @@ class Todo extends Component {
         <TodoList actions={this.actionHandler} todos={this.props.todos}
           showCompleted={this.state.showCompleted} className="todo list"
         />
-      <ButtonToolbar className="todo category">
+      <ButtonToolbar className="todo category" style={style.pos}>
             <Button type="submit" bsStyle={bsStyle.buttonAll} onClick={this.handleShowAll}>All</Button>
             <Button type="submit" bsStyle={bsStyle.buttonComplete} onClick={this.handleShowCompleted}>Completed</Button>
         </ButtonToolbar>

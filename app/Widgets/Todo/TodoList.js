@@ -12,7 +12,7 @@ export default class TodoList extends React.Component {
 
   render() {
     return (
-        <ListGroup className="todo listgroup">
+        <ListGroup className="todo listgroup" style={{ overflowY: 'scroll' }}>
         {
           this.props.todos.map((todo) => {
             return (
