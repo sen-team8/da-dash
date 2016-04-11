@@ -147,12 +147,12 @@ const initialIntranetState = {
   fav: [],
 };
 
-function traverseIntranet(tree, path) {
+export function traverseIntranet(tree, path) {
   return path.reduce((prev, cur) => {
     return prev.get(cur);
   }, tree);
 }
-function processLocation(loc, path) {
+export function processLocation(loc, path) {
   return Immutable.fromJS(Array.from(loc.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0)).map(key => {
     return {
       isFile: loc.get(key) === 'file',
@@ -162,7 +162,7 @@ function processLocation(loc, path) {
     };
   }));
 }
-function intranet(state=initialIntranetState, action) {
+export function intranet(state=initialIntranetState, action) {
   let newSearchObj;
   let tree;
   let location;
