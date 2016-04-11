@@ -8,8 +8,23 @@ import _ from 'lodash';
 import { actions } from '../../redux/actions';
 import { firebaseRef } from '../../network/auth';
 
-let style;
 const month= ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Nov', 'Dec'];
+
+const style = {
+  todo: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: '100%',
+    WebkitTransform: 'translate(-50%, -50%)',
+    backgroundColor: 'white',
+    padding: '10px',
+    paddingTop: '0px',
+    flexGrow: '1',
+  },
+};
 
 class Chatroom extends Component {
 
@@ -105,9 +120,9 @@ class Chatroom extends Component {
   render() {
     return (
         <div style={style.todo} className="bootstrap-border">
-          <Header batch={this.state.batch} subject={this.state.subject} toggle= {this.toggle}/>
-          <ChatList chats={this.props.chats}/>
-          <WriteChat sendChat={this.sendChat}/>
+          <Header batch={this.state.batch} subject={this.state.subject} toggle= {this.toggle} />
+          <ChatList chats={this.props.chats} />
+          <WriteChat sendChat={this.sendChat} />
         </div>
     );
   }
@@ -124,19 +139,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chatroom);
-
-style = {
-  todo: {
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    width: '25%',
-    WebkitTransform: 'translate(-50%, -50%)',
-    backgroundColor: 'white',
-    padding: '10px',
-    paddingTop: '0px',
-    flexGrow: '1',
-  },
-};
