@@ -3,8 +3,6 @@ import Immutable from 'immutable';
 
 const PRODUCTON_URL = 'https://bangle.io/api';
 
-
-// export const BASEURL = isLocal? DEV_URL : PRODUCTON_URL;
 export const BASEURL = PRODUCTON_URL;
 let userFromCollege = false;
 const TIMER = 20000;
@@ -74,38 +72,25 @@ export function getInbox (user) {
 
 export function fetchIntranet(user) {
   return new Promise((resolve, reject) => {
-    if (!intranet) {
-      // console.log('here');
-      // console.log('here');
-      return Request.get(`${BASEURL}/intranet`)
-        .timeout(TIMER_INBOX)
-        .end((err, resp) => {
-          if (err) {
-            return reject({ response: 401, err });
-          }
-          intranet = JSON.parse(resp.text);
-          timeStamp = intranet.timeStamp;
-          delete intranet.timeStamp;
-          delete intranet['log.txt'];
-          delete intranet['tree.json'];
-          delete intranet.time;
-          delete intranet.kh_test;
-          delete intranet['fuzzy.json'];
-          return resolve({ intranet, timeStamp });
-        });
-    } else {
-      return resolve({ intranet, timeStamp });
-    }
+    return Request.get(`${BASEURL}/intranet`)
+      .timeout(TIMER_INBOX)
+      .end((err, resp) => {
+        if (err) {
+          return reject({ response: 401, err });
+        }
+        intranet = JSON.parse(resp.text);
+        timeStamp = intranet.timeStamp;
+        delete intranet.timeStamp;
+        delete intranet['log.txt'];
+        delete intranet['tree.json'];
+        delete intranet.time;
+        delete intranet.kh_test;
+        delete intranet['fuzzy.json'];
+        return resolve({ intranet, timeStamp });
+      });
   });
-  // return fetch(`${BASEURL}/intranet`, makeGetHeaders(user))
-  //   .then(resp => resp.json())
-  //   .then(resp => {
-  //     intranet = resp;
-  //     timeStamp = intranet.timeStamp;
-  //     delete intranet.timeStamp;
-  //     return { intranet, timeStamp };
-  //   });
 }
+
 export function formQuery(path) {
   const localPath = path.split('/').map((o) => encodeURIComponent(o)).join('/');
   if (userFromCollege) {
