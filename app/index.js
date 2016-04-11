@@ -13,10 +13,6 @@ import App from './App';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import Immutable from 'immutable';
-// global.Perf = require('react-addons-perf');
-
-// injectTapEventPlugin();
-
 let oldState;
 
 // toggle this to switch off persistence

@@ -9,9 +9,6 @@ import { Link } from 'react-router';
 
 const style = {
   main: {
-    // height: '100%',
-    // overflowY: 'scroll',
-    // overflowX: 'hidden',
     WebkitOverflowScrolling: 'touch',
   },
   list: {
@@ -30,16 +27,31 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 export default class Folder extends React.Component {
   static propTypes = {
-    location: React.PropTypes.object.isRequired,
+    location: React.PropTypes.object,
     search: React.PropTypes.object,
     quickSearch: React.PropTypes.object,
-    goForward: React.PropTypes.func.isRequired,
     pathString: React.PropTypes.array.isRequired,
     timeStamp: React.PropTypes.string,
     showAttachment: React.PropTypes.func.isRequired,
     goToPath: React.PropTypes.func.isRequired,
     dashboard: React.PropTypes.bool,
     setSearch: React.PropTypes.func,
+  }
+
+  state = {
+    height: window.innerHeight,
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = (e) => {
+    this.setState({ height: window.innerHeight });
   }
 
   showAttachment = (path) => {
@@ -49,6 +61,7 @@ export default class Folder extends React.Component {
   }
 
   displayStructure = (obj) => {
+    if (!obj) return null;
     const params = {
       items: obj,
       goToPath: this.props.goToPath,
@@ -80,7 +93,7 @@ export default class Folder extends React.Component {
       );
     return (
         <div style={style.main} >
-            <Scrollbars style={{ height: window.innerHeight - 50 }}
+            <Scrollbars style={{ height: this.state.height - 50 }}
               autoHide
               autoHideTimeout={1000}
               autoHideDuration={400}

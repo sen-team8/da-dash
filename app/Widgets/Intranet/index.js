@@ -34,10 +34,6 @@ class IntranetWidget extends React.Component {
     window.open(formQuery(path), '_blank');
   }
 
-  handleResize() {
-    this.forceUpdate();
-  }
-
   render() {
     const progress = (
       <div className="intranet-loading" style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
