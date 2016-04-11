@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router';
 
 const buttonStyle = {
   height: '45px',
@@ -14,6 +13,7 @@ export default class MyComponent extends React.Component {
   static propTypes = {
     toggle: React.PropTypes.func.isRequired,
     batch: React.PropTypes.bool.isRequired,
+    subject: React.PropTypes.string,
   }
 
   onToggle = (e) => {
@@ -26,6 +26,18 @@ export default class MyComponent extends React.Component {
   }
 
   render() {
+    const HeadDumb = this.props.subject=== '' ?
+    (
+      <div>
+        <Button id="1" style= {buttonStyle} onClick={this.onToggle} active={this.props.batch} >Your Batch</Button>
+        <Button id="2" style= {buttonStyle} onClick={this.onToggle} active={!this.props.batch}>Da-iict</Button>
+      </div>
+    )
+    :
+    (
+      <p>{this.props.subject}</p>
+    );
+
     return (
       <div style= {{
         height: '45px',
@@ -36,12 +48,11 @@ export default class MyComponent extends React.Component {
       }}
       >
         <div>
-          <Link to="chatroom" style= {{ paddingTop: '5px' }}>Chat Application</Link>
+          <p style= {{ paddingTop: '5px' }}>Chat Application</p>
         </div>
-        <Button id="1" style= {buttonStyle} onClick={this.onToggle} active={this.props.batch} >Your Batch</Button>
-        <Button id="2" style= {buttonStyle} onClick={this.onToggle} active={!this.props.batch}>Da-iict</Button>
+        {HeadDumb}
 
-    </div>
+      </div>
     );
   }
 }
