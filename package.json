@@ -58,7 +58,6 @@
   },
   "dependencies": {
     "array-from": "^2.0.2",
-    "array.from": "^1.0.1",
     "firebase": "^2.4.2",
     "immutable": "^3.7.6",
     "react": "^15.0.1",
