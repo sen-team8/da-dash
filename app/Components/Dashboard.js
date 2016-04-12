@@ -8,6 +8,7 @@ import Chatroom from '../Widgets/Chatroom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
+// import Waypoint from 'react-waypoint';
 
 import {
   LOGGED_IN,
