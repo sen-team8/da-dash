@@ -43,6 +43,8 @@ export default class Chips extends React.Component {
     goToPath: React.PropTypes.func.isRequired,
     pathString: React.PropTypes.array,
     setSearch: React.PropTypes.func,
+    search: React.PropTypes.object,
+    quickSearch: React.PropTypes.object,
   }
 
   handleSearchChange = () => {
@@ -50,20 +52,34 @@ export default class Chips extends React.Component {
     if (value && value.length >= 1 && value !== '' && value !== ' ') {
       clearTimeout(this.lastQuery);
       this.lastQuery = setTimeout(() => this.props.setSearch(value), 400);
+    } else {
+      this.clearSearch();
     }
   }
 
+  clearSearch = () => {
+    this.props.setSearch('');
+    this.refs.search.value='';
+  }
+
   render() {
+    const searchButton = !(this.props.search || this.props.quickSearch) ?
+    (<button className="btn" type="button">
+        <span className=" glyphicon glyphicon-search"></span>
+      </button>) :
+    (<button className="btn" type="button" onClick={this.clearSearch}>
+      <span className=" glyphicon glyphicon-remove"></span>
+    </button>
+    );
+
     const { pathString, goToPath } = this.props;
     const search = (
       <div className="intranet-search" style={searchStyle()}>
         <input type="text" className="query form-control"
           ref="search" placeholder="Search" onChange={this.handleSearchChange}
         />
-          <span className="input-group-btn">
-          <button className="btn" type="button">
-            <span className=" glyphicon glyphicon-search"></span>
-          </button>
+        <span className="input-group-btn">
+          {searchButton}
         </span>
       </div>
     );
