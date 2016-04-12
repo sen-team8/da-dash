@@ -23,7 +23,7 @@ const style = {
   },
 };
 
-import { Scrollbars } from 'react-custom-scrollbars';
+// import { Scrollbars } from 'react-custom-scrollbars';
 
 export default class Folder extends React.Component {
   static propTypes = {
@@ -133,15 +133,9 @@ export default class Folder extends React.Component {
       );
     return (
         <div style={style.main} >
-            <Scrollbars style={{ height: this.state.height - 50 }}
-              autoHide
-              autoHideTimeout={1000}
-              autoHideDuration={400}
-            >
-              <div style={{ overflowX: 'hidden' }}>
+            <div style={{ height: this.state.height - 50 }}>
                 {isDashboard}
-              </div>
-            </Scrollbars>
+            </div>
         </div>
     );
   }

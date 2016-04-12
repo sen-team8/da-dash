@@ -1,17 +1,17 @@
 import React from 'react';
 import { Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
-import Waypoint from 'react-waypoint';
 import Chips from './Chips';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
+// import Waypoint from 'react-waypoint';
 
-function _handleWaypointEnter() {
-  // console.log('holsa enterando');
-}
-
-function _handleWaypointLeave() {
-  // console.log('hola exitando');
-}
+// function _handleWaypointEnter() {
+//   console.log('holsa enterando');
+// }
+//
+// function _handleWaypointLeave() {
+//   console.log('hola exitando');
+// }
 
 function isStarred() {
 
@@ -51,7 +51,7 @@ export default class Toolbar extends React.Component {
   style = () => {
     return {
       wrapper: {
-        height: '200px',
+        height: '202px',
         backgroundColor: '#f5f5f5',
       },
       badge: {
@@ -125,16 +125,12 @@ export default class Toolbar extends React.Component {
         <div style={style.updated}>
           {lastUpdated}
         </div>
+
         <Chips pathString={pathString}
           goToPath= {goToPath}
           setSearch={this.props.setSearch}
           search={this.props.search}
           quickSearch={this.props.quickSearch}
-        />
-        <Waypoint
-          onEnter={_handleWaypointEnter}
-          onLeave={_handleWaypointLeave}
-          threshold={0}
         />
       </div>
     );
