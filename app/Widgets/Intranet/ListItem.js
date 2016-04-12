@@ -1,6 +1,5 @@
 import React from 'react';
 import { ListGroupItem, ListGroup } from 'react-bootstrap';
-import Icon from '../../helper/Icons';
 
 const style = {
   main: {
@@ -31,7 +30,7 @@ const pdf = (
       height: 24,
     }}
   >
-    <g><path d="M6 2c-1.1 0-1.99.9-1.99 2l-.01 16c0 1.1.89 2 1.99 2h12.01c1.1 0 2-.9 2-2v-12l-6-6h-8zm7 7v-5.5l5.5 5.5h-5.5z"></path></g> // eslint-disable-line
+    <g><path d="M6 2c-1.1 0-1.99.9-1.99 2l-.01 16c0 1.1.89 2 1.99 2h12.01c1.1 0 2-.9 2-2v-12l-6-6h-8zm7 7v-5.5l5.5 5.5h-5.5z"></path></g>
   </svg>
 );
 
@@ -44,7 +43,7 @@ const folder = (
       height: 24,
     }}
   >
-    <g><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"></path></g> // eslint-disable-line
+    <g><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"></path></g>
   </svg>
 );
 
@@ -53,7 +52,6 @@ export default class ListItem extends React.Component {
 
   static propTypes = {
     items: React.PropTypes.object.isRequired,
-    goForward: React.PropTypes.func.isRequired,
     showAttachment: React.PropTypes.func.isRequired,
     pathString: React.PropTypes.array.isRequired,
   }
@@ -84,7 +82,7 @@ export default class ListItem extends React.Component {
           }
         >
           <div style={style.content} className="intranet-item">
-            {this.getIcon(item.get('isFile'))}
+            {item.get('isFile') ? pdf: folder}
             &nbsp;
             { window.innerWidth < 600 && item.get('name').length > 50
               ? `${item.get('name').slice(0, 22)}...${item.get('name').slice(-15)}` : item.get('name') }

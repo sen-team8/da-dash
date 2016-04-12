@@ -25,6 +25,8 @@ export default class Toolbar extends React.Component {
     timeStamp: React.PropTypes.string,
     folders: React.PropTypes.number.isRequired,
     setSearch: React.PropTypes.func,
+    search: React.PropTypes.object,
+    quickSearch: React.PropTypes.object,
   }
 
   static defaultProps = {
@@ -126,6 +128,8 @@ export default class Toolbar extends React.Component {
         <Chips pathString={pathString}
           goToPath= {goToPath}
           setSearch={this.props.setSearch}
+          search={this.props.search}
+          quickSearch={this.props.quickSearch}
         />
         <Waypoint
           onEnter={_handleWaypointEnter}

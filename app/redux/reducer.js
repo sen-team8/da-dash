@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import Immutable from 'immutable';
+import arrayFrom from 'array-from';
 
 import {
   CREATE_TODO,
@@ -152,8 +153,9 @@ export function traverseIntranet(tree, path) {
     return prev.get(cur);
   }, tree);
 }
+
 export function processLocation(loc, path) {
-  return Immutable.fromJS(Array.from(loc.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0)).map(key => {
+  return Immutable.fromJS(arrayFrom(loc.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0)).map(key => {
     return {
       isFile: loc.get(key) === 'file',
       data: loc.get(key),
