@@ -248,7 +248,7 @@ export function intranet(state=initialIntranetState, action) {
   }
 }
 
-function chat(state = chatState, action) {
+export function chat(state = chatState, action) {
   switch (action.type) {
     case RECEIVED_CHAT:
       return Object.assign({}, { chats: [...action.chatArray] });
