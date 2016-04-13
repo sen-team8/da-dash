@@ -26,7 +26,7 @@ const style = {
   },
 };
 
-class Chatroom extends Component {
+export class Chatroom extends Component {
 
   static propTypes = {
     actions: React.PropTypes.object.isRequired,
@@ -56,6 +56,7 @@ class Chatroom extends Component {
     this.updateChatGroup();
     this.props.actions.clearChat();
   }
+
   componentDidMount() {
     window.addEventListener('resize', this.handleResize);
     this.state.currentRef.on('value', (snapshot) => {
