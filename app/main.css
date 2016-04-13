@@ -7,6 +7,10 @@ html, body {
   height: 100%;
 }
 
+.hide-overflow-x {
+  overflow-x: hidden;
+}
+
 button:focus {
   outline:none !important;
 }
@@ -430,6 +434,7 @@ button:focus {
 }
 
 .intranet-breadcrumb .breadcrumb{
+  transition: position 0.8s;
   margin-bottom: 0;
 }
 

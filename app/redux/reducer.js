@@ -219,6 +219,11 @@ export function intranet(state=initialIntranetState, action) {
       });
     case QUICK_SEARCH:
       newSearchObj = new Immutable.List();
+      processLocation(state.tree.get('Lecture'), ['Lecture']).forEach(v => {
+        if (v.get('name').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1) {
+          newSearchObj = newSearchObj.push(v);
+        }
+      });
       state.location.forEach(v => {
         if (v.get('name').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1) {
           newSearchObj = newSearchObj.push(v);

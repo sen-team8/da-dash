@@ -3,15 +3,7 @@ import { Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
 import Chips from './Chips';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
-// import Waypoint from 'react-waypoint';
-
-// function _handleWaypointEnter() {
-//   console.log('holsa enterando');
-// }
-//
-// function _handleWaypointLeave() {
-//   console.log('hola exitando');
-// }
+import Waypoint from 'react-waypoint';
 
 function isStarred() {
 
@@ -33,9 +25,14 @@ export default class Toolbar extends React.Component {
     pathString: [],
   }
 
+
   constructor(props, state) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
+
+  state = {
+    showFixed: false,
   }
 
   getHeading(pathString) {
@@ -47,7 +44,16 @@ export default class Toolbar extends React.Component {
       return pathString[2];
     }
   }
-
+  _handleWaypointLeave = () => {
+    this.setState({
+      showFixed: true,
+    });
+  }
+  _handleWaypointEnter = () => {
+    this.setState({
+      showFixed: false,
+    });
+  }
   style = () => {
     return {
       wrapper: {
@@ -97,10 +103,7 @@ export default class Toolbar extends React.Component {
         <Button key={2} bsSize="small" ><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
       </Link>
     )
-    :
-    (
-      <span></span>
-    );
+    : null;
 
     return (
       <div style={style.wrapper}>
@@ -125,14 +128,19 @@ export default class Toolbar extends React.Component {
         <div style={style.updated}>
           {lastUpdated}
         </div>
-
-        <Chips pathString={pathString}
+        <Waypoint
+          onEnter={this._handleWaypointEnter}
+          onLeave={this._handleWaypointLeave}
+        />
+        <Chips
+          pathString={pathString}
           goToPath= {goToPath}
           setSearch={this.props.setSearch}
           search={this.props.search}
+          showFixed={this.state.showFixed}
           quickSearch={this.props.quickSearch}
         />
-      </div>
+    </div>
     );
   }
 }

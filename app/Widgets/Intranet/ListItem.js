@@ -4,12 +4,8 @@ import Waypoint from 'react-waypoint';
 
 const style = {
   main: {
-    paddingLeft: '30px',
-    height: '68px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    borderBottom: 'solid 1px #e0e0e0',
+    paddingLeft: '15px',
+    height: '60px',
   },
   content: {
     display: 'flex',
@@ -17,7 +13,7 @@ const style = {
     alignItems: 'center',
   },
   icon: {
-    marginRight: '7px',
+    marginRight: '10px',
   },
 };
 

@@ -1,29 +1,13 @@
 import React from 'react';
 import { Panel } from 'react-bootstrap';
 // import { flexCenter } from '../../Flex';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import ListItem from './ListItem';
 // import LocationBar from './LocationBar';
 import Toolbar from './Toolbar';
 import { Link } from 'react-router';
 
-const style = {
-  main: {
-    WebkitOverflowScrolling: 'touch',
-  },
-  list: {
-  },
-  listItem: {
-    paddingTop: '10px',
-    paddingBottom: '10px',
-  },
-
-  avatarFile: {
-    backgroundColor: '#9c27b0',
-  },
-};
-
-// import { Scrollbars } from 'react-custom-scrollbars';
 
 export default class Folder extends React.Component {
   static propTypes = {
@@ -43,6 +27,7 @@ export default class Folder extends React.Component {
   }
 
   componentDidMount() {
+    // document.getElementById('folder').style.overflowX = 'hidden';
     window.addEventListener('resize', this.handleResize);
   }
 
@@ -62,7 +47,7 @@ export default class Folder extends React.Component {
   displaySearch = () => {
     const obj1 = this.props.quickSearch;
     const obj2 = this.props.search;
-    if (!obj1 && !obj2) return null;
+    if (!this.search) return null;
 
     const params = {
       goToPath: this.props.goToPath,
@@ -87,19 +72,13 @@ export default class Folder extends React.Component {
       pathString: this.props.pathString,
     };
     return (
-      <Panel collapsible defaultExpanded bsStyle="warning" header={<h5>Intranet</h5>}>
         <ListItem fill {...params} />
-      </Panel>
     );
   }
 
-  search = () => {
-    // console.log(Array.from(this.props.location.keys()).filter(e => e.includes(this.props.search)));
-  }
-  render() {
-    const isDashboard = this.props.dashboard ?
-      (
-        <div className="bootstrap-border intranet container" style={{ width: 'auto' }}>
+  displayDashboard = () => {
+    return (
+      <div className="bootstrap-border intranet container" style={{ width: 'auto' }}>
         <div style={{ fontSize: '24px',
             marginBottom: '12px',
             borderBottomStyle: 'solid',
@@ -108,35 +87,42 @@ export default class Folder extends React.Component {
             fontColor: '#009ACD',
             fontStyle: 'bold' }}
         >
-        <Link to={'intranet'} >
-          Intranet
-        </Link>
-      </div>
-      {this.displayIntranet()}
-    </div>
-      )
-      :
-      (
-        <div>
-        <Toolbar
-          pathString={this.props.pathString}
-          goToPath={this.props.goToPath}
-          timeStamp={this.props.timeStamp}
-          folders={this.props.location.count() || 0}
-          setSearch={this.props.setSearch}
-          search={this.props.search}
-          quickSearch={this.props.quickSearch}
-        />
-        {this.displaySearch()}
+          <Link to={'intranet'} >
+            Intranet
+          </Link>
+        </div>
         {this.displayIntranet()}
       </div>
-      );
-    return (
-        <div style={style.main} >
-            <div style={{ height: this.state.height - 50 }}>
-                {isDashboard}
-            </div>
+    );
+  }
+
+  search = () => {
+    // console.log(Array.from(this.props.location.keys()).filter(e => e.includes(this.props.search)));
+  }
+  render() {
+    this.search = this.props.search || this.props.quickSearch;
+
+    const isDashboard = this.props.dashboard ? this.displayDashboard() :
+      (
+        <div>
+          <Toolbar
+            pathString={this.props.pathString}
+            goToPath={this.props.goToPath}
+            timeStamp={this.props.timeStamp}
+            folders={this.props.location.count() || 0}
+            setSearch={this.props.setSearch}
+            search={this.props.search}
+            quickSearch={this.props.quickSearch}
+          />
+          {this.displaySearch()}
+          {this.displayIntranet()}
+
         </div>
+    );
+    return (
+            <Scrollbars id="folder" style={{ height: this.state.height - 50 }} >
+              {isDashboard}
+            </Scrollbars>
     );
   }
 }
