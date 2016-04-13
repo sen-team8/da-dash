@@ -1,14 +1,11 @@
 import React from 'react';
 import { ListGroupItem, ListGroup } from 'react-bootstrap';
+import Waypoint from 'react-waypoint';
 
 const style = {
   main: {
-    paddingLeft: '30px',
-    height: '68px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    borderBottom: 'solid 1px #e0e0e0',
+    paddingLeft: '15px',
+    height: '60px',
   },
   content: {
     display: 'flex',
@@ -16,10 +13,9 @@ const style = {
     alignItems: 'center',
   },
   icon: {
-    marginRight: '7px',
+    marginRight: '10px',
   },
 };
-
 
 const pdf = (
   <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" fit
@@ -66,12 +62,28 @@ export default class ListItem extends React.Component {
     }
     return folder;
   }
-
+  // _loadMoreContent() {
+  //   console.log('please work');
+  // }
+  // _setMessage = (msg) => {
+  //   console.log('entersnd');
+  //   // this.setState({ message: msg });
+  // }
   render() {
     const obj = this.props.items;
     const props = this.props;
     if (!obj) { return null; }
-    const list = obj.map((item, key) => {
+    let list = [];
+    // list.push(
+    //   <Waypoint
+    //          onEnter={() => console.log('listsdsd')}
+    //          onLeave={() => console.log('listsdsd')}
+    //
+    //          scrollableAncestor={this.refs.list}
+    //          threshold={0}
+    //        />
+    // );
+    list = list.concat(obj.map((item, key) => {
       return (
         <ListGroupItem
           key={key}
@@ -89,8 +101,9 @@ export default class ListItem extends React.Component {
           </div>
         </ListGroupItem>
       );
-    });
+    }));
+
     // console.debug('render', new Date().getTime())
-    return <ListGroup className="intranet-list">{list}</ListGroup>;
+    return <ListGroup ref="list" className="intranet-list">{list}</ListGroup>;
   }
 }

@@ -8,6 +8,7 @@ import Chatroom from '../Widgets/Chatroom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
+// import Waypoint from 'react-waypoint';
 
 import {
   LOGGED_IN,
@@ -31,8 +32,8 @@ class Dashboard extends React.Component {
 
   render() {
     return (
+      <div style={{ background: '#F5FCFF' }}>
       <Grid>
-        <Row>hello world</Row>
         <Row className="show-grid">
           <Col xs={12} md={6} lg={6}>
             <div className="dadash-wrapper">
@@ -54,6 +55,7 @@ class Dashboard extends React.Component {
           </Col>
         </Row>
       </Grid>
+    </div>
     );
   }
 }

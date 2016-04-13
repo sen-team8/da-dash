@@ -1,29 +1,13 @@
 import React from 'react';
-
+import { Panel } from 'react-bootstrap';
 // import { flexCenter } from '../../Flex';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import ListItem from './ListItem';
 // import LocationBar from './LocationBar';
 import Toolbar from './Toolbar';
 import { Link } from 'react-router';
 
-const style = {
-  main: {
-    WebkitOverflowScrolling: 'touch',
-  },
-  list: {
-  },
-  listItem: {
-    paddingTop: '10px',
-    paddingBottom: '10px',
-  },
-
-  avatarFile: {
-    backgroundColor: '#9c27b0',
-  },
-};
-
-import { Scrollbars } from 'react-custom-scrollbars';
 
 export default class Folder extends React.Component {
   static propTypes = {
@@ -43,6 +27,7 @@ export default class Folder extends React.Component {
   }
 
   componentDidMount() {
+    // document.getElementById('folder').style.overflowX = 'hidden';
     window.addEventListener('resize', this.handleResize);
   }
 
@@ -59,8 +44,26 @@ export default class Folder extends React.Component {
     url = `${url}`;
     this.props.showAttachment(url);
   }
+  displaySearch = () => {
+    const obj1 = this.props.quickSearch;
+    const obj2 = this.props.search;
+    if (!this.search) return null;
 
-  displayStructure = (obj) => {
+    const params = {
+      goToPath: this.props.goToPath,
+      showAttachment: this.showAttachment,
+      pathString: this.props.pathString,
+    };
+    return (
+      <Panel collapsible defaultExpanded bsStyle="success" header={<h5>Search</h5>}>
+        <ListItem fill {...params} items={obj1} />
+        <ListItem fill {...params} items={obj2} />
+      </Panel>
+    );
+  }
+
+  displayIntranet = () => {
+    const obj = this.props.location;
     if (!obj) return null;
     const params = {
       items: obj,
@@ -68,60 +71,59 @@ export default class Folder extends React.Component {
       showAttachment: this.showAttachment,
       pathString: this.props.pathString,
     };
-    return (<ListItem {...params} />);
+    return (
+        <ListItem fill {...params} />
+    );
+  }
+
+  displayDashboard = () => {
+    return (
+      <div className="bootstrap-border intranet container" style={{ width: 'auto', backgroundColor: 'white' }}>
+        <div style={{ fontSize: '24px',
+            marginBottom: '12px',
+            marginTop: '10px',
+            borderBottomStyle: 'solid',
+            borderColor: '#d3d3d3',
+            borderWidth: '2px',
+            fontColor: '#009ACD',
+            fontStyle: 'bold',
+            backgroundColor: 'white' }}
+        >
+          <Link to={'intranet'} >
+            Intranet
+          </Link>
+        </div>
+        {this.displayIntranet()}
+      </div>
+    );
   }
 
   search = () => {
     // console.log(Array.from(this.props.location.keys()).filter(e => e.includes(this.props.search)));
   }
   render() {
-    const isDashboard = this.props.dashboard ?
-      (
-        <div className="bootstrap-border intranet container" style={{ width: '550px' }}>
-        <div style={{ fontSize: '24px',
-            marginBottom: '12px',
-            borderBottomStyle: 'solid',
-            borderColor: '#d3d3d3',
-            borderWidth: '2px',
-            fontColor: '#009ACD',
-            fontStyle: 'bold' }}
-        >
-        <Link to={'intranet'} >
-          Intranet
-        </Link>
-      </div>
-      {this.displayStructure(this.props.quickSearch)}
-      {this.displayStructure(this.props.search)}
-      {this.displayStructure(this.props.location)}
-    </div>
-      )
-      :
+    this.search = this.props.search || this.props.quickSearch;
+
+    const isDashboard = this.props.dashboard ? this.displayDashboard() :
       (
         <div>
-        <Toolbar
-          pathString={this.props.pathString}
-          goToPath={this.props.goToPath}
-          timeStamp={this.props.timeStamp}
-          folders={this.props.location.count() || 0}
-          setSearch={this.props.setSearch}
-        />
-        {this.displayStructure(this.props.quickSearch)}
-        {this.displayStructure(this.props.search)}
-        {this.displayStructure(this.props.location)}
-      </div>
-      );
-    return (
-        <div style={style.main} >
-            <Scrollbars style={{ height: this.state.height - 50 }}
-              autoHide
-              autoHideTimeout={1000}
-              autoHideDuration={400}
-            >
-              <div style={{ overflowX: 'hidden' }}>
-                {isDashboard}
-              </div>
-            </Scrollbars>
+          <Toolbar
+            pathString={this.props.pathString}
+            goToPath={this.props.goToPath}
+            timeStamp={this.props.timeStamp}
+            folders={this.props.location.count() || 0}
+            setSearch={this.props.setSearch}
+            search={this.props.search}
+            quickSearch={this.props.quickSearch}
+          />
+          {this.displaySearch()}
+          {this.displayIntranet()}
         </div>
+    );
+    return (
+            <Scrollbars id="folder" style={{ height: this.state.height - 50 }} >
+              {isDashboard}
+            </Scrollbars>
     );
   }
 }

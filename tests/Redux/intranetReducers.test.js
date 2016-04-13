@@ -145,6 +145,8 @@ describe('intranet actions', () => {
         pathString: [],
         location: processLocation(Immutable.fromJS(tree), pathString),
       });
+    console.log('Expected: intranet state reflects that intranet tree is recieved.');
+    console.log('Actual: intranet state reflects that intranet tree is recieved.');
   });
 /**  it('should perform a long search', () => {
     const testState = {

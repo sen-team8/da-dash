@@ -27,7 +27,7 @@ export default class Nav extends Component {
       <Navbar fixedTop className={style.navbar} fluid onToggle={this.props.toggleSideBar}>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'}>Da-Dash</Link>
+            <Link to={'/'} style={{ fontSize: '28px', marginLeft: '5px' }}>Da-Dash</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

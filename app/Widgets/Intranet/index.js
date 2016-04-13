@@ -5,7 +5,7 @@ import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
 import Folder from './Folder';
 
-class IntranetWidget extends React.Component {
+export class IntranetWidget extends React.Component {
   static propTypes = {
     getIntranet: React.PropTypes.func.isRequired,
     goToPath: React.PropTypes.func.isRequired,
@@ -57,11 +57,7 @@ class IntranetWidget extends React.Component {
         quickSearch={this.props.quickSearch}
       />
     );
-    return (
-      <div style={{ height: '100%' }}>
-        {!this.props.location ? progress : IntranetDumbRef}
-      </div>
-    );
+    return !this.props.location ? progress : IntranetDumbRef;
   }
 }
 

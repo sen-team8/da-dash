@@ -1,17 +1,9 @@
 import React from 'react';
 import { Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
-import Waypoint from 'react-waypoint';
 import Chips from './Chips';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
-
-function _handleWaypointEnter() {
-  // console.log('holsa enterando');
-}
-
-function _handleWaypointLeave() {
-  // console.log('hola exitando');
-}
+import Waypoint from 'react-waypoint';
 
 function isStarred() {
 
@@ -25,15 +17,22 @@ export default class Toolbar extends React.Component {
     timeStamp: React.PropTypes.string,
     folders: React.PropTypes.number.isRequired,
     setSearch: React.PropTypes.func,
+    search: React.PropTypes.object,
+    quickSearch: React.PropTypes.object,
   }
 
   static defaultProps = {
     pathString: [],
   }
 
+
   constructor(props, state) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
+
+  state = {
+    showFixed: false,
   }
 
   getHeading(pathString) {
@@ -45,11 +44,20 @@ export default class Toolbar extends React.Component {
       return pathString[2];
     }
   }
-
+  _handleWaypointLeave = () => {
+    this.setState({
+      showFixed: true,
+    });
+  }
+  _handleWaypointEnter = () => {
+    this.setState({
+      showFixed: false,
+    });
+  }
   style = () => {
     return {
       wrapper: {
-        height: '200px',
+        height: '202px',
         backgroundColor: '#f5f5f5',
       },
       badge: {
@@ -95,10 +103,7 @@ export default class Toolbar extends React.Component {
         <Button key={2} bsSize="small" ><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
       </Link>
     )
-    :
-    (
-      <span></span>
-    );
+    : null;
 
     return (
       <div style={style.wrapper}>
@@ -123,16 +128,19 @@ export default class Toolbar extends React.Component {
         <div style={style.updated}>
           {lastUpdated}
         </div>
-        <Chips pathString={pathString}
+        <Waypoint
+          onEnter={this._handleWaypointEnter}
+          onLeave={this._handleWaypointLeave}
+        />
+        <Chips
+          pathString={pathString}
           goToPath= {goToPath}
           setSearch={this.props.setSearch}
+          search={this.props.search}
+          showFixed={this.state.showFixed}
+          quickSearch={this.props.quickSearch}
         />
-        <Waypoint
-          onEnter={_handleWaypointEnter}
-          onLeave={_handleWaypointLeave}
-          threshold={0}
-        />
-      </div>
+    </div>
     );
   }
 }

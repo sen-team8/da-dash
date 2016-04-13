@@ -7,19 +7,10 @@ const handleClick = (key, pathString, goToPath) => {
 };
 const searchStyle = () => {
   return {
+    overflowX: 'hidden',
     margin: window.innerWidth < 600 ? '0 20px 0px 0' : '0 20px 10px 0',
     padding: window.innerWidth < 600 ? '4px 10px' : 0,
     borderTop: window.innerWidth < 600 ? 'solid 1px #e0e0e0': 0,
-  };
-};
-
-const styleFoo = () => {
-  return {
-    wrapper: {
-      display: 'flex',
-      flexDirection: window.innerWidth < 600 ? 'column': 'row',
-      justifyContent: 'space-between',
-    },
   };
 };
 
@@ -43,6 +34,7 @@ export default class Chips extends React.Component {
     goToPath: React.PropTypes.func.isRequired,
     pathString: React.PropTypes.array,
     setSearch: React.PropTypes.func,
+    showFixed: React.PropTypes.bool.isRequired,
   }
 
   handleSearchChange = () => {
@@ -52,6 +44,24 @@ export default class Chips extends React.Component {
       this.lastQuery = setTimeout(() => this.props.setSearch(value), 400);
     }
   }
+
+  styleFoo = () => {
+    return {
+      wrapper: {
+        position: this.props.showFixed ? 'fixed' : undefined,
+        top: this.props.showFixed ? '50px' : undefined,
+        left: this.props.showFixed ? '0px' : undefined,
+        paddingBottom: this.props.showFixed? '4px' : undefined,
+        borderBottom: this.props.showFixed? 'solid 1px #e0e0e0' : undefined,
+        display: 'flex',
+        flexDirection: window.innerWidth < 600 ? 'column': 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        zIndex: '1000',
+        backgroundColor: 'rgb(245, 245, 245)',
+      },
+    };
+  };
 
   render() {
     const { pathString, goToPath } = this.props;
@@ -67,7 +77,7 @@ export default class Chips extends React.Component {
         </span>
       </div>
     );
-    const style = styleFoo();
+    const style = this.styleFoo();
     const home = (
       <BreadcrumbItem onClick={function foo() {goToPath([]);}} key={-1}>
         <Icon icon="home" style={{ fill: '#000' }} />
@@ -84,6 +94,7 @@ export default class Chips extends React.Component {
         </BreadcrumbItem>
       );
     });
+    // return (<div>hellow rold how are you</div>);
     return (
       <div style={style.wrapper} className="intranet-breadcrumb">
         <Breadcrumb>

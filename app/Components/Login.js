@@ -57,10 +57,15 @@ class Login extends React.Component {
 
   render() {
     return (
+      <div>
+      <div style={{ width: '100%', textAlign: 'center', marginTop: '90px', marginBottom: '30px' }}>
+      <h1>DA-Dash</h1>
+      <h2 style={{ fontStyle: 'italic' }}>Your one stop destination to DA-IICT.</h2>
+      </div>
       <div style={{ display: 'flex', height: '100%' }}>
         <div className="login-wrapper">
           <div className="form-signin" style={{ verticalAlign: 'middle' }}>
-            <h2 className="form-signin-heading">Please login<div>{this.showLoginError()}</div></h2>
+            <h4 className="form-signin-heading">Please login<div>{this.showLoginError()}</div></h4>
             <input type="text"
               className="form-control"
               name="username"
@@ -77,7 +82,7 @@ class Login extends React.Component {
               required=""
               ref="pass"
             />
-            <label className="checkbox">
+          <label className="checkbox" style={{ left: '20px' }}>
               <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe" /> Remember me
             </label>
             <Button className="btn btn-lg btn-primary btn-block"
@@ -89,6 +94,7 @@ class Login extends React.Component {
 
         </div>
       </div>
+    </div>
     );
   }
 }
