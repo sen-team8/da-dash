@@ -35,19 +35,22 @@ class Dashboard extends React.Component {
       <div style={{ background: '#F5FCFF' }}>
       <Grid>
         <Row className="show-grid">
-          <Col xs={12} md={6}>
+          <Col xs={12} md={6} lg={6}>
             <div className="dadash-wrapper">
             <Todo />
             </div>
           </Col>
-          <Col xs={12} md={6}>
+          <Col xs={12} md={6} lg={6}>
             <div className="dadash-wrapper">
             <Intranet dashboard />
             </div>
           </Col>
-          <Col xs={12} md={6}>
+        </Row>
+
+        <Row className="show-grid">
+            <Col xs={12} md={6} lg={6}>
             <div style={{ marginTop: '25px' }}>
-            <Chatroom />
+            <Chatroom isDashboard />
             </div>
           </Col>
         </Row>

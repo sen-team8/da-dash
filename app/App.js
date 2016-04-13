@@ -37,10 +37,10 @@ class App extends React.Component {
             <Route path="settings" component={Settings} />
             <Route path="help" component={Help} />
             <Route path="chatroom" component={Chatroom} />
+            <Route path="discussion/:discussionid" component={Chatroom} />
           </Route>
           <Route path="login" component={Login} />
           <Route path="loading" component={Loading} />
-          <Route path="discussion/:discussionid" component={Chatroom} />
 
         </Router>
     );

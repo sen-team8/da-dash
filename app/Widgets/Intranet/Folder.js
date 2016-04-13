@@ -20,6 +20,7 @@ export default class Folder extends React.Component {
     goToPath: React.PropTypes.func.isRequired,
     dashboard: React.PropTypes.bool,
     setSearch: React.PropTypes.func,
+    isSearching: React.PropTypes.bool.isRequired,
   }
 
   state = {
@@ -47,7 +48,11 @@ export default class Folder extends React.Component {
   displaySearch = () => {
     const obj1 = this.props.quickSearch;
     const obj2 = this.props.search;
-    if (!this.search) return null;
+    if (!obj1 && !obj2) return null;
+
+    const searching = (this.props.isSearching) ?
+    (<div className="loader">Loading...</div>) :
+    (null);
 
     const params = {
       goToPath: this.props.goToPath,
@@ -56,10 +61,13 @@ export default class Folder extends React.Component {
     };
 
     return (
-      <Panel collapsible defaultExpanded bsStyle="success" header={<h5>Search</h5>}>
-        <ListItem fill {...params} items={obj1} />
-        <ListItem fill {...params} items={obj2} />
-      </Panel>
+      <div>
+        <div style={{ position: 'absolute', right: '10px', marginTop: '-30px' }}>{searching}</div>
+        <Panel collapsible defaultExpanded bsStyle="success" header={<div><h5>Search</h5></div>}>
+          <ListItem fill {...params} items={obj1} />
+          <ListItem fill {...params} items={obj2} />
+        </Panel>
+      </div>
     );
   }
 

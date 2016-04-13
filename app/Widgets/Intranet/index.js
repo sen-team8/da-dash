@@ -61,6 +61,7 @@ export class IntranetWidget extends React.Component {
         setSearch={this.setSearch}
         search={this.props.search}
         quickSearch={this.props.quickSearch}
+        isSearching={this.props.isSearching}
       />
     );
     return !this.props.location ? progress : IntranetDumbRef;
