@@ -78,14 +78,16 @@ export default class Folder extends React.Component {
 
   displayDashboard = () => {
     return (
-      <div className="bootstrap-border intranet container" style={{ width: 'auto' }}>
+      <div className="bootstrap-border intranet container" style={{ width: 'auto', backgroundColor: 'white' }}>
         <div style={{ fontSize: '24px',
             marginBottom: '12px',
+            marginTop: '10px',
             borderBottomStyle: 'solid',
             borderColor: '#d3d3d3',
             borderWidth: '2px',
             fontColor: '#009ACD',
-            fontStyle: 'bold' }}
+            fontStyle: 'bold',
+            backgroundColor: 'white' }}
         >
           <Link to={'intranet'} >
             Intranet
@@ -116,7 +118,6 @@ export default class Folder extends React.Component {
           />
           {this.displaySearch()}
           {this.displayIntranet()}
-
         </div>
     );
     return (

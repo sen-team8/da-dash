@@ -14,9 +14,9 @@ html, body {
 button:focus {
   outline:none !important;
 }
-.dadashwrapper {
-    height: 600px;
-    width: 500px;
+.dadash-wrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
