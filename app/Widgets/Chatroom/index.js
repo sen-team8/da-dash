@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { actions } from '../../redux/actions';
 import { firebaseRef } from '../../network/auth';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const month= ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Nov', 'Dec'];
 
@@ -15,13 +16,13 @@ const style = {
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
-    left: '50%',
     width: '100%',
-    WebkitTransform: 'translate(-50%, -50%)',
+    height: '100%',
     backgroundColor: 'white',
-    padding: '10px',
+    justifyContent: 'space-between',
     paddingTop: '0px',
     flexGrow: '1',
+    alignItems: 'stretch',
   },
 };
 
@@ -36,6 +37,7 @@ class Chatroom extends Component {
     pathString: React.PropTypes.array,
     params: React.PropTypes.object,
     discussionid: React.PropTypes.string,
+    isDashboard: React.PropTypes.bool,
   }
   static contextTypes = {
     router: React.PropTypes.object.isRequired,
@@ -46,6 +48,8 @@ class Chatroom extends Component {
     chatGroup: '201301',
     batch: true,
     subject: '',
+    height: window.innerHeight,
+    isDiscussion: false,
   }
 
   componentWillMount() {
@@ -53,6 +57,7 @@ class Chatroom extends Component {
     this.props.actions.clearChat();
   }
   componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
     this.state.currentRef.on('value', (snapshot) => {
       const chatArray = [];
       const chat = snapshot.val();
@@ -66,19 +71,28 @@ class Chatroom extends Component {
   }
 
   componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
     this.state.currentRef.off();
   }
+
+
+  handleResize = (e) => {
+    this.setState({ height: window.innerHeight });
+  }
+
 
   updateChatGroup = () => {
     const abc = this.props.pathString || ['default'];
     const foo = _.isEmpty(this.props.params);
-    if (!foo && abc!==undefined && abc.length===3) {
-      const discussion = `${abc[0]}-${abc[1]}-${abc[2]}`;
+    if (!foo && abc!==undefined && (abc.length===3 || abc.length ===2)) {
+      const discussion = abc.length===3 ? `${abc[0]}-${abc[1]}-${abc[2]}` : `${abc[0]}-${abc[1]}`;
       this.state.currentRef = firebaseRef.child(discussion);
-      this.state.subject = abc[2];
+      this.state.subject = abc[abc.length-1];
+      this.state.isDiscussion=true;
       return discussion;
     } else {
       this.state.subject='';
+      this.state.isDiscussion=false;
       let str;
       if (this.state.batch) {
         str = this.props.ID.substring(0, 6);
@@ -119,9 +133,26 @@ class Chatroom extends Component {
   render() {
     return (
         <div style={style.todo} className="bootstrap-border">
-          <Header batch={this.state.batch} subject={this.state.subject} toggle= {this.toggle} />
-          <ChatList chats={this.props.chats} />
-          <WriteChat sendChat={this.sendChat} />
+          <Header
+            batch={this.state.batch}
+            subject={this.state.subject}
+            toggle= {this.toggle}
+            isDashboard={this.props.isDashboard}
+            isDiscussion={this.state.isDiscussion}
+          />
+            <Scrollbars style={{ height: this.state.height -250 }}
+              autoHide
+              autoHideTimeout={1000}
+              autoHideDuration={400}
+            >
+            <ChatList
+              style={{ flex: '8' }}
+              chats={this.props.chats}
+              isDashboard= {this.props.isDashboard}
+              id= {this.props.ID}
+            />
+            </Scrollbars>
+          <WriteChat sendChat={this.sendChat} isDashboard= {this.props.isDashboard} />
         </div>
     );
   }

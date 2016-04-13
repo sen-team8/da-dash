@@ -2,14 +2,16 @@ import React, { PropTypes } from 'react';
 import ChatItem from './ChatItem';
 import { ListGroup } from 'react-bootstrap';
 
-const ChatList = ({ chats }) => {
+const ChatList = ({ chats, isDashboard, id }) => {
   return (
-    <ListGroup style={{ overflowY: 'scroll', minHeight: '400px', maxHeight: '300px', width: '100%' }}>
+    <ListGroup style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
     {
       chats.map((chat) => {
         return (
             <ChatItem
+              isDashboard= {isDashboard}
               chat={chat}
+              id= {id}
             />
         );
       })
@@ -20,6 +22,8 @@ const ChatList = ({ chats }) => {
 
 ChatList.propTypes = {
   chats: PropTypes.array,
+  isDashboard: PropTypes.bool,
+  id: PropTypes.string,
 };
 
 export default ChatList;

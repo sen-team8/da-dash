@@ -89,7 +89,7 @@ export default class Toolbar extends React.Component {
       </span>
     );
 
-    const canDiscuss = this.props.pathString.length === 3 ?
+    const canDiscuss = this.props.pathString.length === 3 || this.props.pathString.length ===2 ?
     (
       <Link to={'discussion/discussions'} >
         <Button key={2} bsSize="small" ><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
