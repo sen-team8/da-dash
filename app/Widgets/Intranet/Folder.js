@@ -54,6 +54,7 @@ export default class Folder extends React.Component {
       showAttachment: this.showAttachment,
       pathString: this.props.pathString,
     };
+
     return (
       <Panel collapsible defaultExpanded bsStyle="success" header={<h5>Search</h5>}>
         <ListItem fill {...params} items={obj1} />
@@ -111,7 +112,7 @@ export default class Folder extends React.Component {
             pathString={this.props.pathString}
             goToPath={this.props.goToPath}
             timeStamp={this.props.timeStamp}
-            folders={this.props.location.count() || 0}
+            folders={(this.props.location.count && this.props.location.count()) || 0}
             setSearch={this.props.setSearch}
             search={this.props.search}
             quickSearch={this.props.quickSearch}

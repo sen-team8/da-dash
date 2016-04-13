@@ -20,10 +20,16 @@ export class IntranetWidget extends React.Component {
     search: React.PropTypes.object,
     quickSearch: React.PropTypes.object,
     isSearching: React.PropTypes.bool.isRequired,
+    lastFetched: React.PropTypes.string,
   }
+  static defaultProps = {
+    lastFetched: 0,
+  };
 
   componentDidMount() {
-    this.props.getIntranet();
+    if (Date.now() - this.props.lastFetched > 60*30000) {
+      this.props.getIntranet();
+    }
   }
 
   setSearch = (s) => {

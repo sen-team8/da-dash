@@ -25,6 +25,11 @@ import {
   searchFor,
 } from './intranetActions';
 
+import {
+  getInbox,
+  getEmail,
+} from './webmailActions';
+
 import { sendChat, receivedChat, clearChat } from './chatActions';
 
 export const actions = {
@@ -51,4 +56,7 @@ export const actions = {
   sendChat,
   clearChat,
   receivedChat,
+
+  getInbox,
+  getEmail,
 };

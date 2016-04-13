@@ -13,6 +13,7 @@ import Help from './Components/Help';
 import Chatroom from './Widgets/Chatroom';
 import Todo from './Widgets/Todo';
 import Intranet from './Widgets/Intranet';
+import Webmail from './Widgets/Webmail';
 
 class App extends React.Component {
   requireAuth = (nextState, replace) => {

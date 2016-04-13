@@ -29,6 +29,15 @@ import {
   SEARCH_ERROR,
 } from './intranetActions';
 
+import {
+  RECEIVE_INBOX,
+  REQUEST_INBOX,
+  RECEIVE_INBOX_ERROR,
+  REQUEST_EMAIL,
+  RECEIVE_EMAIL,
+  RECEIVE_EMAIL_ERROR,
+} from './webmailActions';
+
 import { CLEAR_CHAT, RECEIVED_CHAT } from './chatActions';
 
 const initialLoginState = {
@@ -64,7 +73,6 @@ const chatState = {
   },
   ],
 };
-
 
 export function todo(state = todoState, action) {
   switch (action.type) {
@@ -186,6 +194,7 @@ export function intranet(state=initialIntranetState, action) {
         error: null,
         tree,
         timeStamp: action.timeStamp,
+        lastFetched: Date.now(),
         location: processLocation(location, state.pathString),
       });
 
@@ -253,6 +262,54 @@ export function intranet(state=initialIntranetState, action) {
   }
 }
 
+const webmailState = {
+  isFetching: false,
+  isFetchingEmail: false,
+  inbox: null,
+  emailId: null,
+  email: null,
+  lastFetched: -Infinity,
+  error: null,
+};
+
+export function webmail(state=webmailState, action) {
+  switch (action.type) {
+    case REQUEST_INBOX:
+      return Object.assign({}, state, {
+        isFetching: true,
+      });
+    case RECEIVE_INBOX:
+      return Object.assign({}, state, {
+        inbox: Immutable.fromJS(action.inbox),
+        lastFetched: Date.now(),
+        isFetching: false,
+      });
+    case RECEIVE_INBOX_ERROR:
+      return Object.assign({}, state, {
+        error: action.error,
+        isFetching: false,
+      });
+    case REQUEST_EMAIL:
+      return Object.assign({}, state, {
+        isFetchingEmail: true,
+        emaildId: action.emailId,
+      });
+    case RECEIVE_EMAIL:
+      return Object.assign({}, state, {
+        isFetchingEmail: false,
+        email: action.email,
+      });
+    case RECEIVE_EMAIL_ERROR:
+      return Object.assign({}, state, {
+        isFetchingEmail: false,
+        error: action.error,
+      });
+    default:
+      return state;
+  }
+}
+
+
 export function chat(state = chatState, action) {
   switch (action.type) {
     case RECEIVED_CHAT:
@@ -266,4 +323,4 @@ export function chat(state = chatState, action) {
   }
 }
 
-export default combineReducers({ todo, login, intranet, chat });
+export default combineReducers({ todo, login, intranet, chat, webmail });

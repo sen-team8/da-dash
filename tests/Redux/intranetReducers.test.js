@@ -131,9 +131,10 @@ describe('intranet actions', () => {
   it('should recieve the intranet tree', () => {
     const tree = { Academic: {}, Lecture: { 'Aditi Nath Sarkar': {} } };
     const pathString = [];
-    expect(
-      intranet(initialState, { type: 'RECEIVE_INTRANET_TREE', timeStamp: '23 minutes',
-      tree: Immutable.fromJS(tree) })).to.deep.equal(
+    const output = intranet(initialState, { type: 'RECEIVE_INTRANET_TREE', timeStamp: '23 minutes',
+    tree: Immutable.fromJS(tree) });
+    delete output.lastFetched;
+    expect(output).to.deep.equal(
       {
         isFetching: false,
         path: [],
@@ -141,12 +142,9 @@ describe('intranet actions', () => {
         error: null,
         timeStamp: '23 minutes',
         fav: [],
-          // search: null,
         pathString: [],
         location: processLocation(Immutable.fromJS(tree), pathString),
       });
-    console.log('Expected: intranet state reflects that intranet tree is recieved.');
-    console.log('Actual: intranet state reflects that intranet tree is recieved.');
   });
 /**  it('should perform a long search', () => {
     const testState = {

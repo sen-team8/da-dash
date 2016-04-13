@@ -28,7 +28,7 @@ describe('async login actions', () => {
      .then(() => { // return of async actions
        expect(store.getActions()).to.deep.equal(expectedActions);
      })
-     .then(done) // test passed
-     .catch(done); // test failed
+     .then(done)
+     .catch(done);
   });
 });
