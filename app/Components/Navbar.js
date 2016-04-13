@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Icon from '../helper/Icons';
 
 export default class Nav extends Component {
 
@@ -28,8 +29,14 @@ export default class Nav extends Component {
         <Navbar.Header>
           <Navbar.Brand>
             <Link to={'/'} style={{ fontSize: '28px', marginLeft: '5px' }}>Da-Dash</Link>
-          </Navbar.Brand>
+            </Navbar.Brand>
           <Navbar.Toggle />
+            <Button type="button" style={{ border: 'none',
+                                          float: 'right',
+                                          marginTop: '4px',
+                                          color: '#777',
+                                          height: 'auto' }}
+            ><Icon size="2.3em" icon="info-outline" /></Button>
         </Navbar.Header>
       </Navbar>
     );

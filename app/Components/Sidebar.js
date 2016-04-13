@@ -58,17 +58,12 @@ class Sidebar extends Component {
                   </Link>
               </li>
               <li>
-                  <Link to={'settings'} onClick={this.props.toggleSideBar} >
-                    <Icon size="1.9em" icon="settings" style={{ marginRight: '15px' }} />Settings
-                  </Link>
-              </li>
-              <li>
-                  <Link to={'help'} onClick={this.props.toggleSideBar} >
+                  <a href="http://www.google.com" target="_blank" onClick={this.props.toggleSideBar} >
                     <Icon size="1.9em" icon="help" style={{ marginRight: '15px' }} />Help
-                  </Link>
+                  </a>
               </li>
               <li>
-                  <a href="#" onClick={this.props.toggleSideBar} >
+                  <a href="http://goo.gl/forms/o7s9gynzaR" target="_blank" onClick={this.props.toggleSideBar} >
                     <Icon size="1.9em" icon="bug-report" style={{ marginRight: '15px' }} />Report a Bug
                   </a>
               </li>
