@@ -30,6 +30,8 @@ describe('todos reducer', () => {
         TEXT: 'Second Todo',
       },
     ]);
+    console.log('Expected: initial state is expected');
+    console.log('Actual: initial state is received');
   });
 
   it('should add and return an appended list', () => {
@@ -42,6 +44,8 @@ describe('todos reducer', () => {
         TEXT: 'NEW TODO',
       },
     ]);
+    console.log('Expected: NEW TODO is expected to be appednded to present todos');
+    console.log('Actual: NEW TODO is  appednded to present todos');
   });
 
   it('should delete the item from the list', () => {
@@ -54,6 +58,8 @@ describe('todos reducer', () => {
         TEXT: 'First Todo',
       },
     ]);
+    console.log('Expected: First Todo is expected to be deleted from present todos');
+    console.log('Actual: First Todo is deleted from present todos');
   });
 
   it('It should mark the TODO as completed', () => {
@@ -70,6 +76,8 @@ describe('todos reducer', () => {
         TEXT: 'Second Todo',
       },
     ]);
+    console.log('Expected:Second Todo is expected to be marked completed');
+    console.log('Actual: Second Todo is marked completed');
   });
 
   it('Test case executing Delete and Create', () => {
@@ -86,5 +94,7 @@ describe('todos reducer', () => {
     TEXT: 'Yahoo!',
   },
 ]);
+    console.log('Expected: Yahoo! is expected to be added and delete Second Todo ');
+    console.log('Actual: Yahoo! is expected to be added and delete Second Todo ');
   });
 });

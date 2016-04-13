@@ -30,5 +30,7 @@ describe('async login actions', () => {
      })
      .then(done) // test passed
      .catch(done); // test failed
+    console.log('Expected:LOGGED_IN or LOGGING is expected on login action ');
+    console.log('Actual: LOGGED_IN or LOGGING is received on login action ');
   });
 });

@@ -10,6 +10,8 @@ describe('todo actions', () => {
       type: actions.CREATE_TODO,
       TEXT: 'Use Redux',
     });
+    console.log('Expected: action type CREATE_TODO is expected');
+    console.log('Actual: action type CREATE_TODO is received');
   });
 
   it('deleteTodo should create DELETE_TODO action', () => {
@@ -17,6 +19,8 @@ describe('todo actions', () => {
       type: actions.DELETE_TODO,
       ID: 1,
     });
+    console.log('Expected: action type DELETE_TODO is expected');
+    console.log('Actual: action type DELETE_TODO is received');
   });
 
   it('editTodo should create EDIT_TODO action', () => {
@@ -24,6 +28,8 @@ describe('todo actions', () => {
       type: actions.EDIT_TODO,
       TODO: { TEXT: 'Use Redux everywhere', ID: 1 },
     });
+    console.log('Expected: action type EDIT_TODO is expected');
+    console.log('Actual: action type EDIT_TODO is received');
   });
 
   it('completeTodo should create COMPLETE_TODO action', () => {
@@ -31,5 +37,7 @@ describe('todo actions', () => {
       type: actions.COMPLETE_TODO,
       ID: 1,
     });
+    console.log('Expected: action type COMPLETE_TODO is expected');
+    console.log('Actual: action type COMPLETE_TODO is received');
   });
 });

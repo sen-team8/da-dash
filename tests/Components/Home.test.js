@@ -13,6 +13,8 @@ describe('<Home />', () => {
     );
     wrapper.find('.overlay').simulate('click');
     expect(wrapper.state().sidebarOpen).to.equal(true);
+    console.log('Expected: ', wrapper.state().sidebarOpen);
+    console.log('Actual: ', true);
     wrapper.find('.overlay').simulate('click');
     expect(wrapper.state().sidebarOpen).to.equal(false);
   });

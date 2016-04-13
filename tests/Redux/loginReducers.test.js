@@ -10,6 +10,8 @@ describe('logins reducer', () => {
        ID: null,
        PASS: null,
      });
+    console.log('Expected:initial login status: LOGGED_OUT is expected ');
+    console.log('Actual: login status: LOGGED_OUT is received  ');
   });
   it('should return the LOGGED_IN', () => {
     expect(
@@ -19,6 +21,8 @@ describe('logins reducer', () => {
        ID: null,
        PASS: null,
      });
+    console.log('Expected: login status: LOGGED_IN is expected ');
+    console.log('Actual: login status: LOGGED_IN is received  ');
   });
   it('should return the LOGGING', () => {
     expect(
@@ -28,6 +32,8 @@ describe('logins reducer', () => {
        ID: null,
        PASS: null,
      });
+     console.log('Expected: login status: LOGGING is expected ');
+     console.log('Actual: login status: LOGGING is received  ');
   });
   it('should return the LOGIN_ERROR', () => {
     expect(
@@ -37,6 +43,8 @@ describe('logins reducer', () => {
        ID: null,
        PASS: null,
      });
+    console.log('Expected: login status: LOGGING_ERROR is expected ');
+    console.log('Actual: login status: LOGGING_ERROR is received  ');
   });
   it('should return the SET_CREDENTIALS', () => {
     expect(
@@ -47,5 +55,7 @@ describe('logins reducer', () => {
        ID: 'Dushyant',
        PASS: 'LetsLogin',
      });
+    console.log('Expected: Expecting ID and PASS to be set with STATUS: LOGGED_OUT');
+    console.log('Actual: Receiving ID and PASS is set with STATUS: LOGGED_OUT');
   });
 });

@@ -30,6 +30,8 @@ describe('intranet actions', () => {
         tree: null,
       }
     );
+    console.log('Expected: ', "InitialState is expected to change isFetching to 'true' ");
+    console.log('Actual: ', "InitialState is changed and isFetching to 'true' ");
   });
 
 
@@ -48,6 +50,8 @@ describe('intranet actions', () => {
         pathString: [],
       }
     );
+    console.log('Expected: ', "change in  error:'null' of intranet state");
+    console.log('Actual: ', "error:'There was an error due to something' of intranet state is changed");
   });
 
   it('should perform a search error', () => {
@@ -83,6 +87,8 @@ describe('intranet actions', () => {
         fav: [],
       }
     );
+    console.log('Expected: ', "change in  error:'null' of intranet state");
+    console.log('Actual: ', "error:'There was an error due to search' of intranet state is changed");
   });
   it('go to a path on a tree', () => {
     const tree = { Academic: {}, Lecture: { 'Aditi Nath Sarkar': {} } };
@@ -127,6 +133,8 @@ describe('intranet actions', () => {
         pathString,
         location: newLocation,
       });
+    console.log('Expected: intranet state reflects that path should changed.');
+    console.log('Actual: intranet state reflects that path is changed.');
   });
   it('should recieve the intranet tree', () => {
     const tree = { Academic: {}, Lecture: { 'Aditi Nath Sarkar': {} } };
@@ -145,6 +153,8 @@ describe('intranet actions', () => {
         pathString: [],
         location: processLocation(Immutable.fromJS(tree), pathString),
       });
+    console.log('Expected: intranet state should reflect that intranet tree is recieved.');
+    console.log('Actual: intranet state reflects that intranet tree is recieved.');
   });
 /**  it('should perform a long search', () => {
     const testState = {

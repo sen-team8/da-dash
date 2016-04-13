@@ -36,5 +36,7 @@ describe('async intranet actions', () => {
        })
        .then(done) // test passed
        .catch(done); // test failed
+    console.log('Expected: expected REQUEST_INTRANET_TREE or RECEIVE_INTRANET_TREE action  ');
+    console.log('Actual: REQUEST_INTRANET_TREE or RECEIVE_INTRANET_TREE action is received ');
   });
 });

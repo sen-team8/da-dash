@@ -12,5 +12,11 @@ describe('<Navbar />', () => {
     const wrapper = mount(<Navbar sidebarOpen toggleSideBar={toggleSpy} />);
     expect(wrapper.props().sidebarOpen).to.equal(true);
     expect(wrapper.props().toggleSideBar).to.equal(toggleSpy);
+
+    console.log('Expected: ', wrapper.props().sidebarOpen);
+    console.log('Actual: ', true);
+
+    console.log('Expected: ', wrapper.props().toggleSideBar);
+    console.log('Actual: ', toggleSpy);
   });
 });
