@@ -40,8 +40,7 @@ export default class ChatItem extends React.Component {
   }
 
   displayChat = () => {
-    const id = this.props.id.substring(0, 6)===this.props.chat.id.substring(0, 6) ? 'You' : this.props.chat.id;
-
+    const id = this.props.id.substring(0, 10)===this.props.chat.id.substring(0, 10) ? 'You' : this.props.chat.id;
     return (
       <div style={this.style().chat}>
         <div style={this.style().name}>
