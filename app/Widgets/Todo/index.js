@@ -30,7 +30,7 @@ const style = {
   },
   pos: {
     position: 'absolute',
-    bottom: '10px',
+    bottom: '35px',
     marginLeft: '32%',
   },
 };
