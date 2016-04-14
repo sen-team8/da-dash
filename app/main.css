@@ -414,6 +414,7 @@ button:focus {
   margin: 10px 0px;
   position: relative;
   top: 5px;
+  left: calc(100vw - 160px);
 }
 
 .intranet-search .query {
@@ -462,6 +463,7 @@ button:focus {
     margin: 10px 0px;
     position: relative;
     top: 5px;
+    left: 0px;
   }
 }
 
@@ -527,4 +529,16 @@ button:focus {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.webmail-icon-circular {
+  display: flex;
+  font-size: 30px;
+  margin: 0px 15px auto 0px;
+  border-radius: 50%;
+  position: relative;
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
 }

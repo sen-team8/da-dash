@@ -6,6 +6,7 @@ export const RECEIVE_INBOX_ERROR = 'RECEIVE_INBOX_ERROR';
 export const RECEIVE_EMAIL = 'RECEIVE_EMAIL';
 export const REQUEST_EMAIL = 'REQUEST_EMAIL';
 export const RECEIVE_EMAIL_ERROR = 'RECEIVE_EMAIL_ERROR';
+export const QUICK_SEARCH_WEBMAIL = 'QUICK_SEARCH_WEBMAIL';
 
 export function requestInbox() {
   return {
@@ -45,6 +46,19 @@ export function receiveEmailError(e) {
   return {
     type: RECEIVE_EMAIL_ERROR,
     error: e,
+  };
+}
+
+export function quickSearch(s) {
+  return {
+    type: QUICK_SEARCH_WEBMAIL,
+    searchToken: s,
+  };
+}
+
+export function searchForWebmail(s) {
+  return dispatch => {
+    dispatch(quickSearch(s));
   };
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Glyphicon, ButtonToolbar, Badge } from 'react-bootstrap';
-// import Chips from './Chips';
+import Chips from './Chips';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 // import { Link } from 'react-router';
 import Waypoint from 'react-waypoint';
@@ -8,6 +8,8 @@ import Waypoint from 'react-waypoint';
 export default class Toolbar extends React.Component {
   static propTypes = {
     count: React.PropTypes.number.isRequired,
+    setSearch: React.PropTypes.func,
+    quickSearch: React.PropTypes.object,
   }
 
   constructor(props, state) {
@@ -85,6 +87,11 @@ export default class Toolbar extends React.Component {
         <Waypoint
           onEnter={this._handleWaypointEnter}
           onLeave={this._handleWaypointLeave}
+        />
+        <Chips
+          setSearch={this.props.setSearch}
+          showFixed={this.state.showFixed}
+          quickSearch={this.props.quickSearch}
         />
     </div>
     );

@@ -26,7 +26,7 @@ import {
   GO_FORWARD,
   GO_TO_PATH,
   ADD_FAV,
-  QUICK_SEARCH,
+  QUICK_SEARCH_INTRANET,
   LONG_SEARCH,
   SEARCH_ERROR,
 } from './intranetActions';
@@ -38,6 +38,7 @@ import {
   REQUEST_EMAIL,
   RECEIVE_EMAIL,
   RECEIVE_EMAIL_ERROR,
+  QUICK_SEARCH_WEBMAIL,
 } from './webmailActions';
 
 import {
@@ -264,7 +265,7 @@ export function intranet(state=initialIntranetState, action) {
       return Object.assign({}, state, {
         fav: checkFav(state.fav, action.fav),
       });
-    case QUICK_SEARCH:
+    case QUICK_SEARCH_INTRANET:
       newSearchObj = new Immutable.List();
       processLocation(state.tree.get('Lecture'), ['Lecture']).forEach(v => {
         if (v.get('name').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1) {
@@ -311,6 +312,7 @@ const webmailState = {
 };
 
 export function webmail(state=webmailState, action) {
+  let newSearchObj;
   switch (action.type) {
     case REQUEST_INBOX:
       return Object.assign({}, state, {
@@ -341,6 +343,23 @@ export function webmail(state=webmailState, action) {
       return Object.assign({}, state, {
         isFetchingEmail: false,
         error: action.error,
+      });
+    case QUICK_SEARCH_WEBMAIL:
+      newSearchObj = new Immutable.List();
+      state.inbox.forEach(v => {
+        if ((v.get('su').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1)
+        || (v.get('fr').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1)) {
+          newSearchObj = newSearchObj.push(v);
+        }
+        v.get('e').forEach(w => {
+          if (w.get('p')!==undefined && w.get('p').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1) {
+            newSearchObj = newSearchObj.push(v);
+          }
+        });
+      });
+
+      return Object.assign({}, state, {
+        quickSearch: newSearchObj,
       });
     default:
       return state;

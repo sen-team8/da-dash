@@ -16,16 +16,27 @@ export class WebmailWidget extends React.Component {
     isFetching: React.PropTypes.bool,
     isFetchingEmail: React.PropTypes.bool,
     isDashboard: React.PropTypes.bool,
+    quickSearch: React.PropTypes.object,
+    searchForWebmail: React.PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.getInbox(this.props.user);
   }
 
+  setSearch = (s) => {
+    this.props.searchForWebmail(s);
+  }
+
   showInbox = () => {
     return this.props.isDashboard ?
-        <MiniWebmail inbox={this.props.inbox} showEmail={this.showEmail} />
-      : <Inbox inbox={this.props.inbox} showEmail={this.showEmail} />;
+        <MiniWebmail inbox={this.props.inbox} showEmail={this.showEmail} /> :
+        <Inbox
+          inbox={this.props.inbox}
+          showEmail={this.showEmail}
+          setSearch={this.setSearch}
+          quickSearch={this.props.quickSearch}
+        />;
   }
 
   showEmail = () => {
