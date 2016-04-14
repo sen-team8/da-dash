@@ -136,7 +136,13 @@ export default class Toolbar extends React.Component {
             {isStarred()}
             {
               this.props.pathString.length === 3 || this.props.pathString.length ===2 ?
-              <Button key={0} bsSize="small" bsStyle={ starred ? 'success': 'default'} onClick={this.addToFav}><Glyphicon glyph="star" /> {starred ? 'Starred': 'Star'}</Button>
+              <Button
+                key={0}
+                bsSize="small"
+                bsStyle={ starred ? 'success': 'default'}
+                onClick={this.addToFav}
+              >
+              <Glyphicon glyph="star" /> {starred ? 'Starred': 'Star'}</Button>
               : null
             }
             <Button key={1} bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>

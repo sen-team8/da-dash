@@ -12,7 +12,7 @@ export class IntranetWidget extends React.Component {
     goToPath: React.PropTypes.func.isRequired,
     goForward: React.PropTypes.func.isRequired,
     addToFav: React.PropTypes.func.isRequired,
-    searchFor: React.PropTypes.func.isRequired,
+    searchForIntranet: React.PropTypes.func.isRequired,
     location: React.PropTypes.object,
     pathString: React.PropTypes.array,
     timeStamp: React.PropTypes.string,
@@ -34,7 +34,7 @@ export class IntranetWidget extends React.Component {
   }
 
   setSearch = (s) => {
-    this.props.searchFor(s);
+    this.props.searchForIntranet(s);
   }
 
   showAttachment = (path, file) => {
