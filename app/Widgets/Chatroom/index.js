@@ -17,7 +17,6 @@ const style = {
     flexDirection: 'column',
     position: 'relative',
     width: '100%',
-    height: '100%',
     backgroundColor: 'white',
     justifyContent: 'space-between',
     paddingTop: '0px',
@@ -45,7 +44,7 @@ export class Chatroom extends Component {
 
   state = {
     currentRef: firebaseRef, // .child('Chat'),
-    chatGroup: '201301',
+    chatGroup: '',
     batch: true,
     subject: '',
     height: window.innerHeight,
@@ -141,18 +140,18 @@ export class Chatroom extends Component {
             isDashboard={this.props.isDashboard}
             isDiscussion={this.state.isDiscussion}
           />
-            <Scrollbars style={{ height: this.state.height -250 }}
-              autoHide
-              autoHideTimeout={1000}
-              autoHideDuration={400}
-            >
-            <ChatList
-              style={{ flex: '8' }}
-              chats={this.props.chats}
-              isDashboard= {this.props.isDashboard}
-              id= {this.props.ID}
-            />
-            </Scrollbars>
+          <Scrollbars style={{ height: this.state.height -250 }}
+            autoHide
+            autoHideTimeout={1000}
+            autoHideDuration={400}
+          >
+          <ChatList
+            style={{ flex: '8' }}
+            chats={this.props.chats}
+            isDashboard= {this.props.isDashboard}
+            id= {this.props.ID}
+          />
+          </Scrollbars>
           <WriteChat sendChat={this.sendChat} isDashboard= {this.props.isDashboard} />
         </div>
     );
