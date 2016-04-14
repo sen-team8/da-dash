@@ -6,8 +6,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import ListItem from './ListItem';
 // import LocationBar from './LocationBar';
 import Toolbar from './Toolbar';
-import { Link } from 'react-router';
-
 
 export default class Folder extends React.Component {
   static propTypes = {
@@ -88,7 +86,7 @@ export default class Folder extends React.Component {
 
   render() {
     this.search = this.props.search || this.props.quickSearch;
-
+    console.log('yo amigo', this.props.location);
     return (
             <Scrollbars id="folder" style={{ height: !this.props.dashboard ? this.state.height - 50 : '300' }} >
               <Toolbar

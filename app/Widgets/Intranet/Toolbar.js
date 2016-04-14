@@ -99,7 +99,7 @@ export default class Toolbar extends React.Component {
   isStarred = () => {
     return this.props.fav.find((o) => {
       return o.get('name') === this.getHeading(this.props.pathString);
-    })
+    });
   }
 
   render() {

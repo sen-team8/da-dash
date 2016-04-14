@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import Todo from '../Widgets/Todo';
 import Intranet from '../Widgets/Intranet';
@@ -9,8 +10,6 @@ import Webmail from '../Widgets/Webmail';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
-import Webmail from '../Widgets/Webmail'
-// import Waypoint from 'react-waypoint';
 
 import {
   LOGGED_IN,
@@ -34,32 +33,25 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div style={{ background: '#F5FCFF', overflow: 'scroll' }}>
-      <Grid>
-        <Row className="show-grid">
+      <Scrollbars style={{ background: '#F5FCFF', height: window.innerHeight - 50 }}>
+        <Row>
           <Col xs={12} md={6} lg={6}>
-            <div className="dadash-wrapper">
-              <Todo />
-            </div>
+              <Webmail isDashboard />
+          </Col>
+
+          <Col xs={12} md={6} lg={6}>
+              <Intranet isDashboard />
           </Col>
           <Col xs={12} md={6} lg={6}>
-            <div className="dadash-wrapper">
-              <Intranet dashboard />
-            </div>
-          </Col>
-          <Col xs={12} md={6} lg={6}>
-            <div className="dadash-wrapper">
+            <div >
               <Chatroom isDashboard />
             </div>
           </Col>
           <Col xs={12} md={6} lg={6}>
-            <div className="dadash-wrapper">
-              <Webmail isDashboard />
-            </div>
+              <Todo />
           </Col>
         </Row>
-      </Grid>
-    </div>
+    </Scrollbars>
     );
   }
 }

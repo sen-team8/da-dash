@@ -13,14 +13,19 @@ const Mini = ({ location, goToPath }, context) => {
       path: [],
     }]);
   }
+  console.log('buddy here');
   const goToIntranet = (toPath) => {
     context.router.push('/intranet');
     goToPath(toPath);
-  }
+  };
   return (
-    <Panel header={title}>
-      <ListItem items={location} goToPath={goToIntranet} />
-    </Panel>
+    <div className="widget-outer">
+      <Panel header={title} >
+        <div className="widget-inner">
+          <ListItem items={location} goToPath={goToIntranet} />
+        </div>
+      </Panel>
+    </div>
   );
 };
 

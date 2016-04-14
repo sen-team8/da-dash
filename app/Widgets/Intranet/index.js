@@ -43,14 +43,16 @@ export class IntranetWidget extends React.Component {
 
   render() {
     const progress = (
-      <div className="intranet-loading" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%' }}>
+      <div className="intranet-loading"
+        style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%' }}
+      >
         <div style={{ alignSelf: 'center' }} >
           Loading...
         </div>
       </div>
     );
 
-    const IntranetDumbRef = this.props.dashboard ?
+    const IntranetDumbRef = this.props.isDashboard ?
       <MiniIntranet location={this.props.fav}
         goToPath={this.props.goToPath}
       />

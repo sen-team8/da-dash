@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import Immutable from 'immutable';
 import arrayFrom from 'array-from';
-
+const INBOX_LIMIT = 20;
 import {
   CREATE_TODO,
   DELETE_TODO,
@@ -294,7 +294,7 @@ export function webmail(state=webmailState, action) {
       });
     case RECEIVE_INBOX:
       return Object.assign({}, state, {
-        inbox: Immutable.fromJS(action.inbox),
+        inbox: Immutable.fromJS(action.inbox.slice(0, INBOX_LIMIT)),
         lastFetched: Date.now(),
         isFetching: false,
       });
@@ -322,7 +322,6 @@ export function webmail(state=webmailState, action) {
       return state;
   }
 }
-
 
 export function chat(state = chatState, action) {
   switch (action.type) {

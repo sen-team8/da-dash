@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroupItem, ListGroup } from 'react-bootstrap';
-import Waypoint from 'react-waypoint';
+// import Waypoint from 'react-waypoint';
 
 const style = {
   main: {
@@ -62,13 +62,6 @@ export default class ListItem extends React.Component {
     return folder;
   }
 
-  // _loadMoreContent() {
-  //   console.log('please work');
-  // }
-  // _setMessage = (msg) => {
-  //   console.log('entersnd');
-  //   // this.setState({ message: msg });
-  // }
   render() {
     const obj = this.props.items;
     const props = this.props;
