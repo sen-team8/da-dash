@@ -48,8 +48,7 @@ export default class ListItem extends React.Component {
 
   static propTypes = {
     items: React.PropTypes.object.isRequired,
-    showAttachment: React.PropTypes.func.isRequired,
-    pathString: React.PropTypes.array.isRequired,
+    showAttachment: React.PropTypes.func,
   }
 
   shouldComponentUpdate(nextProps) {
@@ -62,6 +61,7 @@ export default class ListItem extends React.Component {
     }
     return folder;
   }
+
   // _loadMoreContent() {
   //   console.log('please work');
   // }
@@ -74,15 +74,6 @@ export default class ListItem extends React.Component {
     const props = this.props;
     if (!obj) { return null; }
     let list = [];
-    // list.push(
-    //   <Waypoint
-    //          onEnter={() => console.log('listsdsd')}
-    //          onLeave={() => console.log('listsdsd')}
-    //
-    //          scrollableAncestor={this.refs.list}
-    //          threshold={0}
-    //        />
-    // );
     list = list.concat(obj.map((item, key) => {
       return (
         <ListGroupItem
@@ -102,8 +93,6 @@ export default class ListItem extends React.Component {
         </ListGroupItem>
       );
     }));
-
-    // console.debug('render', new Date().getTime())
     return <ListGroup ref="list" className="intranet-list">{list}</ListGroup>;
   }
 }

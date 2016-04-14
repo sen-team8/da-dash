@@ -8,6 +8,7 @@ import Chatroom from '../Widgets/Chatroom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../redux/actions';
+import Webmail from '../Widgets/Webmail'
 // import Waypoint from 'react-waypoint';
 
 import {
@@ -32,7 +33,7 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div style={{ background: '#F5FCFF' }}>
+      <div style={{ background: '#F5FCFF', overflow: 'scroll' }}>
       <Grid>
         <Row className="show-grid">
           <Col xs={12} md={6} lg={6}>
@@ -45,12 +46,14 @@ class Dashboard extends React.Component {
             <Intranet dashboard />
             </div>
           </Col>
-        </Row>
-
-        <Row className="show-grid">
-            <Col xs={12} md={6} lg={6}>
-            <div style={{ marginTop: '25px' }}>
-            <Chatroom isDashboard />
+          <Col xs={12} md={6} lg={6}>
+            <div className="dadash-wrapper">
+              <Chatroom isDashboard />
+            </div>
+          </Col>
+          <Col xs={12} md={6} lg={6}>
+            <div className="dadash-wrapper">
+              <Webmail isDashboard />
             </div>
           </Col>
         </Row>

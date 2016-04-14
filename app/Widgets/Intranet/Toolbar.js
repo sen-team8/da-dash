@@ -4,6 +4,7 @@ import Chips from './Chips';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
 import Waypoint from 'react-waypoint';
+import Immutable from 'immutable';
 
 function isStarred() {
 
@@ -19,6 +20,8 @@ export default class Toolbar extends React.Component {
     setSearch: React.PropTypes.func,
     search: React.PropTypes.object,
     quickSearch: React.PropTypes.object,
+    addToFav: React.PropTypes.func.isRequired,
+    fav: React.PropTypes.object,
   }
 
   static defaultProps = {
@@ -86,8 +89,21 @@ export default class Toolbar extends React.Component {
     };
   }
 
+  addToFav = () => {
+    return this.props.addToFav(Immutable.fromJS({
+      isFile: false,
+      name: this.getHeading(this.props.pathString),
+      path: this.props.pathString,
+    }));
+  }
+  isStarred = () => {
+    return this.props.fav.find((o) => {
+      return o.get('name') === this.getHeading(this.props.pathString);
+    })
+  }
 
   render() {
+    const starred = this.isStarred();
     const style = this.style();
     const { pathString, goToPath, timeStamp, folders } = this.props;
 
@@ -118,7 +134,11 @@ export default class Toolbar extends React.Component {
           </div>
           <ButtonToolbar>
             {isStarred()}
-            <Button key={0} bsSize="small"><Glyphicon glyph="star" /> Star</Button>
+            {
+              this.props.pathString.length === 3 || this.props.pathString.length ===2 ?
+              <Button key={0} bsSize="small" bsStyle={ starred ? 'success': 'default'} onClick={this.addToFav}><Glyphicon glyph="star" /> {starred ? 'Starred': 'Star'}</Button>
+              : null
+            }
             <Button key={1} bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>
               {
                 canDiscuss

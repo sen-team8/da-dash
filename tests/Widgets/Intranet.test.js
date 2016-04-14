@@ -65,18 +65,10 @@ describe('<Intranet />', () => {
     expect(foo.find(Folder)).to.have.length(1);
   });
 
-
   it('<Folder /> should not show  ListItem component at Folder.js:65 when search prop is null or undefined', () => {
-    // stateToGiveFolder.setSearch = ;
     objToGive.location = Location;
     stateToGiveFolder.location = processLocation(Location, objToGive.pathString);
-  //  stateToGiveFolder.search = processLocation(Location, objToGive.pathString); //uncomment to get ListItem shown one more time.
     const foo = mount(<Folder {...stateToGiveFolder} />);
     expect(foo.find(ListItem)).to.have.length(1);
-  });
-
-  it('<Folder /> should show Link component at Folder.js:47 when dashboard prop is passed', () => {
-    const foo = mount(<Folder {...stateToGiveFolder} {...objToGive} />);
-    expect(foo.find(Link)).to.have.length(1);
   });
 });

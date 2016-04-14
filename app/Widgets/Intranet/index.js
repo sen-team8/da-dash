@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
 import Folder from './Folder';
+import MiniIntranet from './MiniIntranet';
 
 export class IntranetWidget extends React.Component {
   static propTypes = {
@@ -15,12 +16,12 @@ export class IntranetWidget extends React.Component {
     location: React.PropTypes.object,
     pathString: React.PropTypes.array,
     timeStamp: React.PropTypes.string,
-    fav: React.PropTypes.array,
+    fav: React.PropTypes.object,
     dashboard: React.PropTypes.bool,
     search: React.PropTypes.object,
     quickSearch: React.PropTypes.object,
     isSearching: React.PropTypes.bool.isRequired,
-    lastFetched: React.PropTypes.string,
+    lastFetched: React.PropTypes.number,
   }
   static defaultProps = {
     lastFetched: 0,
@@ -49,10 +50,13 @@ export class IntranetWidget extends React.Component {
       </div>
     );
 
-    const IntranetDumbRef = (
+    const IntranetDumbRef = this.props.dashboard ?
+      <MiniIntranet location={this.props.fav}
+        goToPath={this.props.goToPath}
+      />
+    : (
       <Folder
         location={this.props.location}
-        goForward={this.props.goForward}
         pathString={this.props.pathString}
         timeStamp={this.props.timeStamp}
         showAttachment={this.showAttachment}
@@ -62,6 +66,8 @@ export class IntranetWidget extends React.Component {
         search={this.props.search}
         quickSearch={this.props.quickSearch}
         isSearching={this.props.isSearching}
+        addToFav={this.props.addToFav}
+        fav={this.props.fav}
       />
     );
     return !this.props.location ? progress : IntranetDumbRef;

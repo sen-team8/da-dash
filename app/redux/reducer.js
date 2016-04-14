@@ -153,7 +153,11 @@ const initialIntranetState = {
   error: null,
   location: null,
   timeStamp: null,
-  fav: [],
+  fav: Immutable.fromJS([{
+    isFile: false,
+    name: 'Intranet',
+    path: [],
+  }]),
 };
 
 export function traverseIntranet(tree, path) {
@@ -166,12 +170,23 @@ export function processLocation(loc, path) {
   return Immutable.fromJS(arrayFrom(loc.keys()).sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0)).map(key => {
     return {
       isFile: loc.get(key) === 'file',
-      data: loc.get(key),
       name: key,
       path: path.concat(key),
     };
   }));
 }
+
+function checkFav(favList, newFav) {
+  let array = favList.toArray();
+  array = array.filter((e) => {
+    return e.get('name') !== newFav.get('name');
+  });
+  if (array.length === favList.count()) {
+    return favList.push(newFav);
+  }
+  return Immutable.fromJS(array);
+}
+
 export function intranet(state=initialIntranetState, action) {
   let newSearchObj;
   let tree;
@@ -223,8 +238,7 @@ export function intranet(state=initialIntranetState, action) {
       });
     case ADD_FAV:
       return Object.assign({}, state, {
-        fav: action.fav,
-        location: traverseIntranet(state.tree, pathString),
+        fav: checkFav(state.fav, action.fav),
       });
     case QUICK_SEARCH:
       newSearchObj = new Immutable.List();
