@@ -31,6 +31,7 @@ class App extends React.Component {
           <Route path="/" component={Home} onEnter={this.requireAuth}>
             <IndexRoute component={Dashboard} />
             <Route path="intranet" component={Intranet} />
+            <Route path="webmail" component={Webmail} />
             <Route path="todo" component={Todo} />
             <Route path="profile" component={Profile} />
             <Route path="widgets" component={Widgets} />
