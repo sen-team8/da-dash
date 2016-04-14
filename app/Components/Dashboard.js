@@ -42,16 +42,16 @@ class Dashboard extends React.Component {
             </div>
           </Col>
           <Col xs={12} md={6} lg={6}>
-            <div className="dadash-wrapper">
-              <Intranet dashboard />
+            <div style={{ marginTop: '25px' }}>
+              <Chatroom isDashboard />
             </div>
           </Col>
         </Row>
 
         <Row className="show-grid">
           <Col xs={12} md={6} lg={6}>
-            <div style={{ marginTop: '25px' }}>
-              <Chatroom isDashboard />
+            <div className="dadash-wrapper">
+              <Intranet dashboard />
             </div>
           </Col>
           <Col xs={12} md={6} lg={6}>

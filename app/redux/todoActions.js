@@ -5,6 +5,7 @@ export const DELETE_TODO = 'DELETE_TODO';
 export const COMPLETE_TODO = 'COMPLETE_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
 export const FILL_TODOS = 'FILL_TODOS';
+export const GETTING_TODOS = 'GETTING_TODOS';
 
 export function createTodo(text) {
   return {
@@ -39,10 +40,15 @@ function fillTodos(todos) {
     todos,
   };
 }
+function gettingTodos() {
+  return {
+    type: GETTING_TODOS,
+  };
+}
 
 export function getTodos() {
-  console.log('get todos');
   return dispatch => {
+    dispatch(gettingTodos);
     return receiveTodos()
       .then((todos) => dispatch(fillTodos(todos)));
   };

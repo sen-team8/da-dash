@@ -40,6 +40,7 @@ class Todo extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
     todos: PropTypes.array.isRequired,
+    gettingTodos: PropTypes.bool.isRequired,
   }
 
   state = {
@@ -48,7 +49,7 @@ class Todo extends Component {
     showCompleted: false,
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.actions.getTodos();
   }
 
@@ -56,7 +57,9 @@ class Todo extends Component {
     const todos = {
       todos: nextProps.todos,
     };
-    this.props.actions.setTodos(todos);
+    if (this.props.gettingTodos=== false) {
+      this.props.actions.setTodos(todos);
+    }
   }
 
   showCreateTodo = () => {

@@ -8,6 +8,7 @@ import {
   COMPLETE_TODO,
   EDIT_TODO,
   FILL_TODOS,
+  GETTING_TODOS,
 } from './todoActions';
 
 import {
@@ -72,6 +73,7 @@ const todoState = {
     completed: false,
     TEXT: 'Second Todo',
   }],
+  gettingTodos: true,
 };
 
 const chatState = {
@@ -93,6 +95,7 @@ export function todo(state = todoState, action) {
           completed: false,
           TEXT: action.TEXT,
         }],
+        gettingTodos: false,
       });
 
     case DELETE_TODO:
@@ -100,6 +103,7 @@ export function todo(state = todoState, action) {
         todos: state.todos.filter((todoItem) => {
           return todoItem.ID !== action.ID;
         }),
+        gettingTodos: false,
       });
 
     case COMPLETE_TODO:
@@ -107,6 +111,7 @@ export function todo(state = todoState, action) {
         todos: state.todos.map((todoItem) => {
           return todoItem.ID === action.ID ? Object.assign({}, todoItem, { completed: !todoItem.completed }) : todoItem;
         }),
+        gettingTodos: false,
       });
 
     case EDIT_TODO:
@@ -114,9 +119,14 @@ export function todo(state = todoState, action) {
         todos: state.todos.map((todoItem) => {
           return todoItem.ID === action.TODO.ID ? Object.assign({}, todoItem, { TEXT: action.TODO.TEXT }) : todoItem;
         }),
+        gettingTodos: false,
       });
     case FILL_TODOS:
       return Object.assign({}, state, action.todos);
+    case GETTING_TODOS:
+      return Object({}, state, {
+        gettingTodos: true,
+      });
     default: {
       return state;
     }
