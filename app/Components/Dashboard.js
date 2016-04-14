@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import Todo from '../Widgets/Todo';
 import Intranet from '../Widgets/Intranet';
 import Chatroom from '../Widgets/Chatroom';
+import Webmail from '../Widgets/Webmail';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -37,20 +38,25 @@ class Dashboard extends React.Component {
         <Row className="show-grid">
           <Col xs={12} md={6} lg={6}>
             <div className="dadash-wrapper">
-            <Todo />
+              <Todo />
             </div>
           </Col>
           <Col xs={12} md={6} lg={6}>
             <div className="dadash-wrapper">
-            <Intranet dashboard />
+              <Intranet dashboard />
             </div>
           </Col>
         </Row>
 
         <Row className="show-grid">
-            <Col xs={12} md={6} lg={6}>
+          <Col xs={12} md={6} lg={6}>
             <div style={{ marginTop: '25px' }}>
-            <Chatroom isDashboard />
+              <Chatroom isDashboard />
+            </div>
+          </Col>
+          <Col xs={12} md={6} lg={6}>
+            <div style={{ marginTop: '25px' }}>
+              <Webmail />
             </div>
           </Col>
         </Row>

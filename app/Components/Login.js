@@ -64,7 +64,7 @@ class Login extends React.Component {
       </div>
       <div style={{ display: 'flex', height: '100%' }}>
         <div className="login-wrapper">
-          <div className="form-signin" style={{ verticalAlign: 'middle' }}>
+          <form className="form-signin" style={{ verticalAlign: 'middle' }} onSubmit={this.handleSubmit}>
             <h4 className="form-signin-heading">Please login<div>{this.showLoginError()}</div></h4>
             <input type="text"
               className="form-control"
@@ -86,11 +86,11 @@ class Login extends React.Component {
               <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe" /> Remember me
             </label>
             <Button className="btn btn-lg btn-primary btn-block"
-              onClick={this.setCredentials}
+              type="submit"
             >
               Login
             </Button>
-          </div>
+          </form>
 
         </div>
       </div>
