@@ -15,6 +15,13 @@ import {
   LOGGED_IN,
 } from '../redux/loginActions';
 
+const widgets = {
+  Intranet: <Intranet isDashboard />,
+  Chat: <Chatroom isDashboard />,
+  Webmail: <Webmail isDashboard />,
+  Todo: <Todo isDashboard />,
+};
+
 class Dashboard extends React.Component {
 
   static propTypes = {
@@ -30,28 +37,27 @@ class Dashboard extends React.Component {
       this.context.router.push('/login');
     }
   }
-
+  iterateThrough() {
+    const selectedWidgets = [];
+    const p = this.props.dashboard.widgets.forEach(e => {
+      if (widgets[e.text] && e.display) {
+        selectedWidgets.push(
+          <Col xs={12} md={6} lg={6}>
+            {widgets[e.text]}
+          </Col>
+        );
+      }
+    });
+    console.log(selectedWidgets);
+    return selectedWidgets;
+  }
   render() {
     return (
       <Scrollbars style={{ background: '#F5FCFF', height: window.innerHeight - 50 }}>
         <Row>
-          <Col xs={12} md={6} lg={6}>
-              <Webmail isDashboard />
-          </Col>
-
-          <Col xs={12} md={6} lg={6}>
-              <Intranet isDashboard />
-          </Col>
-          <Col xs={12} md={6} lg={6}>
-            <div >
-              <Chatroom isDashboard />
-            </div>
-          </Col>
-          <Col xs={12} md={6} lg={6}>
-              <Todo />
-          </Col>
+          {this.iterateThrough()}
         </Row>
-    </Scrollbars>
+      </Scrollbars>
     );
   }
 }

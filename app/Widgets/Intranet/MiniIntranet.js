@@ -13,7 +13,6 @@ const Mini = ({ location, goToPath }, context) => {
       path: [],
     }]);
   }
-  console.log('buddy here');
   const goToIntranet = (toPath) => {
     context.router.push('/intranet');
     goToPath(toPath);

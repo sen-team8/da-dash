@@ -33,6 +33,8 @@ import {
 } from './webmailActions';
 
 import { sendChat, receivedChat, clearChat } from './chatActions';
+import { addToWidgets } from './dashboardActions';
+
 import { getProfileName, setProfileName, setProfileId } from './profileActions';
 
 export const actions = {
@@ -68,4 +70,6 @@ export const actions = {
   getProfileName,
   setProfileName,
   setProfileId,
+
+  addToWidgets,
 };
