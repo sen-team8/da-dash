@@ -86,7 +86,7 @@ export default class Folder extends React.Component {
 
   render() {
     this.search = this.props.search || this.props.quickSearch;
-    console.log('yo amigo', this.props.location);
+    // console.log('yo amigo', this.props.location);
     return (
             <Scrollbars id="folder" style={{ height: !this.props.dashboard ? this.state.height - 50 : '300' }} >
               <Toolbar

@@ -9,6 +9,8 @@ export default class Inbox extends React.Component {
     inbox: React.PropTypes.object,
     emailId: React.PropTypes.string,
     email: React.PropTypes.object,
+    quickSearch: React.PropTypes.object,
+    setSearch: React.PropTypes.func,
   };
 
   state = {
@@ -30,8 +32,12 @@ export default class Inbox extends React.Component {
   render() {
     return (
       <Scrollbars id="folder" style={{ height: this.state.height - 50 }}>
-        <Toolbar count={this.props.inbox.count()} />
-        <InboxList inbox={this.props.inbox} showEmail={this.showEmail} />
+        <Toolbar
+          setSearch={this.props.setSearch}
+          quickSearch={this.props.quickSearch}
+          count={this.props.inbox.count()}
+        />
+      <InboxList inbox={this.props.inbox} showEmail={this.showEmail} quickSearch={this.props.quickSearch} />
       </Scrollbars>
     );
   }

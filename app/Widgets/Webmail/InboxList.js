@@ -4,7 +4,7 @@ import { ListGroupItem, ListGroup } from 'react-bootstrap';
 const style = {
   main: {
     paddingLeft: '15px',
-    height: '80px',
+    height: 'auto',
   },
   content: {
     display: 'flex',
@@ -54,16 +54,25 @@ export default class ListItem extends React.Component {
   static propTypes = {
     inbox: React.PropTypes.object.isRequired,
     showEmail: React.PropTypes.func.isRequired,
+    quickSearch: React.PropTypes.object,
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.inbox !== this.props.inbox;
+    return nextProps.inbox !== this.props.inbox || nextProps.quickSearch !== this.props.quickSearch;
   }
 
-  render() {
-    const { inbox, showEmail } = this.props;
+  displaySearch = () => {
+    const obj = this.props.quickSearch;
+    if (!obj) return null;
+    return (
+        this.displayMails(this.props.quickSearch)
+    );
+  }
+
+  displayMails = (obj) => {
+    const { showEmail } = this.props;
     let list = [];
-    list = list.concat(inbox.map((item, key) => {
+    list = list.concat(obj.map((item, key) => {
       const from = item.get('e') && item.get('e').get(item.get('e').count() -1);
       const date = item.get('d');
       const header = from.get('p') || from.get('d') || from.get('a');
@@ -86,7 +95,9 @@ export default class ListItem extends React.Component {
             >
               <div>
                 <p style={{ fontSize: '1.1em', fontWeight: 'bold' }}>{header}</p>
-                <span style={{ position: 'absolute', right: '5px', padding: '5px', marginTop: '-20px' }}>{makeDate(date)}</span>
+                <span style={{ position: 'absolute', right: '5px', padding: '5px', marginTop: '-20px' }}>
+                  {makeDate(date)}
+                </span>
               </div>
                 <p style={{ fontSize: '0.9em', fontWeight: 'bold' }}>
                   { window.innerWidth < 600 && item.get('su').length > 50
@@ -99,7 +110,19 @@ export default class ListItem extends React.Component {
       );
     }));
 
+    return (list);
+  }
+
+  render() {
+    const mailList = this.displayMails(this.props.inbox);
+    const searchList = this.displaySearch();
+    console.log(searchList);
     // console.debug('render', new Date().getTime())
-    return <ListGroup ref="list" className="intranet-list">{list}</ListGroup>;
+    const inboxList = (this.props.quickSearch) ? searchList : mailList;
+    return (
+      <ListGroup ref="list" className="intranet-list">
+        {inboxList}
+      </ListGroup>
+    );
   }
 }

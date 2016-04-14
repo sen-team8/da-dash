@@ -24,12 +24,13 @@ import {
   goForward,
   goToPath,
   addToFav,
-  searchFor,
+  searchForIntranet,
 } from './intranetActions';
 
 import {
   getInbox,
   getEmail,
+  searchForWebmail,
 } from './webmailActions';
 
 import { sendChat, receivedChat, clearChat } from './chatActions';
@@ -57,13 +58,14 @@ export const actions = {
   goForward,
   goToPath,
   addToFav,
-  searchFor,
+  searchForIntranet,
   sendChat,
   clearChat,
   receivedChat,
 
   getInbox,
   getEmail,
+  searchForWebmail,
 
   getProfileName,
   setProfileName,

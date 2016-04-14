@@ -9,7 +9,7 @@ export const GO_TO_PATH = 'GO_TO_PATH';
 export const ADD_FAV = 'ADD_FAV';
 export const BEGIN_SEARCH = 'BEGIN_SEARCH';
 export const GET_SEARCH_RESULTS = 'GET_SEARCH_RESULTS';
-export const QUICK_SEARCH = 'QUICK_SEARCH';
+export const QUICK_SEARCH_INTRANET = 'QUICK_SEARCH_INTRANET';
 export const LONG_SEARCH = 'LONG_SEARCH';
 export const SEARCH_ERROR = 'SEARCH_ERROR';
 
@@ -57,7 +57,7 @@ export function addToFav(fav) {
 
 export function quickSearch(s) {
   return {
-    type: QUICK_SEARCH,
+    type: QUICK_SEARCH_INTRANET,
     searchToken: s,
   };
 }
@@ -75,7 +75,7 @@ export function searchError(e) {
     error: e,
   };
 }
-export function searchFor(s) {
+export function searchForIntranet(s) {
   return dispatch => {
     dispatch(quickSearch(s));
     return fuzzySearch(s)
