@@ -14,17 +14,29 @@ html, body {
 button:focus {
   outline:none !important;
 }
-.dadash-wrapper {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.widget-outer {
+  margin: 15px;
 }
+.widget-outer .panel-body {
+  padding: 0;
+  border: 0;
+}
+.widget-outer .panel-body button {
+  border-radius: 0px !important;
+}
+.widget-inner {
+    height: 400px !important;
+    overflow-y: scroll;
+    width: 100%;
+}
+
 
 
 .bootstrap-border {
   border: 1px solid #ddd;
   border-radius: 4px ;
 }
-
+/*
 #todoApp {
   background-color:white;
   width: auto;
@@ -35,7 +47,7 @@ button:focus {
 #todoApp #todoHeader {
   height: 40px;
   background-color: grey;
-}
+}*/
 
 /* Navbar */
 

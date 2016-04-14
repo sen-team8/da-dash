@@ -27,6 +27,7 @@ export function setLoginError(error) {
 }
 
 export function setLogout() {
+  window.onunload = undefined;
   localStorage.removeItem('redux1');
   return {
     type: LOGGED_OUT,

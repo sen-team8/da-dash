@@ -143,7 +143,7 @@ class Todo extends Component {
         <TodoList actions={this.actionHandler} todos={this.props.todos}
           showCompleted={this.state.showCompleted} className="todo list"
         />
-      <ButtonToolbar className="todo category" style={style.pos}>
+      <ButtonToolbar style={style.pos}>
             <Button type="submit" bsStyle={bsStyle.buttonAll} onClick={this.handleShowAll}>All</Button>
             <Button type="submit" bsStyle={bsStyle.buttonComplete} onClick={this.handleShowCompleted}>Completed</Button>
         </ButtonToolbar>

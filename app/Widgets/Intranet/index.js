@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
 import Folder from './Folder';
+import MiniIntranet from './MiniIntranet';
 
 export class IntranetWidget extends React.Component {
   static propTypes = {
@@ -15,12 +16,12 @@ export class IntranetWidget extends React.Component {
     location: React.PropTypes.object,
     pathString: React.PropTypes.array,
     timeStamp: React.PropTypes.string,
-    fav: React.PropTypes.array,
-    dashboard: React.PropTypes.bool,
+    fav: React.PropTypes.object,
     search: React.PropTypes.object,
     quickSearch: React.PropTypes.object,
     isSearching: React.PropTypes.bool.isRequired,
-    lastFetched: React.PropTypes.string,
+    lastFetched: React.PropTypes.number,
+    isDashboard: React.PropTypes.bool,
   }
   static defaultProps = {
     lastFetched: 0,
@@ -42,26 +43,33 @@ export class IntranetWidget extends React.Component {
 
   render() {
     const progress = (
-      <div className="intranet-loading" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%' }}>
+      <div className="intranet-loading"
+        style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%' }}
+      >
         <div style={{ alignSelf: 'center' }} >
           Loading...
         </div>
       </div>
     );
 
-    const IntranetDumbRef = (
+    const IntranetDumbRef = this.props.isDashboard ?
+      <MiniIntranet location={this.props.fav}
+        goToPath={this.props.goToPath}
+      />
+    : (
       <Folder
         location={this.props.location}
-        goForward={this.props.goForward}
         pathString={this.props.pathString}
         timeStamp={this.props.timeStamp}
         showAttachment={this.showAttachment}
         goToPath={this.props.goToPath}
-        dashboard={this.props.dashboard}
+        dashboard={this.props.isDashboard}
         setSearch={this.setSearch}
         search={this.props.search}
         quickSearch={this.props.quickSearch}
         isSearching={this.props.isSearching}
+        addToFav={this.props.addToFav}
+        fav={this.props.fav}
       />
     );
     return !this.props.location ? progress : IntranetDumbRef;

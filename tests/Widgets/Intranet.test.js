@@ -22,8 +22,8 @@ describe('<Intranet />', () => {
     location: null,
     pathString: ['Academic'],
     timeStamp: '',
-    fav: [],
-    dashboard: true,
+    fav: new Immutable.List([]),
+    isDashboard: false,
     search: null,
   };
   const stateToGiveFolder = {
@@ -32,6 +32,7 @@ describe('<Intranet />', () => {
     goToPath: sinon.spy(),
     setSearch: sinon.spy(),
     dashboard: true,
+    fav: new Immutable.List([]),
   };
   const Location = traverseIntranet(Immutable.fromJS({ Academic: {}, Lecture: {} }), ['Academic']);
 
@@ -60,23 +61,18 @@ describe('<Intranet />', () => {
 
   it('should behave correctly if timeStamp prop is null or undefined and location not null', () => {
     objToGive.timeStamp = null;
-    objToGive.location = Location;
+    objToGive.isDashboard = false;
+    objToGive.pathString = ['Academic'];
+    objToGive.location = processLocation(traverseIntranet(Immutable.fromJS({ Academic: { MSC: {} }, Lecture: {} }), ['Academic']), ['Academic']);
     const foo = mount(<IntranetWidget {...funcToGive} {...objToGive} />);
     expect(foo.find(Folder)).to.have.length(1);
   });
 
-
   it('<Folder /> should not show  ListItem component at Folder.js:65 when search prop is null or undefined', () => {
-    // stateToGiveFolder.setSearch = ;
     objToGive.location = Location;
     stateToGiveFolder.location = processLocation(Location, objToGive.pathString);
-  //  stateToGiveFolder.search = processLocation(Location, objToGive.pathString); //uncomment to get ListItem shown one more time.
+    objToGive.pathString = ['Academic'];
     const foo = mount(<Folder {...stateToGiveFolder} />);
     expect(foo.find(ListItem)).to.have.length(1);
-  });
-
-  it('<Folder /> should show Link component at Folder.js:47 when dashboard prop is passed', () => {
-    const foo = mount(<Folder {...stateToGiveFolder} {...objToGive} />);
-    expect(foo.find(Link)).to.have.length(1);
   });
 });

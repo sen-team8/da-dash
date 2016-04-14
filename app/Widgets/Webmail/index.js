@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../../redux/actions';
 import Inbox from './Inbox';
+import MiniWebmail from './MiniWebmail';
 
 export class WebmailWidget extends React.Component {
   static propTypes = {
@@ -14,6 +15,7 @@ export class WebmailWidget extends React.Component {
     email: React.PropTypes.object,
     isFetching: React.PropTypes.bool,
     isFetchingEmail: React.PropTypes.bool,
+    isDashboard: React.PropTypes.bool,
   };
 
   componentDidMount() {
@@ -21,15 +23,19 @@ export class WebmailWidget extends React.Component {
   }
 
   showInbox = () => {
-    return <Inbox inbox={this.props.inbox} showEmail={this.showEmail} />;
+    return this.props.isDashboard ?
+        <MiniWebmail inbox={this.props.inbox} showEmail={this.showEmail} />
+      : <Inbox inbox={this.props.inbox} showEmail={this.showEmail} />;
   }
+
   showEmail = () => {
     return null;
   }
+
   render() {
-    console.log(this.props.inbox);
     return this.props.inbox ? this.showInbox(): <div>Loading bruh!</div>;
   }
+
 }
 
 function mapDispatchToProps(dispatch) {

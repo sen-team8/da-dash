@@ -6,8 +6,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import ListItem from './ListItem';
 // import LocationBar from './LocationBar';
 import Toolbar from './Toolbar';
-import { Link } from 'react-router';
-
 
 export default class Folder extends React.Component {
   static propTypes = {
@@ -20,7 +18,9 @@ export default class Folder extends React.Component {
     goToPath: React.PropTypes.func.isRequired,
     dashboard: React.PropTypes.bool,
     setSearch: React.PropTypes.func,
+    addToFav: React.PropTypes.func.isRequired,
     isSearching: React.PropTypes.bool.isRequired,
+    fav: React.PropTypes.object,
   }
 
   state = {
@@ -28,7 +28,6 @@ export default class Folder extends React.Component {
   }
 
   componentDidMount() {
-    // document.getElementById('folder').style.overflowX = 'hidden';
     window.addEventListener('resize', this.handleResize);
   }
 
@@ -85,53 +84,24 @@ export default class Folder extends React.Component {
     );
   }
 
-  displayDashboard = () => {
-    return (
-      <div className="bootstrap-border intranet container" style={{ width: 'auto', backgroundColor: 'white' }}>
-        <div style={{ fontSize: '24px',
-            marginBottom: '12px',
-            marginTop: '10px',
-            borderBottomStyle: 'solid',
-            borderColor: '#d3d3d3',
-            borderWidth: '2px',
-            fontColor: '#009ACD',
-            fontStyle: 'bold',
-            backgroundColor: 'white' }}
-        >
-          <Link to={'intranet'} >
-            Intranet
-          </Link>
-        </div>
-        {this.displayIntranet()}
-      </div>
-    );
-  }
-
-  search = () => {
-    // console.log(Array.from(this.props.location.keys()).filter(e => e.includes(this.props.search)));
-  }
   render() {
     this.search = this.props.search || this.props.quickSearch;
-
-    const isDashboard = this.props.dashboard ? this.displayDashboard() :
-      (
-        <div>
-          <Toolbar
-            pathString={this.props.pathString}
-            goToPath={this.props.goToPath}
-            timeStamp={this.props.timeStamp}
-            folders={(this.props.location.count && this.props.location.count()) || 0}
-            setSearch={this.props.setSearch}
-            search={this.props.search}
-            quickSearch={this.props.quickSearch}
-          />
-          {this.displaySearch()}
-          {this.displayIntranet()}
-        </div>
-    );
+    console.log('yo amigo', this.props.location);
     return (
-            <Scrollbars id="folder" style={{ height: this.state.height - 50 }} >
-              {isDashboard}
+            <Scrollbars id="folder" style={{ height: !this.props.dashboard ? this.state.height - 50 : '300' }} >
+              <Toolbar
+                pathString={this.props.pathString}
+                goToPath={this.props.goToPath}
+                timeStamp={this.props.timeStamp}
+                folders={(this.props.location.count && this.props.location.count()) || 0}
+                setSearch={this.props.setSearch}
+                search={this.props.search}
+                quickSearch={this.props.quickSearch}
+                addToFav={this.props.addToFav}
+                fav={this.props.fav}
+              />
+              {this.displaySearch()}
+              {this.displayIntranet()}
             </Scrollbars>
     );
   }

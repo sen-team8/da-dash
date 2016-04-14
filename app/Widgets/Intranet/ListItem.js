@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroupItem, ListGroup } from 'react-bootstrap';
-import Waypoint from 'react-waypoint';
+// import Waypoint from 'react-waypoint';
 
 const style = {
   main: {
@@ -48,8 +48,7 @@ export default class ListItem extends React.Component {
 
   static propTypes = {
     items: React.PropTypes.object.isRequired,
-    showAttachment: React.PropTypes.func.isRequired,
-    pathString: React.PropTypes.array.isRequired,
+    showAttachment: React.PropTypes.func,
   }
 
   shouldComponentUpdate(nextProps) {
@@ -62,27 +61,12 @@ export default class ListItem extends React.Component {
     }
     return folder;
   }
-  // _loadMoreContent() {
-  //   console.log('please work');
-  // }
-  // _setMessage = (msg) => {
-  //   console.log('entersnd');
-  //   // this.setState({ message: msg });
-  // }
+
   render() {
     const obj = this.props.items;
     const props = this.props;
     if (!obj) { return null; }
     let list = [];
-    // list.push(
-    //   <Waypoint
-    //          onEnter={() => console.log('listsdsd')}
-    //          onLeave={() => console.log('listsdsd')}
-    //
-    //          scrollableAncestor={this.refs.list}
-    //          threshold={0}
-    //        />
-    // );
     list = list.concat(obj.map((item, key) => {
       return (
         <ListGroupItem
@@ -102,8 +86,6 @@ export default class ListItem extends React.Component {
         </ListGroupItem>
       );
     }));
-
-    // console.debug('render', new Date().getTime())
     return <ListGroup ref="list" className="intranet-list">{list}</ListGroup>;
   }
 }
