@@ -17,11 +17,11 @@ export class IntranetWidget extends React.Component {
     pathString: React.PropTypes.array,
     timeStamp: React.PropTypes.string,
     fav: React.PropTypes.object,
-    dashboard: React.PropTypes.bool,
     search: React.PropTypes.object,
     quickSearch: React.PropTypes.object,
     isSearching: React.PropTypes.bool.isRequired,
     lastFetched: React.PropTypes.number,
+    isDashboard: React.PropTypes.bool,
   }
   static defaultProps = {
     lastFetched: 0,
@@ -63,7 +63,7 @@ export class IntranetWidget extends React.Component {
         timeStamp={this.props.timeStamp}
         showAttachment={this.showAttachment}
         goToPath={this.props.goToPath}
-        dashboard={this.props.dashboard}
+        dashboard={this.props.isDashboard}
         setSearch={this.setSearch}
         search={this.props.search}
         quickSearch={this.props.quickSearch}
