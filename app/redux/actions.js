@@ -3,6 +3,8 @@ import {
   deleteTodo,
   completeTodo,
   editTodo,
+  getTodos,
+  setTodos,
 } from './todoActions';
 
 import {
@@ -31,12 +33,15 @@ import {
 } from './webmailActions';
 
 import { sendChat, receivedChat, clearChat } from './chatActions';
+import { getProfileName, setProfileName, setProfileId } from './profileActions';
 
 export const actions = {
   createTodo,
   deleteTodo,
   completeTodo,
   editTodo,
+  getTodos,
+  setTodos,
 
   setLogging,
   setLogout,
@@ -59,4 +64,8 @@ export const actions = {
 
   getInbox,
   getEmail,
+
+  getProfileName,
+  setProfileName,
+  setProfileId,
 };

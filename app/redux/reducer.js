@@ -7,6 +7,7 @@ import {
   DELETE_TODO,
   COMPLETE_TODO,
   EDIT_TODO,
+  FILL_TODOS,
 } from './todoActions';
 
 import {
@@ -39,6 +40,14 @@ import {
 } from './webmailActions';
 
 import { CLEAR_CHAT, RECEIVED_CHAT } from './chatActions';
+
+import {
+  SET_PROFILE_ID,
+  GETTING_PROFILE_NAME,
+  GOT_PROFILE_NAME,
+  GOT_ERROR,
+  SETTING_PROFILE_NAME,
+ } from './profileActions';
 
 const initialLoginState = {
   STATUS: LOGGED_OUT,
@@ -106,7 +115,8 @@ export function todo(state = todoState, action) {
           return todoItem.ID === action.TODO.ID ? Object.assign({}, todoItem, { TEXT: action.TODO.TEXT }) : todoItem;
         }),
       });
-
+    case FILL_TODOS:
+      return Object.assign({}, state, action.todos);
     default: {
       return state;
     }
@@ -323,4 +333,43 @@ export function chat(state = chatState, action) {
   }
 }
 
-export default combineReducers({ todo, login, intranet, chat, webmail });
+const initialProfileState = {
+  id: null,
+  name: null,
+  gettingName: false,
+  settingName: false,
+  error: null,
+};
+
+export function profile(state= initialProfileState, action) {
+  switch (action.type) {
+    case SET_PROFILE_ID:
+      return Object.assign({}, state, {
+        id: action.id,
+      });
+    case GETTING_PROFILE_NAME:
+      return Object.assign({}, state, {
+        gettingName: true,
+        settingName: false,
+      });
+    case GOT_PROFILE_NAME:
+      return Object.assign({}, state, {
+        name: action.name,
+        gettingName: false,
+      });
+    case GOT_ERROR:
+      return Object.assign({}, state, {
+        error: action.error,
+      });
+    case SETTING_PROFILE_NAME:
+      return Object.assign({}, state, {
+        settingName: true,
+        gettingName: false,
+      });
+    default:
+      return state;
+  }
+}
+
+
+export default combineReducers({ todo, login, intranet, chat, webmail, profile });

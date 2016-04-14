@@ -48,6 +48,17 @@ class Todo extends Component {
     showCompleted: false,
   };
 
+  componentDidMount() {
+    this.props.actions.getTodos();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const todos = {
+      todos: nextProps.todos,
+    };
+    this.props.actions.setTodos(todos);
+  }
+
   showCreateTodo = () => {
     return (
         <CreateTodo actions={this.actionHandler} />
