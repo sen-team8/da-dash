@@ -16,7 +16,7 @@ import Immutable from 'immutable';
 let oldState;
 
 // toggle this to switch off persistence
-const persistence = undefined; // false;
+const persistence = true; // false;
 
 try {
   oldState = { reducer: JSON.parse(localStorage.getItem('redux1'), (k, v) => {

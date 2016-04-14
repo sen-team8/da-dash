@@ -40,6 +40,10 @@ import {
   RECEIVE_EMAIL_ERROR,
 } from './webmailActions';
 
+import {
+  ADD_TO_WIDGETS,
+} from './dashboardActions';
+
 import { CLEAR_CHAT, RECEIVED_CHAT } from './chatActions';
 
 import {
@@ -394,5 +398,34 @@ export function profile(state= initialProfileState, action) {
   }
 }
 
+const initialDashboard = {
+  widgets: [{
+    id: 1,
+    text: 'Intranet',
+    display: true,
+  }, {
+    id: 2,
+    text: 'Webmail',
+    display: true,
+  }, {
+    id: 3,
+    text: 'Chat',
+    display: true,
+  }, {
+    id: 4,
+    text: 'Todo',
+    display: true,
+  }],
+};
 
-export default combineReducers({ todo, login, intranet, chat, webmail, profile });
+export function dashboard(state=initialDashboard, action) {
+  switch (action.type) {
+    case ADD_TO_WIDGETS:
+      return Object.assign({}, state, {
+        widgets: action.widgets,
+      });
+    default:
+      return state;
+  }
+}
+export default combineReducers({ todo, login, intranet, chat, webmail, profile, dashboard });
