@@ -5,12 +5,13 @@ import Waypoint from 'react-waypoint';
 const style = {
   main: {
     paddingLeft: '15px',
-    height: '80px',
+    height: '120px',
   },
   content: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'space-between',
+    padding: '5px',
   },
   icon: {
     marginRight: '10px',
@@ -41,12 +42,13 @@ export default class ListItem extends React.Component {
           onClick={function foo() {this.props.showEmail(item.get('id'));}}
         >
           <div style={style.content} className="intranet-item">
-            {from.get('p') || from.get('d') || from.get('a')}
+            <p style={{ fontWeight: 'bold', minWidth: '150px' }}>{from.get('p') || from.get('d') || from.get('a')}</p>
             &nbsp;
-            { window.innerWidth < 600 && item.get('name').length > 50
-              ? `${item.get('name').slice(0, 22)}...${item.get('su').slice(-15)}` : item.get('su') }
-              <br />
-            {item.get('fr')}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'space-between' }}>
+              <p>{ window.innerWidth < 600 && item.get('name').length > 50
+                ? `${item.get('name').slice(0, 22)}...${item.get('su').slice(-15)}` : item.get('su') }</p>
+              <div style={{ minHeight: '200px' }}>{item.get('fr')}</div>
+            </div>
           </div>
         </ListGroupItem>
       );
