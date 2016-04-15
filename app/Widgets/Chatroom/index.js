@@ -8,6 +8,7 @@ import _ from 'lodash';
 import { actions } from '../../redux/actions';
 import { firebaseRef } from '../../network/auth';
 import { Scrollbars } from 'react-custom-scrollbars';
+import MiniChat from './MiniChat';
 
 const month= ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Nov', 'Dec'];
 
@@ -131,7 +132,17 @@ export class Chatroom extends Component {
   }
 
   render() {
-    return (
+    return this.props.isDashboard ?
+    (
+      <MiniChat
+        chats={this.props.chats}
+        isDashboard={this.props.isDashboard}
+        sendChat={this.sendChat}
+        ID={this.props.ID}
+      />
+    )
+    :
+     (
         <div style={style.todo} className="bootstrap-border">
           <Header
             batch={this.state.batch}

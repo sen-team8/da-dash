@@ -3,7 +3,7 @@ import CreateTodo from './CreateTodo';
 import TodoList from './TodoList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ButtonToolbar, Button } from 'react-bootstrap';
+import { ButtonToolbar, Button, Panel } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 import { actions } from '../../redux/actions';
@@ -133,21 +133,22 @@ class Todo extends Component {
     const bsStyle = this.bsStyle();
 
     return (
-      <div style={style.todo} className="bootstrap-border todo container">
-        <Link to={'todo'} style={style.head}>
-          To Do List
-        </Link>
+      <div className="widget-outer">
+        <Panel header={'Todo'} >
+          <div className="widget-inner">
         <div>
           {this.showCreateTodo()}
         </div>
         <TodoList actions={this.actionHandler} todos={this.props.todos}
           showCompleted={this.state.showCompleted} className="todo list"
         />
-      <ButtonToolbar style={style.pos}>
+        <ButtonToolbar style={style.pos}>
             <Button type="submit" bsStyle={bsStyle.buttonAll} onClick={this.handleShowAll}>All</Button>
             <Button type="submit" bsStyle={bsStyle.buttonComplete} onClick={this.handleShowCompleted}>Completed</Button>
         </ButtonToolbar>
       </div>
+      </Panel>
+    </div>
     );
   }
 }

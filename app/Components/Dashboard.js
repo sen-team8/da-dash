@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Grid } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import Todo from '../Widgets/Todo';
@@ -39,24 +39,34 @@ class Dashboard extends React.Component {
   }
   iterateThrough() {
     const selectedWidgets = [];
-    const p = this.props.dashboard.widgets.forEach(e => {
+    const p = this.props.dashboard.widgets.forEach((e, k) => {
       if (widgets[e.text] && e.display) {
-        selectedWidgets.push(
-          <Col xs={12} md={6} lg={6}>
-            {widgets[e.text]}
-          </Col>
-        );
+          selectedWidgets.push(
+            <Col xs={12} md={5} lg={5}>
+              {widgets[e.text]}
+            </Col>
+          );
       }
     });
-    console.log(selectedWidgets);
     return selectedWidgets;
   }
   render() {
+    const cols = this.iterateThrough();
     return (
       <Scrollbars style={{ background: '#F5FCFF', height: window.innerHeight - 50 }}>
-        <Row>
-          {this.iterateThrough()}
-        </Row>
+        <Grid>
+          <Row>
+            {cols.shift()}
+            {cols.shift()}
+          </Row>
+          <Row>
+            {cols.shift()}
+            {cols.shift()}
+          </Row>
+          <Row>
+            {cols.shift()}
+          </Row>
+        </Grid>
       </Scrollbars>
     );
   }

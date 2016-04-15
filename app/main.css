@@ -21,7 +21,7 @@ button:focus {
   padding: 0;
   border: 0;
 }
-.widget-outer .panel-body button {
+.widget-outer .panel-body .list-group-item {
   border-radius: 0px !important;
 }
 .widget-inner {
