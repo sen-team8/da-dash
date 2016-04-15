@@ -58,7 +58,9 @@ class Sidebar extends Component {
                   </Link>
               </li>
               <li>
-                  <a href="http://www.google.com" target="_blank" onClick={this.props.toggleSideBar} >
+                  <a href="https://sen-team8.gitbooks.io/user-manual/content/"
+                    target="_blank" onClick={this.props.toggleSideBar}
+                  >
                     <Icon size="1.9em" icon="help" style={{ marginRight: '15px' }} />Help
                   </a>
               </li>

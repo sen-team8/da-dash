@@ -414,6 +414,9 @@ button:focus {
   margin: 10px 0px;
   position: relative;
   top: 5px;
+}
+
+.webmail-search {
   left: calc(100vw - 160px);
 }
 
@@ -463,6 +466,9 @@ button:focus {
     margin: 10px 0px;
     position: relative;
     top: 5px;
+  }
+
+  .webmail-search {
     left: 0px;
   }
 }
