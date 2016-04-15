@@ -43,7 +43,7 @@ export default class Chips extends React.Component {
     const value = this.refs.search.value;
     if (value && value.length >= 1 && value !== '' && value !== ' ') {
       clearTimeout(this.lastQuery);
-      this.lastQuery = setTimeout(() => this.props.setSearch(value), 400);
+      this.lastQuery = setTimeout(() => this.props.setSearch(value), 800);
     } else {
       this.clearSearch();
     }
