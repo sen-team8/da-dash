@@ -79,7 +79,7 @@ export default class Chips extends React.Component {
     </button>
     );
     const search = (
-      <div className="intranet-search" style={searchStyle()}>
+      <div className="intranet-search webmail-search" style={searchStyle()}>
         <input type="text" className="query form-control"
           ref="search" placeholder="Search" onChange={this.handleSearchChange}
         />
