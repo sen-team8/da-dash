@@ -21,7 +21,7 @@ const Mini = ({ location, goToPath }, context) => {
     <div className="widget-outer">
       <Panel header={title} >
         <div className="widget-inner">
-          <ListItem items={location} goToPath={goToIntranet} />
+          <ListItem items={location} goToPath={goToIntranet} isDashboard />
         </div>
       </Panel>
     </div>

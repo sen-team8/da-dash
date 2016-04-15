@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Button, Input } from 'react-bootstrap';
+import filepicker from 'filepicker-js';
 
 const style = {
   form: {
@@ -20,7 +21,9 @@ export default class WriteChat extends React.Component {
   state = {
     text: '',
   }
-
+  componentWillMount() {
+    filepicker.setKey('ArUvPrMZ7TNexiacXYYtQz');
+  }
   handleChange = (e) => {
     this.setState({
       text: e.target.value,
@@ -35,6 +38,24 @@ export default class WriteChat extends React.Component {
     });
   }
 
+
+  fileupload = () => {
+    filepicker.pick(
+      {
+        extension: '.pdf',
+        container: 'modal',
+        services: ['COMPUTER'],
+      },
+      (link) => {
+        this.props.sendChat(link.url);
+        console.log(JSON.stringify(link));
+      },
+      (FPError) => {
+    //  console.log(FPError.toString()); - print errors to console
+      }
+    );
+  }
+
   render() {
     const widthStyle = this.props.isDashboard ? '100%' : '60%';
     const marginLeftStyle = this.props.isDashboard ? '0px' : '50px';
@@ -42,6 +63,16 @@ export default class WriteChat extends React.Component {
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <div style= {{ width: widthStyle, marginLeft: marginLeftStyle }}>
           <form onSubmit={this.handleSubmit} style={style.form}>
+            <div>
+              <Button
+                className="chat raised"
+                bsStyle="default"
+                onClick={this.fileupload}
+                style={{ flexGrow: '1', padding: '10px' }}
+              >
+                Upload File
+              </Button>
+            </div>
             <div style={{ flexGrow: '10' }}>
               <Input
                 className="chat textfield"
@@ -62,6 +93,7 @@ export default class WriteChat extends React.Component {
             </Button>
           </div>
           </form>
+
         </div>
       </div>
     );
