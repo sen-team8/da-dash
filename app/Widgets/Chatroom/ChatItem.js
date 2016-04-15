@@ -48,11 +48,21 @@ export default class ChatItem extends React.Component {
             posted on {this.props.chat.time}
           </span>
         </div>
-        <div style={this.style().message}>{this.props.chat.message} <br /></div>
+        <div style={this.style().message}>{
+            this.props.chat.message.substring(0, 8) === 'https://' ? (
+                <a href={this.props.chat.message}>{this.props.chat.message}</a>
+            )
+            :
+            (<span>
+              {this.props.chat.message}
+            </span>
+            )
+          } <br /></div>
       </div>
     );
   }
   render() {
+    console.log(this.props.chat.message.substring(0, 7));
     const ImgDumb = this.props.isDashboard ? (
       null
     )

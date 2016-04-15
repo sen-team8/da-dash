@@ -1,5 +1,8 @@
 import React from 'react';
-import { ListGroupItem, ListGroup } from 'react-bootstrap';
+import { ListGroupItem, ListGroup, Button } from 'react-bootstrap';
+import Icon from '../../helper/Icons.js';
+import { Link } from 'react-router';
+
 // import Waypoint from 'react-waypoint';
 
 const style = {
@@ -11,9 +14,13 @@ const style = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   icon: {
     marginRight: '10px',
+  },
+  button: {
+    zIndex: '500,',
   },
 };
 
@@ -49,6 +56,7 @@ export default class ListItem extends React.Component {
   static propTypes = {
     items: React.PropTypes.object.isRequired,
     showAttachment: React.PropTypes.func,
+    isDashboard: React.PropTypes.bool,
   }
 
   shouldComponentUpdate(nextProps) {
@@ -63,6 +71,15 @@ export default class ListItem extends React.Component {
   }
 
   render() {
+    const button = this.props.isDashboard ? (
+      <Link to={'discussion/discussions'} >
+        <Button style={style.button}><Icon size="1em" icon="question-answer" /></Button>
+      </Link>
+    )
+    :
+    (
+      null
+    );
     const obj = this.props.items;
     const props = this.props;
     if (!obj) { return null; }
@@ -72,16 +89,20 @@ export default class ListItem extends React.Component {
         <ListGroupItem
           key={key}
           style={style.main}
-          onClick={ item.get('isFile') ?
-            function foo() {props.showAttachment(item.get('path').toJS());}
-          : function foo() {props.goToPath(item.get('path').toJS());}
-          }
         >
           <div style={style.content} className="intranet-item">
+            <div style={{ cursor: 'pointer' }}
+              onClick={ item.get('isFile') ?
+                function foo() {props.showAttachment(item.get('path').toJS());}
+              : function foo() {props.goToPath(item.get('path').toJS());}
+              }
+            >
             {item.get('isFile') ? pdf: folder}
             &nbsp;
             { window.innerWidth < 600 && item.get('name').length > 50
               ? `${item.get('name').slice(0, 22)}...${item.get('name').slice(-15)}` : item.get('name') }
+            </div>
+            {button}
           </div>
         </ListGroupItem>
       );
