@@ -52,6 +52,7 @@ class Dashboard extends React.Component {
   }
   render() {
     const cols = this.iterateThrough();
+    // console.log(Discussion);
     return (
       <Scrollbars style={{ background: '#F5FCFF', height: window.innerHeight - 50 }}>
         <Grid>
