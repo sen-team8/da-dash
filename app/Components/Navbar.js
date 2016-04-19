@@ -31,7 +31,7 @@ export default class Nav extends Component {
             <Link to={'/'} style={{ fontSize: '28px', marginLeft: '5px' }}>Da-Dash</Link>
             </Navbar.Brand>
           <Navbar.Toggle />
-            <Button type="button" style={{ border: 'none',
+            <Button type="button" onClick={function() {window.location.href="https://sen-team8.gitbooks.io/user-manual/content/"}} style={{ border: 'none',
                                           float: 'right',
                                           marginTop: '4px',
                                           color: '#777',

@@ -7,7 +7,6 @@ const style = {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-between',
   },
 };
 
@@ -31,6 +30,7 @@ export default class WriteChat extends React.Component {
   }
 
   handleSubmit = (e) => {
+    console.log('here');
     e.preventDefault();
     this.props.sendChat(this.state.text);
     this.setState({
@@ -60,7 +60,12 @@ export default class WriteChat extends React.Component {
     const widthStyle = this.props.isDashboard ? '100%' : '60%';
     const marginLeftStyle = this.props.isDashboard ? '0px' : '50px';
     return (
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ width: '100%', display: 'flex',
+          justifyContent: 'center',
+          borderTop: 'solid 1px rgb(211, 211, 211)',
+          padding: '2px',
+           }}
+      >
         <div style= {{ width: widthStyle, marginLeft: marginLeftStyle }}>
           <form onSubmit={this.handleSubmit} style={style.form}>
             <div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Input } from 'react-bootstrap';
+import { Button, Input, Image } from 'react-bootstrap';
 import { actions } from '../redux/actions';
 
 
@@ -54,6 +54,17 @@ class Profile extends Component {
     });
   }
 
+  img = () => {
+    return (
+      <Image
+        circle
+        responsive
+        src={`https://ecampus.daiict.ac.in/webapp/intranet/StudentPhotos/${this.props.ID}.jpg`}
+        style={{ width: '200px', height: '200px' }}
+      />
+    );
+  };
+
   render() {
     // console.log(this.props);
     // console.log(this.props.profile.id);
@@ -89,7 +100,7 @@ class Profile extends Component {
     );
     return (
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Img />
+        {this.img()}
         <p>ID: {this.props.ID}</p>
         {nameComp}
       </div>
@@ -108,15 +119,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
-
-
-const Img = () => {
-  return (
-    <div>
-      <img
-        src="https://image.freepik.com/free-icon/male-user-shadow_318-34042.png"
-        style={{ width: '400px', height: '400px' }}
-      />
-    </div>
-  );
-};

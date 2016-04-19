@@ -23,6 +23,7 @@ const style = {
     paddingTop: '0px',
     flexGrow: '1',
     alignItems: 'stretch',
+    height: '100%',
   },
 };
 
@@ -151,7 +152,7 @@ export class Chatroom extends Component {
             isDashboard={this.props.isDashboard}
             isDiscussion={this.state.isDiscussion}
           />
-          <Scrollbars id="chatList" style={{ height: this.state.height -250 }}
+        <Scrollbars id="chatList" style={{ height: this.state.height - 200 }}
             autoHide
             autoHideTimeout={1000}
             autoHideDuration={400}

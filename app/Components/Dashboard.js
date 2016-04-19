@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
     const p = this.props.dashboard.widgets.forEach((e, k) => {
       if (widgets[e.text] && e.display) {
           selectedWidgets.push(
-            <Col xs={12} md={5} lg={5}>
+            <Col xs={12} md={5} lg={5} >
               {widgets[e.text]}
             </Col>
           );
@@ -56,15 +56,15 @@ class Dashboard extends React.Component {
     return (
       <Scrollbars style={{ background: '#F5FCFF', height: window.innerHeight - 50 }}>
         <Grid>
-          <Row>
+          <Row className="widget-row">
             {cols.shift()}
             {cols.shift()}
           </Row>
-          <Row>
+          <Row className="widget-row">
             {cols.shift()}
             {cols.shift()}
           </Row>
-          <Row>
+          <Row className="widget-row">
             {cols.shift()}
           </Row>
         </Grid>

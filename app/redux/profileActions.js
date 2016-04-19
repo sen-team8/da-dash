@@ -54,7 +54,7 @@ export function getProfileName(id) {
 }
 
 export function setProfileName(id, name) {
-  // console.log('setProfileName '+ id + '   ' + name);
+  console.log('setProfileName '+ id + '   ' + name);
   return dispatch => {
     dispatch(settingProfileName);
     return setName(id, name)

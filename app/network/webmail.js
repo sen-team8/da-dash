@@ -4,6 +4,10 @@ const TIMER_INBOX = 20000;
 const BASEURL = 'https://bangle.io/api';
 
 export function fetchInbox(user) {
+  const whereIsAt = user.ID.indexOf('@');
+  if (whereIsAt > -1) {
+    user.ID = user.ID.slice(0, whereIsAt);
+  }
   return new Promise((resolve, reject) => {
     Request.get(`${BASEURL}/email`)
     .timeout(TIMER_INBOX)

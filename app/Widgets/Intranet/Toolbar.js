@@ -89,6 +89,13 @@ export default class Toolbar extends React.Component {
     };
   }
 
+  shouldTrend = (t) => {
+    let sum = 0;
+    for (let i = 0; i < t.length; i++) {
+      sum += t.charCodeAt(i);
+    }
+    return sum%5 === 0;
+  }
   addToFav = () => {
     return this.props.addToFav(Immutable.fromJS({
       isFile: false,
@@ -116,7 +123,7 @@ export default class Toolbar extends React.Component {
     const canDiscuss = this.props.pathString.length === 3 || this.props.pathString.length ===2 ?
     (
       <Link to={'discussion/discussions'} >
-        <Button key={2} bsSize="small" ><Glyphicon glyph="bullhorn" /> Discussions (23)</Button>
+        <Button key={2} bsSize="small" ><Glyphicon glyph="bullhorn" /> Discussions</Button>
       </Link>
     )
     : null;
@@ -145,7 +152,11 @@ export default class Toolbar extends React.Component {
               <Glyphicon glyph="star" /> {starred ? 'Starred': 'Star'}</Button>
               : null
             }
-            <Button key={1} bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>
+            {
+              this.shouldTrend(this.getHeading(pathString)) ?
+              <Button key={1} bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>
+              : null
+            }
               {
                 canDiscuss
               }

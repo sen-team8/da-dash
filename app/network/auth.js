@@ -1,6 +1,11 @@
 import Firebase from 'firebase';
+import { fetchInbox } from './webmail';
+// const FIREBASE = 'https://amber-heat-8849.firebaseio.com/';
+
+// export const firebaseRef = new Firebase('https://amber-heat-8849.firebaseio.com/');
 
 export const firebaseRef = new Firebase('https://senteam8.firebaseio.com/');
+
 export let userRef;
 function createUser(user) {
   return new Promise((res, rej) => firebaseRef.createUser({
@@ -50,6 +55,7 @@ function authenticateUser(user) {
 }
 
 export default function login(user) {
+
   const index = user.id.indexOf('@');
   if (index=== -1) {
     user.id = `${user.id}@daiict.ac.in`;
@@ -60,8 +66,9 @@ export default function login(user) {
   return promise.then(authenticateUser)
   .catch((error) => {
     if (error === 'INVALID_USER') {
-      createUser(user);
-      return Promise.resolve(user);
+      return fetchInbox({ ID: user.id, PASS: user.pass })
+        .then(createUser.bind(this, user))
+        .then(authenticateUser.bind(this, user));
     } else {
       return Promise.reject(error);
     }

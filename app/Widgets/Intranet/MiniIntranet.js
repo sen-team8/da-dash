@@ -2,8 +2,10 @@ import React from 'react';
 import Immutable from 'immutable';
 import { Panel } from 'react-bootstrap';
 import ListItem from './ListItem';
+import { Link } from 'react-router';
+
 const title = (
-  <h3>Intranet</h3>
+  <Link to="/intranet">Intranet</Link>
 );
 const Mini = ({ location, goToPath }, context) => {
   if (location.count() === 0) {

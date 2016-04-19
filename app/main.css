@@ -67,6 +67,13 @@ button:focus {
     {
         display: none !important;
     }
+
+}
+
+@media (min-width: 1000px) {
+  .widget-row {
+    margin-left: 6%;
+  }
 }
 
 /* Login */
@@ -547,4 +554,21 @@ button:focus {
   min-height: 40px;
   max-width: 40px;
   max-height: 40px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+#button-daiict.active {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+
+#button-your-batch.active {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
 }
