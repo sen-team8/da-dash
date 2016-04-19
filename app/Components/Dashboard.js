@@ -26,6 +26,7 @@ class Dashboard extends React.Component {
 
   static propTypes = {
     login: React.PropTypes.object,
+    dashboard: React.PropTypes.object,
   };
 
   static contextTypes = {
@@ -41,11 +42,11 @@ class Dashboard extends React.Component {
     const selectedWidgets = [];
     const p = this.props.dashboard.widgets.forEach((e, k) => {
       if (widgets[e.text] && e.display) {
-          selectedWidgets.push(
-            <Col xs={12} md={5} lg={5} >
-              {widgets[e.text]}
-            </Col>
-          );
+        selectedWidgets.push(
+          <Col xs={12} md={5} lg={5} >
+            {widgets[e.text]}
+          </Col>
+        );
       }
     });
     return selectedWidgets;

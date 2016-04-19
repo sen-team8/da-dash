@@ -1,20 +1,15 @@
-import { userRef } from './auth';
+import { firebaseRef } from './auth';
 
-// const userRef = firebaseRef.child('Users').child(authId);
-
-export function setName(id, name) {
-  // console.log('setname '+ id + '   ' + name);
+export function setName(id, name, uid) {
   return new Promise((resolve, reject) => {
-    userRef.child(id).set({ name });
+    firebaseRef.child('Users').child(uid).child(id).child('name').set(name);
     resolve(id);
   });
 }
 
-export function requestName(id) {
-  // console.log('requestName '+ id);
+export function requestName(id, uid) {
   return new Promise((resolve, reject) => {
-    userRef.child(id).child('name').on('value', (snapshot) => {
-      // console.log('snapshot' + snapshot.val());
+    firebaseRef.child('Users').child(uid).child(id).child('name').on('value', (snapshot) => {
       resolve(snapshot.val());
     }, (error) => {
       reject(error.code);

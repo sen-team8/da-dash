@@ -14,7 +14,7 @@ export default class WriteChat extends React.Component {
 
   static propTypes = {
     sendChat: PropTypes.func.isRequired,
-    isDashboard: PropTypes.string.isRequired,
+    isDashboard: PropTypes.bool.isRequired,
   }
 
   state = {
@@ -30,7 +30,6 @@ export default class WriteChat extends React.Component {
   }
 
   handleSubmit = (e) => {
-    console.log('here');
     e.preventDefault();
     this.props.sendChat(this.state.text);
     this.setState({
@@ -48,7 +47,6 @@ export default class WriteChat extends React.Component {
       },
       (link) => {
         this.props.sendChat(link.url);
-        console.log(JSON.stringify(link));
       },
       (FPError) => {
     //  console.log(FPError.toString()); - print errors to console

@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import { Panel } from 'react-bootstrap';
 import ListItem from './ListItem';
 import { Link } from 'react-router';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const title = (
   <Link to="/intranet">Intranet</Link>
@@ -22,9 +23,9 @@ const Mini = ({ location, goToPath }, context) => {
   return (
     <div className="widget-outer">
       <Panel header={title} >
-        <div className="widget-inner">
+        <Scrollbars id="chatList" style={{ height: 395 }}>
           <ListItem items={location} goToPath={goToIntranet} isDashboard />
-        </div>
+        </Scrollbars>
       </Panel>
     </div>
   );

@@ -1,19 +1,17 @@
-import { userRef } from './auth';
+import { firebaseRef } from './auth';
 
-export function saveTodos(todos) {
+export function saveTodos(todos, uid) {
   return new Promise((resolve, reject) => {
-    userRef.child('todos').set(todos);
+    firebaseRef.child('Users').child(uid).child('todos').set(todos);
     resolve();
   });
 }
 
-export function receiveTodos() {
+export function receiveTodos(uid) {
   return new Promise((resolve, reject) => {
-    userRef.child('todos').on('value', (snapshot) => {
-      // console.log('receive todo ' + snapshot.val());
+    firebaseRef.child('Users').child(uid).child('todos').on('value', (snapshot) => {
       resolve(snapshot.val());
     }, (error) => {
-      // console.log('errorssssssssss' );
       reject(error.code);
     });
   });

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 // import ItemTypes from './ItemTypes';
-import { DragSource, DropTarget } from 'react-dnd';
+import { DragSource as dragSource, DropTarget as dropTarget } from 'react-dnd';
 import { ListGroupItem } from 'react-bootstrap';
 import { Input } from 'react-bootstrap';
 
@@ -12,7 +12,7 @@ const style = {
   padding: '0.5rem 1rem',
   marginBottom: '.5rem',
   backgroundColor: 'white',
-  cursor: 'move'
+  cursor: 'move',
 };
 
 const widgetSource = {
@@ -21,7 +21,7 @@ const widgetSource = {
       id: props.id,
       index: props.index,
     };
-  }
+  },
 };
 
 const widgetTarget = {
@@ -84,7 +84,7 @@ class Widget extends Component {
     return connectDragSource(connectDropTarget(
         <div style={{ ...style, opacity }}>
             <ListGroupItem>
-             <Input type="checkbox" label={text} checked={display} onChange={function foo() {change(index)}} />
+             <Input type="checkbox" label={text} checked={display} onChange={function foo() {change(index);}} />
             </ListGroupItem>
         </div>
 
@@ -92,9 +92,9 @@ class Widget extends Component {
   }
 }
 
-export default DropTarget(ItemTypes.CARD, widgetTarget, connect => ({
-  connectDropTarget: connect.dropTarget()
-}))(DragSource(ItemTypes.CARD, widgetSource, (connect, monitor) => ({
+export default dropTarget(ItemTypes.CARD, widgetTarget, connect => ({
+  connectDropTarget: connect.dropTarget(),
+}))(dragSource(ItemTypes.CARD, widgetSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
-}))(Widget))
+  isDragging: monitor.isDragging(),
+}))(Widget));

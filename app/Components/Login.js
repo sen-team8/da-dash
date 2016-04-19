@@ -50,7 +50,7 @@ class Login extends React.Component {
 
   showLoginError = () => {
     if (this.props.login.STATUS==='LOGIN_ERROR') {
-      return this.props.login.ERROR.message || this.props.login.ERROR ;
+      return this.props.login.ERROR.message || this.props.login.ERROR;
     }
     return null;
   }

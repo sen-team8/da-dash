@@ -1,34 +1,54 @@
-import React from 'react';
-import Immutable from 'immutable';
+import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import WriteChat from './WriteChat';
 import ChatList from './ChatList';
 import { Link } from 'react-router';
-
-const Mini = ({ chats, isDashboard, sendChat, ID }) => {
-  return (
-    <div className="widget-outer">
-      <Panel header={<Link to="/chatroom">Batch Chat </Link>} >
-        <div className="widget-inner">
-          <ChatList
-            style={{ flex: '8' }}
-            chats={chats}
-            isDashboard= {isDashboard}
-            id={ID}
-          />
-          <WriteChat sendChat={sendChat} isDashboard= {isDashboard} />
-        </div>
-      </Panel>
-    </div>
-  );
-};
-
-Mini.propTypes = {
-  chats: React.PropTypes.array,
-  isDashboard: React.PropTypes.bool,
-  sendChat: React.PropTypes.func,
-  ID: React.PropTypes.string,
-};
+import { Scrollbars } from 'react-custom-scrollbars';
 
 
+class Mini extends Component {
+
+
+  static propTypes = {
+    chats: React.PropTypes.array,
+    isDashboard: React.PropTypes.bool,
+    sendChat: React.PropTypes.func,
+    ID: React.PropTypes.string,
+    height: React.PropTypes.number,
+  };
+
+  componentDidMount() {
+    this.refs.scrollRef.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    if (
+    this.refs.scrollRef.getScrollHeight()-this.refs.scrollRef.getScrollTop() < this.props.height ||
+    this.refs.scrollRef.getScrollTop()===0) {
+      this.refs.scrollRef.scrollToBottom();
+    }
+  }
+
+  render() {
+    return (
+      <div className="widget-outer">
+        <Panel header={<Link to="/chatroom">Batch Chat </Link>} >
+          <div className="widget-inner-chat">
+            <Scrollbars ref="scrollRef" id="chatList" style={{ height: 400-45 }}>
+            <ChatList
+              style={{ flex: '8' }}
+              chats={this.props.chats}
+              isDashboard= {this.props.isDashboard}
+              id={this.props.ID}
+            />
+          </Scrollbars>
+
+            <WriteChat sendChat={this.props.sendChat} isDashboard= {this.props.isDashboard} />
+          </div>
+
+        </Panel>
+      </div>
+    );
+  }
+}
 export default Mini;

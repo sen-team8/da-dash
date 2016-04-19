@@ -12,9 +12,10 @@ export function setLogging() {
   };
 }
 
-export function setLoggedIn() {
+export function setLoggedIn(uid) {
   return {
     type: LOGGED_IN,
+    authid: uid,
   };
 }
 
@@ -45,7 +46,7 @@ export function verifyUser(user) {
   return dispatch => {
     dispatch(setLogging(user));
     return login(user)
-      .then(() => dispatch(setLoggedIn(user)))
+      .then((uid) => dispatch(setLoggedIn(uid)))
       .catch((error) => dispatch(setLoginError(error)));
   };
 }

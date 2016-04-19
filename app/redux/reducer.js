@@ -60,6 +60,7 @@ const initialLoginState = {
   ERROR: '',
   ID: null,
   PASS: null,
+  AUTHID: null,
 };
 
 const getId = (state) => {
@@ -69,15 +70,7 @@ const getId = (state) => {
 };
 
 const todoState = {
-  todos: [{
-    ID: 0,
-    completed: false,
-    TEXT: 'First Todo',
-  }, {
-    ID: 1,
-    completed: false,
-    TEXT: 'Second Todo',
-  }],
+  todos: [],
   gettingTodos: true,
 };
 
@@ -143,6 +136,7 @@ export function login(state = initialLoginState, action) {
     case LOGGED_IN:
       return Object.assign({}, state, {
         STATUS: action.type,
+        AUTHID: action.authid,
       });
     case LOGGED_OUT:
       return Object.assign({}, state, {

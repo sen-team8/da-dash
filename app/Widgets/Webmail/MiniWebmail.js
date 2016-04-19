@@ -2,6 +2,8 @@ import React from 'react';
 import Immutable from 'immutable';
 import { Panel } from 'react-bootstrap';
 import InboxList from './InboxList';
+import { Scrollbars } from 'react-custom-scrollbars';
+
 const title = (
   <h3>Webmail</h3>
 );
@@ -14,9 +16,9 @@ const Mini = ({ inbox }, context) => {
   return (
     <div className="widget-outer">
       <Panel header={title} >
-        <div className="widget-inner">
+        <Scrollbars id="chatList" style={{ height: 400 }}>
           <InboxList inbox={inbox} showEmail={goToWebmail} />
-        </div>
+        </Scrollbars>
       </Panel>
   </div>
   );

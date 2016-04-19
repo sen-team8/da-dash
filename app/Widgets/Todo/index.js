@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ButtonToolbar, Button, Panel } from 'react-bootstrap';
 import { Link } from 'react-router';
+import { Scrollbars } from 'react-custom-scrollbars';
+
 
 import { actions } from '../../redux/actions';
 
@@ -30,7 +32,7 @@ const style = {
   },
   pos: {
     position: 'absolute',
-    bottom: '35px',
+    bottom: '30px',
     marginLeft: '32%',
   },
 };
@@ -41,6 +43,7 @@ class Todo extends Component {
     actions: PropTypes.object.isRequired,
     todos: PropTypes.array.isRequired,
     gettingTodos: PropTypes.bool.isRequired,
+    AUTHID: PropTypes.string.isRequired,
   }
 
   state = {
@@ -50,7 +53,7 @@ class Todo extends Component {
   };
 
   componentWillMount() {
-    this.props.actions.getTodos();
+    this.props.actions.getTodos(this.props.AUTHID);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,7 +61,7 @@ class Todo extends Component {
       todos: nextProps.todos,
     };
     if (this.props.gettingTodos=== false) {
-      this.props.actions.setTodos(todos);
+      this.props.actions.setTodos(todos, this.props.AUTHID);
     }
   }
 
@@ -135,17 +138,21 @@ class Todo extends Component {
     return (
       <div className="widget-outer">
         <Panel header={'Todo'} >
-          <div className="widget-inner">
+        <div className="widget-inner-todo">
         <div>
           {this.showCreateTodo()}
         </div>
-        <TodoList actions={this.actionHandler} todos={this.props.todos}
-          showCompleted={this.state.showCompleted} className="todo list"
-        />
+        <Scrollbars ref="scrollRef" id="chatList" style={{ height: 310 }}>
+          <TodoList actions={this.actionHandler} todos={this.props.todos}
+            showCompleted={this.state.showCompleted}
+          />
+        </Scrollbars>
+        <div style={{ backgroundColor: 'black', width: '100%' }}>
         <ButtonToolbar style={style.pos}>
             <Button type="submit" bsStyle={bsStyle.buttonAll} onClick={this.handleShowAll}>All</Button>
             <Button type="submit" bsStyle={bsStyle.buttonComplete} onClick={this.handleShowCompleted}>Completed</Button>
         </ButtonToolbar>
+        </div>
       </div>
       </Panel>
     </div>
@@ -160,7 +167,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { ...state.reducer.todo };
+  return { ...state.reducer.todo, AUTHID: state.reducer.login.AUTHID };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);
