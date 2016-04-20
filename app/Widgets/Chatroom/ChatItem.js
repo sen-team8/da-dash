@@ -55,7 +55,7 @@ export default class ChatItem extends React.Component {
     );
     return (
       <div style={style.chat}>
-        <Panel header={header} style={{ marginBottom: '0px', marginTop: panelMarginBot }} bsStyle={who ? 'info': 'success'}>
+        <Panel header={header} style={{ marginBottom: '2px', marginTop: panelMarginBot }} bsStyle={who ? 'info': 'success'}>
           <div style={style.message}>{
               this.props.chat.message.substring(0, 8) === 'https://' ? (
                   <a href={this.props.chat.message}>{this.props.chat.message}</a>

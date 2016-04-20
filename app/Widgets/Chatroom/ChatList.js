@@ -19,7 +19,7 @@ class ChatList extends React.Component {
 
   render() {
     return (
-      <ListGroup style={{ height: '345px', borderBottomStyle: 'solid', borderColor: '#d3d3d3', borderWidth: '1px' }}>
+      <ListGroup style={{ height: '500px' }}>
       {
         this.props.chats.map((chat, key) => {
           if (prevChatId===chat.id) {
