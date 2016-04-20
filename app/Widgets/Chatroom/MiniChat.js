@@ -23,7 +23,7 @@ class Mini extends Component {
   componentDidUpdate() {
     if (
     this.refs.scrollRef.getScrollHeight()-this.refs.scrollRef.getScrollTop() < this.props.height ||
-    this.refs.scrollRef.getScrollTop()===0) {
+    this.refs.scrollRef.getScrollTop()<100) {
       this.refs.scrollRef.scrollToBottom();
     }
   }
