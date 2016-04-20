@@ -46,17 +46,17 @@ function gettingTodos() {
   };
 }
 
-export function getTodos() {
+export function getTodos(uid) {
   return dispatch => {
     dispatch(gettingTodos);
-    return receiveTodos()
+    return receiveTodos(uid)
       .then((todos) => dispatch(fillTodos(todos)));
   };
 }
 
-export function setTodos(todos) {
+export function setTodos(todos, uid) {
   return dispatch => {
-    return saveTodos(todos)
+    return saveTodos(todos, uid)
       .then((todo) => dispatch(getTodos));
   };
 }

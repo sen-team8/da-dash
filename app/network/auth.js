@@ -6,7 +6,6 @@ import { fetchInbox } from './webmail';
 
 export const firebaseRef = new Firebase('https://senteam8.firebaseio.com/');
 
-export let userRef;
 function createUser(user) {
   return new Promise((res, rej) => firebaseRef.createUser({
     email: user.id,
@@ -22,8 +21,7 @@ function createUser(user) {
       }
       return rej(error);
     } else {
-      userRef = firebaseRef.child('Users').child(userData.uid);
-      return res(userData);
+      return res(userData.uid);
     }
   }));
 }
@@ -47,15 +45,13 @@ function authenticateUser(user) {
         }
         return reject(error.code);
       } else {
-        userRef = firebaseRef.child('Users').child(authData.uid);
-        return resolve(user);
+        return resolve(authData.uid);
       }
     });
   });
 }
 
 export default function login(user) {
-
   const index = user.id.indexOf('@');
   if (index=== -1) {
     user.id = `${user.id}@daiict.ac.in`;

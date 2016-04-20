@@ -23,7 +23,7 @@ const style = {
     zIndex: '500,',
   },
 };
-
+let count=0;
 const pdf = (
   <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" fit
     style={{
@@ -71,7 +71,7 @@ export default class ListItem extends React.Component {
   }
 
   render() {
-    const button = this.props.isDashboard ? (
+    const button = (this.props.isDashboard) ? (
       <Link to={'discussion/discussions'} >
         <Button style={style.button}><Icon size="1em" icon="question-answer" /></Button>
       </Link>
@@ -85,6 +85,7 @@ export default class ListItem extends React.Component {
     if (!obj) { return null; }
     let list = [];
     list = list.concat(obj.map((item, key) => {
+      count ++;
       return (
         <ListGroupItem
           key={key}
@@ -102,7 +103,11 @@ export default class ListItem extends React.Component {
             { window.innerWidth < 600 && item.get('name').length > 50
               ? `${item.get('name').slice(0, 22)}...${item.get('name').slice(-15)}` : item.get('name') }
             </div>
-            {button}
+            {
+               (window.innerWidth < 600 && item.get('name').length > 50
+                ? `${item.get('name').slice(0, 22)}...${item.get('name').slice(-15)}` : item.get('name')) !=='Intranet' ?
+                button : null
+            }
           </div>
         </ListGroupItem>
       );

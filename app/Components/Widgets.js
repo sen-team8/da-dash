@@ -17,13 +17,14 @@ class Container extends Component {
 
   static propTypes = {
     actions: React.PropTypes.object.isRequired,
+    widgets: React.PropTypes.array,
   }
   moveWidget = (dragIndex, hoverIndex) => {
     const widgets = this.props.widgets.slice(0);
     const dragWidget = widgets[dragIndex];
 
-    let newArray = widgets.filter(function(i, k) {
-          return k !== dragIndex;
+    const newArray = widgets.filter((i, k) => {
+      return k !== dragIndex;
     });
     this.props.actions.addToWidgets(
       newArray.slice(0, hoverIndex).concat([dragWidget]).concat(newArray.slice(hoverIndex))
@@ -31,7 +32,7 @@ class Container extends Component {
   }
 
   change = (id) => {
-    let widgets = this.props.widgets.slice(0);
+    const widgets = this.props.widgets.slice(0);
     widgets[id].display = !widgets[id].display;
     this.props.actions.addToWidgets(widgets);
   }

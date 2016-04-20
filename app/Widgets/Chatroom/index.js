@@ -72,6 +72,14 @@ export class Chatroom extends Component {
     });
   }
 
+  componentDidUpdate() {
+    const foo = _.isEmpty(this.refs.scrollRef);
+    if (
+      !foo && (this.refs.scrollRef.getScrollHeight()-this.refs.scrollRef.getScrollTop() < this.state.height ||
+      this.refs.scrollRef.getScrollTop()===0)) {
+      this.refs.scrollRef.scrollToBottom();
+    }
+  }
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
     this.state.currentRef.off();
@@ -140,6 +148,7 @@ export class Chatroom extends Component {
         isDashboard={this.props.isDashboard}
         sendChat={this.sendChat}
         ID={this.props.ID}
+        height={this.state.height}
       />
     )
     :
@@ -152,16 +161,17 @@ export class Chatroom extends Component {
             isDashboard={this.props.isDashboard}
             isDiscussion={this.state.isDiscussion}
           />
-        <Scrollbars id="chatList" style={{ height: this.state.height - 200 }}
-            autoHide
-            autoHideTimeout={1000}
-            autoHideDuration={400}
-          >
+        <Scrollbars ref="scrollRef" id="chatList" style={{ height: this.state.height - 200 }}
+          autoHide
+          autoHideTimeout={1000}
+          autoHideDuration={400}
+        >
           <ChatList
             style={{ flex: '8' }}
             chats={this.props.chats}
             isDashboard= {this.props.isDashboard}
             id= {this.props.ID}
+            updateScroll={this.updateScroll}
           />
           </Scrollbars>
           <WriteChat sendChat={this.sendChat} isDashboard= {this.props.isDashboard} />

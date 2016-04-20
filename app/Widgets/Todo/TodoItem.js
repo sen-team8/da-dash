@@ -53,7 +53,13 @@ export default class TodoItem extends React.Component {
     this.props.actions('complete', this.props.todo.ID);
   }
 
-  handleSave = () => {
+  handleSave = (e) => {
+    e.preventDefault();
+    if (this.state.text===this.props.todo.TEXT) {
+      this.setState({
+        isEditing: false,
+      });
+    }
     this.props.actions('edit', this.props.todo.ID, this.state.text);
   }
 
@@ -89,16 +95,16 @@ export default class TodoItem extends React.Component {
         return null;
       }
       return (
-        <div style={style.edit}>
+        <form style={style.edit} onSubmit={this.handleSave}>
             <Input
               type="text" value={this.state.text}
               onDoubleClick={this.handleDoubleClick}
               onChange={this.handleTextChange}
             />
           <div>
-            <Button type="submit" onClick={this.handleSave}>Save</Button>
+            <Button type="submit" >Save</Button>
             </div>
-        </div>
+        </form>
     );
     }
   }

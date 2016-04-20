@@ -43,22 +43,20 @@ export function gotError(error) {
   };
 }
 
-export function getProfileName(id) {
-  // console.log('getProfileName'+ id);
+export function getProfileName(id, uid) {
   return dispatch => {
     dispatch(gettingProfileName);
-    return requestName(id)
+    return requestName(id, uid)
       .then((name) => (dispatch(gotProfileName(name))))
       .catch((error) => dispatch(gotError(error)));
   };
 }
 
-export function setProfileName(id, name) {
-  console.log('setProfileName '+ id + '   ' + name);
+export function setProfileName(id, name, uid) {
   return dispatch => {
     dispatch(settingProfileName);
-    return setName(id, name)
-      .then(() => dispatch(getProfileName(id)))
+    return setName(id, name, uid)
+      .then(() => dispatch(getProfileName(id, uid)))
       .catch((error) => dispatch(gotError(error)));
   };
 }

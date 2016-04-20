@@ -10,7 +10,7 @@ export default class ChatItem extends React.Component {
 
   style = () => {
     const widthStyle = this.props.isDashboard ? '100%' : '60%';
-    const borderBottomStyle = this.props.isDashboard ? '0px' : '10px';
+    const borderBottomStyle = this.props.isDashboard ? '0px' : '5px';
     return {
       chat: {
         minHeight: '100px',
@@ -18,7 +18,6 @@ export default class ChatItem extends React.Component {
         display: 'flex',
         flexDirection: 'column',
         wordWrap: 'break-word',
-        marginBottom: '20px',
         border: '1px solid #d3d3d3',
         borderBottomLeftRadius: borderBottomStyle,
         borderBottomRightRadius: borderBottomStyle,
@@ -29,7 +28,7 @@ export default class ChatItem extends React.Component {
         borderBottom: '1px solid #d3d3d3',
         height: '40px',
         padding: '10px',
-        backgroundColor: '#F2F8FA',
+        backgroundColor: '#F1F1F1',
       },
       message: {
         width: '100%',
@@ -62,7 +61,6 @@ export default class ChatItem extends React.Component {
     );
   }
   render() {
-    console.log(this.props.chat.message.substring(0, 7));
     const ImgDumb = this.props.isDashboard ? (
       null
     )

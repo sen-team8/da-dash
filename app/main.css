@@ -30,7 +30,14 @@ button:focus {
     width: 100%;
 }
 
-
+.widget-inner-todo {
+    height: 400px !important;
+    width: 100%;
+}
+.widget-inner-chat {
+    height: 400px !important;
+    width: 100%;
+}
 
 .bootstrap-border {
   border: 1px solid #ddd;
