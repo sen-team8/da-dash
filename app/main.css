@@ -620,3 +620,16 @@ button:focus {
     background-color: #d9534f;
     border-color: #d43f3a;
 }
+
+
+/**profile page*/
+.profile-overlay {
+  opacity:0.8;
+  background-color: #F5FCFF;
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:0;
+}

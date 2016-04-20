@@ -102,7 +102,7 @@ class Profile extends Component {
     );
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="profile-overlay" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         {this.img()}
         <p>ID: {this.props.ID}</p>
         {name}
