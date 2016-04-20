@@ -57,10 +57,13 @@ class Login extends React.Component {
 
   render() {
     return (
+      <div className="login-overlay">
       <div>
-      <div style={{ width: '100%', textAlign: 'center', marginTop: '90px', marginBottom: '30px' }}>
-      <h1>DA-Dash</h1>
-      <h2 style={{ fontStyle: 'italic' }}>Your one stop destination to DA-IICT.</h2>
+      <div className="image-logo" style={{ marginLeft: '44%', marginTop: '10px' }} />
+      <div>
+      <div style={{ width: '100%', textAlign: 'center', marginTop: '20px', marginBottom: '30px' }}>
+      <h1 style={{ fontWeight: 'bold', color: 'black' }}>DA-Dash</h1>
+      <h2 style={{ fontStyle: 'italic', fontWeight: 'bold', color: 'black' }}>Your one stop destination to DA-IICT.</h2>
       </div>
       <div style={{ display: 'flex', height: '100%' }}>
         <div className="login-wrapper">
@@ -95,6 +98,8 @@ class Login extends React.Component {
         </div>
       </div>
     </div>
+  </div>
+</div>
     );
   }
 }
