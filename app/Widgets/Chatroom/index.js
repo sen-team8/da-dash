@@ -178,7 +178,7 @@ export class Chatroom extends Component {
             updateScroll={this.updateScroll}
           />
           </Scrollbars>
-          <WriteChat sendChat={this.sendChat} isDashboard= {this.props.isDashboard} />
+          <WriteChat sendChat={this.sendChat} isDashboard= {this.props.isDashboard} id= {this.props.ID} />
         </div>
     );
   }
@@ -186,7 +186,7 @@ export class Chatroom extends Component {
   render() {
     return this.props.chats ? this.showChatroom():
     <div className="widget-outer intranet-loading">
-      <Panel header={<h3>Webmail</h3>}>
+      <Panel header={<h3>Chatroom</h3>}>
         <div className="widget-inner" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
           <Loading type="bubbles" color="lightblue" />
         </div>

@@ -46,7 +46,7 @@ export class IntranetWidget extends React.Component {
   render() {
     const progress = (
       <div className="widget-outer intranet-loading">
-        <Panel header={<h3>Webmail</h3>}>
+        <Panel header={<h3>Intranet</h3>}>
           <div className="widget-inner" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
             <Loading type="bubbles" color="lightblue" />
           </div>

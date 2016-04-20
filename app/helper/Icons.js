@@ -99,6 +99,14 @@ export default class Icon extends Component {
         return (
           <g><path d="M21 6h-2v9h-13v2c0 .55.45 1 1 1h11l4 4v-15c0-.55-.45-1-1-1zm-4 6v-9c0-.55-.45-1-1-1h-13c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path></g>
         );
+      case 'file-upload':
+        return (
+          <g><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2h-14z"></path></g>
+        );
+      case 'message':
+        return (
+          <g><path d="M20 2h-16c-1.1 0-1.99.9-1.99 2l-.01 18 4-4h14c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2zm-2 12h-12v-2h12v2zm0-3h-12v-2h12v2zm0-3h-12v-2h12v2z"></path></g>
+        );
       default:
         return (
           <g><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6h-2v-13h-6v-2h18v2z"></path></g> // eslint-disable-line
