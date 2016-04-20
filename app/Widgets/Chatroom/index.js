@@ -39,6 +39,7 @@ export class Chatroom extends Component {
     params: React.PropTypes.object,
     discussionid: React.PropTypes.string,
     isDashboard: React.PropTypes.bool,
+    fav: React.PropTypes.object,
   }
   static contextTypes = {
     router: React.PropTypes.object.isRequired,
@@ -92,8 +93,13 @@ export class Chatroom extends Component {
 
 
   updateChatGroup = () => {
-    const abc = this.props.pathString || ['default'];
+    const obj = this.props.fav;
+    let abc = this.props.pathString || ['default'];
     const foo = _.isEmpty(this.props.params);
+    if (!foo && this.props.params.discussionid !== 'discussions') {
+      const key = this.props.params.discussionid;
+      abc = (obj.get(key).toJS()).path;
+    }
     if (!foo && abc!==undefined && (abc.length===3 || abc.length ===2)) {
       const discussion = abc.length===3 ? `${abc[0]}-${abc[1]}-${abc[2]}` : `${abc[0]}-${abc[1]}`;
       this.state.currentRef = firebaseRef.child(discussion);
@@ -187,7 +193,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { ...state.reducer.chat, ID: state.reducer.login.ID, pathString: state.reducer.intranet.pathString };
+  return { ...state.reducer.chat,
+    ID: state.reducer.login.ID,
+    pathString: state.reducer.intranet.pathString,
+    fav: state.reducer.intranet.fav,
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chatroom);

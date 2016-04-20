@@ -11,7 +11,6 @@ export default class ChatItem extends React.Component {
 
   style = () => {
     const widthStyle = this.props.isDashboard ? '100%' : '60%';
-    const borderBottomStyle = this.props.isDashboard ? '0px' : '5px';
     return {
       chat: {
         minHeight: '100px',
@@ -70,8 +69,16 @@ export default class ChatItem extends React.Component {
       <Image
         circle
         responsive
-        src={`https://ecampus.daiict.ac.in/webapp/intranet/StudentPhotos/${this.props.chat.id.trim().substring(0, 9)}.jpg`}
-        style={{height: '40px', width: '40px',  marginRight: '12px', marginTop: '5px', clip: 'rect(0px,10px,10px,0px)' }}
+        src={
+          `https://ecampus.daiict.ac.in/webapp/intranet/StudentPhotos/${this.props.chat.id.trim().substring(0, 9)}.jpg`
+        }
+        style={{
+          height: '40px',
+          width: '40px',
+          marginRight: '12px',
+          marginTop: '5px',
+          clip: 'rect(0px,10px,10px,0px)',
+        }}
       />
     );
 
