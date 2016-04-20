@@ -116,7 +116,6 @@ export default class ListItem extends React.Component {
   render() {
     const mailList = this.displayMails(this.props.inbox);
     const searchList = this.displaySearch();
-    console.log(searchList);
     // console.debug('render', new Date().getTime())
     const inboxList = (this.props.quickSearch) ? searchList : mailList;
     return (
