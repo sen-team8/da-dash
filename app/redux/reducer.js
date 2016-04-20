@@ -322,21 +322,25 @@ export function webmail(state=webmailState, action) {
       return Object.assign({}, state, {
         error: action.error,
         isFetching: false,
+        quickSearch: null,
       });
     case REQUEST_EMAIL:
       return Object.assign({}, state, {
         isFetchingEmail: true,
         emaildId: action.emailId,
+        quickSearch: null,
       });
     case RECEIVE_EMAIL:
       return Object.assign({}, state, {
         isFetchingEmail: false,
         email: action.email,
+        quickSearch: null,
       });
     case RECEIVE_EMAIL_ERROR:
       return Object.assign({}, state, {
         isFetchingEmail: false,
         error: action.error,
+        quickSearch: null,
       });
     case QUICK_SEARCH_WEBMAIL:
       newSearchObj = new Immutable.List();

@@ -19,9 +19,10 @@ class ChatList extends React.Component {
     return (
       <ListGroup style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       {
-        this.props.chats.map((chat) => {
+        this.props.chats.map((chat, key) => {
           return (
               <ChatItem
+                key={key}
                 isDashboard= {this.props.isDashboard}
                 chat={chat}
                 id= {this.props.id}
