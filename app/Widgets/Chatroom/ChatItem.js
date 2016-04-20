@@ -26,9 +26,10 @@ export default class ChatItem extends React.Component {
       name: {
         width: '100%',
         borderBottom: '1px solid #d3d3d3',
-        height: '40px',
         padding: '10px',
-        backgroundColor: '#F1F1F1',
+        backgroundColor: '#F2F8FA',
+        margin: 'auto',
+        lineHeight: '80%',
       },
       message: {
         width: '100%',
@@ -43,9 +44,9 @@ export default class ChatItem extends React.Component {
     return (
       <div style={this.style().chat}>
         <div style={this.style().name}>
-          {id} <span style={{ color: '#AAAAAA' }}>
+          <p style={{ fontSize: '1.1em', fontWeight: 'bold' }}>{id}</p> <p style={{ color: '#AAAAAA', fontSize: '0.8em' }}>
             posted on {this.props.chat.time}
-          </span>
+          </p>
         </div>
         <div style={this.style().message}>{
             this.props.chat.message.substring(0, 8) === 'https://' ? (

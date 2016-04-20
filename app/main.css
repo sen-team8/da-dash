@@ -3,6 +3,19 @@ html, body {
   height: 100%;
 }
 
+.dashboard {
+  /*background: -moz-radial-gradient(center, ellipse cover,  rgba(173,218,234,0) 0%, rgba(172,217,232,0.8) 20%, rgba(171,216,230,0.6) 43%, rgba(170,215,229,0.4) 63%, rgba(169,214,228,0.2) 78%, rgba(167,213,226,0.7) 100%);
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(173,218,234,0) 0%,rgba(172,217,232,0.8) 20%,rgba(171,216,230,0.6) 43%,rgba(170,215,229,0.4) 63%,rgba(169,214,228,0.2) 78%,rgba(167,213,226,0.7) 100%);
+  background: radial-gradient(ellipse at center,  rgba(173,218,234,0) 0%,rgba(172,217,232,0.8) 20%,rgba(171,216,230,0.6) 43%,rgba(170,215,229,0.4) 63%,rgba(169,214,228,0.2) 78%,rgba(167,213,226,0.7) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00addaea', endColorstr='#b3a7d5e2',GradientType=1 );*/
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b6d0ef+0,96c0ea+100&0.15+0,0.5+100 */
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(182,208,239,0.15) 0%, rgba(150,192,234,0.5) 100%);
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(182,208,239,0.15) 0%,rgba(150,192,234,0.5) 100%);
+  background: radial-gradient(ellipse at center,  rgba(182,208,239,0.15) 0%,rgba(150,192,234,0.5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26b6d0ef', endColorstr='#8096c0ea',GradientType=1 );
+}
+
 #app, .app {
   height: 100%;
 }
@@ -30,11 +43,7 @@ button:focus {
     width: 100%;
 }
 
-.widget-inner-todo {
-    height: 400px !important;
-    width: 100%;
-}
-.widget-inner-chat {
+.custom-inner {
     height: 400px !important;
     width: 100%;
 }
@@ -230,16 +239,28 @@ button:focus {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-
-  background-color: white;
 }
 
 .navbar-open {
   max-width: calc(100vw - 240px);
+  background-color: rgba(255,255,255,1) !important;
 }
 
 .navbar-closed {
   max-width: 100%;
+  background-color: rgba(10,10,10,0.8) !important;
+}
+
+.link-open {
+  font-size: 28px;
+  margin-left: 5px;
+  color: grey !important;
+}
+
+.link-closed {
+  font-size: 28px;
+  margin-left: 5px;
+  color: rgba(255,255,255,0.8) !important;
 }
 
 .sidebar-open {
