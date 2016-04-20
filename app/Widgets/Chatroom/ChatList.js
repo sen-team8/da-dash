@@ -17,7 +17,7 @@ class ChatList extends React.Component {
 
   render() {
     return (
-      <ListGroup style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <ListGroup style={{ height: '345px', borderBottomStyle: 'solid', borderColor: '#d3d3d3', borderWidth: '1px' }}>
       {
         this.props.chats.map((chat, key) => {
           return (

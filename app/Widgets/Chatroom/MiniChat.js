@@ -5,7 +5,6 @@ import ChatList from './ChatList';
 import { Link } from 'react-router';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-
 class Mini extends Component {
 
 
@@ -33,7 +32,7 @@ class Mini extends Component {
     return (
       <div className="widget-outer">
         <Panel header={<Link to="/chatroom">Batch Chat </Link>} >
-          <div className="widget-inner-chat">
+          <div className="custom-inner">
             <Scrollbars ref="scrollRef" id="chatList" style={{ height: 400-45 }}>
             <ChatList
               style={{ flex: '8' }}

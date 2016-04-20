@@ -7,6 +7,7 @@ const style = {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
+    justifyContent: 'space-between',
   },
 };
 
@@ -60,41 +61,38 @@ export default class WriteChat extends React.Component {
     return (
       <div style={{ width: '100%', display: 'flex',
           justifyContent: 'center',
-          borderTop: 'solid 1px rgb(211, 211, 211)',
-          padding: '2px',
+          padding: '5px',
+          marginTop: '0px',
            }}
       >
         <div style= {{ width: widthStyle, marginLeft: marginLeftStyle }}>
           <form onSubmit={this.handleSubmit} style={style.form}>
-            <div>
+            <div style={{ flexGrow: '1', padding: '2px', maxWidth: '40%' }}>
               <Button
                 className="chat raised"
                 bsStyle="default"
                 onClick={this.fileupload}
-                style={{ flexGrow: '1', padding: '10px' }}
               >
                 Upload File
               </Button>
             </div>
-            <div style={{ flexGrow: '10' }}>
-              <Input
-                className="chat textfield"
-                type="text"
-                placeholder="Enter message"
-                value={this.state.text} onChange={this.handleChange}
-                style= {{ padding: '20px' }}
-              />
+              <div style={{ flexGrow: '1', padding: '2px', maxWidth: '100%' }}>
+                <Input
+                  className="chat textfield"
+                  type="text"
+                  placeholder="Enter message"
+                  value={this.state.text} onChange={this.handleChange}
+                />
+              </div>
+            <div style={{ flexGrow: '1', padding: '2px', maxWidth: '30%' }}>
+              <Button
+                className="chat raised"
+                bsStyle="default"
+                type="submit"
+              >
+                Send
+              </Button>
             </div>
-          <div>
-            <Button
-              className="chat raised"
-              bsStyle="default"
-              type="submit"
-              style={{ flexGrow: '1', padding: '10px' }}
-            >
-              Send
-            </Button>
-          </div>
           </form>
 
         </div>
