@@ -18,7 +18,6 @@ class Profile extends Component {
   state = {
     text: '',
     isEditName: false,
-    didMount: false,
   }
 
   componentWillMount() {
@@ -26,11 +25,6 @@ class Profile extends Component {
     this.props.actions.setProfileId(id);
     this.props.actions.getProfileName(this.props.ID, this.props.AUTHID);
   }
-
-  componentDidMount() {
-    this.state.didMount = true;
-  }
-
 
   onTextChange = (e) => {
     this.setState({

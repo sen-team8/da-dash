@@ -8,9 +8,10 @@ export default class Inbox extends React.Component {
   static propTypes = {
     inbox: React.PropTypes.object,
     emailId: React.PropTypes.string,
-    email: React.PropTypes.object,
+    email: React.PropTypes.string,
     quickSearch: React.PropTypes.object,
     setSearch: React.PropTypes.func,
+    showEmail: React.PropTypes.func,
   };
 
   state = {
@@ -37,7 +38,7 @@ export default class Inbox extends React.Component {
           quickSearch={this.props.quickSearch}
           count={this.props.inbox.count()}
         />
-      <InboxList inbox={this.props.inbox} showEmail={this.showEmail} quickSearch={this.props.quickSearch} />
+      <InboxList inbox={this.props.inbox} showEmail={this.props.showEmail} quickSearch={this.props.quickSearch} />
       </Scrollbars>
     );
   }

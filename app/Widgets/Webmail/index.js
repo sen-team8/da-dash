@@ -28,6 +28,10 @@ export class WebmailWidget extends React.Component {
     this.props.searchForWebmail(s);
   }
 
+  showEmail = (id) => {
+    this.props.getEmail(this.props.user, id);
+  }
+
   showInbox = () => {
     return this.props.isDashboard ?
         <MiniWebmail inbox={this.props.inbox} showEmail={this.showEmail} /> :
@@ -37,10 +41,6 @@ export class WebmailWidget extends React.Component {
           setSearch={this.setSearch}
           quickSearch={this.props.quickSearch}
         />;
-  }
-
-  showEmail = () => {
-    return null;
   }
 
   render() {

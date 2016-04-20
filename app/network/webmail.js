@@ -22,6 +22,7 @@ export function fetchInbox(user) {
 
 
 export function fetchEmail(user, id) {
+  debugger;
   let actualId = id.indexOf('.') > -1 ? id.indexOf('.'): id.length;
   actualId = id.slice(0, actualId);
   return new Promise((resolve, reject) => {
@@ -33,9 +34,7 @@ export function fetchEmail(user, id) {
             if (err) {
               return reject(err);
             } else {
-              const email = JSON.parse(resp.text);
-              const date = new Date(email.date);
-              email.id = `${email.id}.${date}`;
+              const email = resp.text;
               return resolve(email);
             }
           });

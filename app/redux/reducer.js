@@ -311,12 +311,14 @@ export function webmail(state=webmailState, action) {
     case REQUEST_INBOX:
       return Object.assign({}, state, {
         isFetching: true,
+        quickSearch: null,
       });
     case RECEIVE_INBOX:
       return Object.assign({}, state, {
         inbox: Immutable.fromJS(action.inbox.slice(0, INBOX_LIMIT)),
         lastFetched: Date.now(),
         isFetching: false,
+        quickSearch: null,
       });
     case RECEIVE_INBOX_ERROR:
       return Object.assign({}, state, {
