@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Button, Input } from 'react-bootstrap';
+import { Button, Input, Image } from 'react-bootstrap';
 import filepicker from 'filepicker-js';
 import Icon from '../../helper/Icons.js';
 
@@ -67,19 +67,19 @@ export default class WriteChat extends React.Component {
         circle
         responsive
         src={`https://ecampus.daiict.ac.in/webapp/intranet/StudentPhotos/${this.props.id.trim().substring(0, 9)}.jpg`}
-        style={{ height: '40px', width: '40px', marginRight: '12px', marginTop: '5px', clip: 'rect(0px,10px,10px,0px)' }}
+        style={{ height: '40px', width: '40px', marginRight: '-5px', marginTop: '10px', clip: 'rect(0px,10px,10px,0px)' }}
       />
     );
     const widthStyle = this.props.isDashboard ? '100%' : '60%';
-    const marginLeftStyle = this.props.isDashboard ? '0px' : '50px';
+    const marginLeftStyle = this.props.isDashboard ? '0px' : '10px';
     return (
       <div style={{ width: '100%', display: 'flex',
           justifyContent: 'center',
           padding: '5px',
-          marginTop: '10px',
           borderTop: 'solid #d3d3d3 1px',
            }}
       >
+        {ImgDumb}
         <div style= {{ width: widthStyle, marginLeft: marginLeftStyle }}>
           <form onSubmit={this.handleSubmit} style={style.form}>
             <div style={{ flexGrow: '1', padding: '2px', maxWidth: '100%' }}>
