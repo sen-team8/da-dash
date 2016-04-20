@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router';
 
-let buttonPressed ='1';
+let buttonPressed ='button-your-batch';
 export default class MyComponent extends React.Component {
 
   static propTypes = {
@@ -35,10 +35,10 @@ export default class MyComponent extends React.Component {
     const HeadDumb = this.props.subject=== '' ?
     (
       <ButtonToolbar style= {{ display: 'flex', justifyContent: 'center' }}>
-        <Button id="1" key={0} bsSize="small" onClick={this.onToggle} active={this.props.batch} id="button-your-batch" style={{ flex: '1' }} >
+        <Button key={0} bsSize="small" onClick={this.onToggle} active={this.props.batch} id="button-your-batch" style={{ flex: '1' }} >
           Your Batch
         </Button>
-        <Button id="2" key={1} bsSize="small" onClick={this.onToggle} active={!this.props.batch} id="button-daiict" style={{ flex: '1' }}>
+        <Button key={1} bsSize="small" onClick={this.onToggle} active={!this.props.batch} id="button-daiict" style={{ flex: '1' }}>
           DAIICT
         </Button>
       </ButtonToolbar>

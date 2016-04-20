@@ -169,11 +169,7 @@ export class Chatroom extends Component {
             isDashboard={this.props.isDashboard}
             isDiscussion={this.state.isDiscussion}
           />
-        <Scrollbars ref="scrollRef" id="chatList" style={{ height: this.state.height - 200 }}
-          autoHide
-          autoHideTimeout={1000}
-          autoHideDuration={400}
-        >
+        <Scrollbars ref="scrollRef" id="chatList" style={{ height: this.state.height - 200 }}>
           <ChatList
             style={{ flex: '8' }}
             chats={this.props.chats}

@@ -63,6 +63,7 @@ export default class WriteChat extends React.Component {
           justifyContent: 'center',
           padding: '5px',
           marginTop: '0px',
+          borderBottom: 'solid #d3d3d3 1px',
            }}
       >
         <div style= {{ width: widthStyle, marginLeft: marginLeftStyle }}>
