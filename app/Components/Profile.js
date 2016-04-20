@@ -108,7 +108,7 @@ class Profile extends Component {
     );
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', background: '#F5FCFF', alignItems: 'center', width: '100%', height: '100%' }}>
         {this.img()}
         <p>ID: {this.props.ID}</p>
         {name}
