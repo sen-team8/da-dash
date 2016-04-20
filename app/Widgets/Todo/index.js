@@ -4,9 +4,6 @@ import TodoList from './TodoList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ButtonToolbar, Button, Panel } from 'react-bootstrap';
-import { Link } from 'react-router';
-import { Scrollbars } from 'react-custom-scrollbars';
-
 
 import { actions } from '../../redux/actions';
 
@@ -22,18 +19,14 @@ const style = {
     minHeight: '340px',
   },
   head: {
-    fontSize: '24px',
-    marginBottom: '12px',
     borderBottomStyle: 'solid',
     borderColor: '#d3d3d3',
-    borderWidth: '2px',
-    fontColor: '#009ACD',
-    fontStyle: 'bold',
+    borderWidth: '1px',
   },
   pos: {
     position: 'absolute',
     bottom: '30px',
-    marginLeft: '32%',
+    marginLeft: 'calc(50% - 100px)',
   },
 };
 
@@ -138,15 +131,13 @@ class Todo extends Component {
     return (
       <div className="widget-outer">
         <Panel header={'Todo'} >
-        <div className="widget-inner-todo">
-        <div>
+      <div className="custom-inner">
+        <div style={style.head}>
           {this.showCreateTodo()}
         </div>
-        <Scrollbars ref="scrollRef" id="chatList" style={{ height: 310 }}>
           <TodoList actions={this.actionHandler} todos={this.props.todos}
             showCompleted={this.state.showCompleted}
           />
-        </Scrollbars>
         <div style={{ backgroundColor: 'black', width: '100%' }}>
         <ButtonToolbar style={style.pos}>
             <Button type="submit" bsStyle={bsStyle.buttonAll} onClick={this.handleShowAll}>All</Button>
