@@ -36,7 +36,7 @@ export default class CreateTodo extends React.Component {
 
   render() {
     return (
-      <div >
+      <div style={{ padding: '5px 20px 5px 10px', border: '1px' }}>
         <form onSubmit={this.handleSubmit} style={style.form}>
           <Input
             className="todo textfield"
@@ -44,9 +44,10 @@ export default class CreateTodo extends React.Component {
             placeholder="Enter text"
             value={this.state.text}
             onChange={this.handleChange}
+            style={{ padding: '2px' }}
           />
           <div>
-            <Button className="todo raised" bsStyle="primary" type="submit">
+            <Button className="todo raised" bsStyle="primary" type="submit" style={{ marginTop: '-2px' }}>
               <Icon size="1.65em" icon="add" style={{ color: 'white' }}>Add</Icon>
             </Button>
           </div>

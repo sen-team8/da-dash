@@ -12,7 +12,7 @@ export default class TodoList extends React.Component {
 
   render() {
     return (
-        <ListGroup className="todo listgroup" style={{ maxHeight: '340px' }}>
+        <ListGroup className="todo listgroup hide-overflow-x" style={{ height: '300px', borderBottomStyle: 'solid', borderColor: '#d3d3d3', borderWidth: '1px' }}>
         {
           this.props.todos.map((todo) => {
             return (

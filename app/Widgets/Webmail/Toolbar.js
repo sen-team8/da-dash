@@ -79,10 +79,11 @@ export default class Toolbar extends React.Component {
               </span>
               </h1>&nbsp;
           </div>
+          {/*
           <ButtonToolbar>
             <Button key={0} bsSize="small"><Glyphicon glyph="star" /> Star</Button>
             <Button key={1} bsSize="small" bsStyle="danger"><Glyphicon glyph="fire" /> Trending</Button>
-          </ButtonToolbar>
+          </ButtonToolbar>*/}
         </div>
         <Waypoint
           onEnter={this._handleWaypointEnter}
