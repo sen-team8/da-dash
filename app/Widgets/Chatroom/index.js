@@ -79,7 +79,7 @@ export class Chatroom extends Component {
     const foo = _.isEmpty(this.refs.scrollRef);
     if (
       !foo && (this.refs.scrollRef.getScrollHeight()-this.refs.scrollRef.getScrollTop() < this.state.height ||
-      this.refs.scrollRef.getScrollTop()===0)) {
+      this.refs.scrollRef.getScrollTop()<100)) {
       this.refs.scrollRef.scrollToBottom();
     }
   }
