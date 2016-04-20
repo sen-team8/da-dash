@@ -77,7 +77,7 @@ export default class TodoItem extends React.Component {
       }
       return (
         <div style={style.item}>
-          <div onDoubleClick={this.handleDoubleClick} style={{ maxWidth: '75%', wordWrap: 'break-word' }}>
+          <div onDoubleClick={this.handleDoubleClick} style={{ maxWidth: '60%', wordWrap: 'break-word' }}>
             {this.state.text}
           </div>
            <div>
