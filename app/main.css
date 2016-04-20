@@ -7,6 +7,24 @@ html, body {
   height: 100%;
 }
 
+.image-logo {
+   content: url(https://i.imgsafe.org/bc8d981.png);
+   width: 150px;
+   height: 150px;
+}
+
+.login-overlay {
+  opacity:0.8;
+  background-image: url(https://i.imgsafe.org/2988665.jpg);
+  background-size: 100% 100%;
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:0;
+}
+
 .hide-overflow-x {
   overflow-x: hidden;
 }
