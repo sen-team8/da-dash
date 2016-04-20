@@ -28,18 +28,19 @@ export default class Nav extends Component {
       <Navbar fixedTop className={style.navbar} fluid onToggle={this.props.toggleSideBar}>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'} style={{ fontSize: '28px', marginLeft: '5px' }}>Da-Dash</Link>
+            <Link to={'/'} style={{ fontSize: '28px',
+              marginLeft: '5px',
+              color: 'grey' }}
+            >DA-Dash
+            </Link>
             </Navbar.Brand>
           <Navbar.Toggle />
-            <Button type="button"
-              onClick={() => {window.location.href='https://sen-team8.gitbooks.io/user-manual/content/';}}
-              style={{
-                border: 'none',
-                float: 'right',
-                marginTop: '4px',
-                color: '#777',
-                height: 'auto' }}
-            ><Icon size="2.3em" icon="info-outline" /></Button>
+          <Button type="button" onClick={function() {window.location.href='https://sen-team8.gitbooks.io/user-manual/content/';}} style={{ border: 'none',
+                                        float: 'right',
+                                        marginTop: '4px',
+                                        color: '#777',
+                                        height: 'auto' }}
+          ><Icon size="2.3em" icon="info-outline" /></Button>
         </Navbar.Header>
       </Navbar>
     );

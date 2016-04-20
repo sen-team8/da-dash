@@ -25,7 +25,11 @@ export default class ChatItem extends React.Component {
       },
       name: {
         width: '100%',
-        fontSize: '1em',
+        borderBottom: '1px solid #d3d3d3',
+        padding: '10px',
+        backgroundColor: '#F2F8FA',
+        margin: 'auto',
+        lineHeight: '80%',
       },
       message: {
         width: '100%',
@@ -44,20 +48,22 @@ export default class ChatItem extends React.Component {
       </div>
     );
     return (
-      <div style={style.chat}>
-        <Panel header={header} bsStyle={who ? 'info': 'success'}>
-          <div style={style.message}>{
-              this.props.chat.message.substring(0, 8) === 'https://' ? (
-                  <a href={this.props.chat.message}>{this.props.chat.message}</a>
-              )
-              :
-              (<span>
-                {this.props.chat.message}
-              </span>
-              )
-            } <br />
-          </div>
-        </Panel>
+      <div style={this.style().chat}>
+        <div style={this.style().name}>
+          <p style={{ fontSize: '1.1em', fontWeight: 'bold' }}>{id}</p> <p style={{ color: '#AAAAAA', fontSize: '0.8em' }}>
+            posted on {this.props.chat.time}
+          </p>
+        </div>
+        <div style={this.style().message}>{
+            this.props.chat.message.substring(0, 8) === 'https://' ? (
+                <a href={this.props.chat.message}>{this.props.chat.message}</a>
+            )
+            :
+            (<span>
+              {this.props.chat.message}
+            </span>
+            )
+          } <br /></div>
       </div>
     );
   }
@@ -71,7 +77,7 @@ export default class ChatItem extends React.Component {
         circle
         responsive
         src={`https://ecampus.daiict.ac.in/webapp/intranet/StudentPhotos/${this.props.chat.id.trim().substring(0, 9)}.jpg`}
-        style={{height: '40px', width: '40px',  marginRight: '12px', marginTop: '5px', clip: 'rect(0px,10px,10px,0px)' }}
+        style={{ height: '40px', width: '40px', marginRight: '12px', marginTop: '5px', clip: 'rect(0px,10px,10px,0px)' }}
       />
     );
 
