@@ -39,7 +39,7 @@ export default class MyComponent extends React.Component {
           Your Batch
         </Button>
         <Button id="2" key={1} bsSize="small" onClick={this.onToggle} active={!this.props.batch} id="button-daiict" style={{ flex: '1' }}>
-          DAIICT
+          DA-IICT
         </Button>
       </ButtonToolbar>
     )
