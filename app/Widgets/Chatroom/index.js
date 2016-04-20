@@ -9,6 +9,8 @@ import { actions } from '../../redux/actions';
 import { firebaseRef } from '../../network/auth';
 import { Scrollbars } from 'react-custom-scrollbars';
 import MiniChat from './MiniChat';
+import Loading from 'react-loading';
+import Panel from 'react-bootstrap';
 
 const month= ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Nov', 'Dec'];
 
@@ -140,7 +142,7 @@ export class Chatroom extends Component {
     });
   }
 
-  render() {
+  showChatroom = () => {
     return this.props.isDashboard ?
     (
       <MiniChat
@@ -177,6 +179,17 @@ export class Chatroom extends Component {
           <WriteChat sendChat={this.sendChat} isDashboard= {this.props.isDashboard} />
         </div>
     );
+  }
+
+  render() {
+    return this.props.chats ? this.showChatroom():
+    <div className="widget-outer intranet-loading">
+      <Panel header={<h3>Webmail</h3>}>
+        <div className="widget-inner" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
+          <Loading type="bubbles" color="lightblue" />
+        </div>
+      </Panel>
+    </div>;
   }
 }
 

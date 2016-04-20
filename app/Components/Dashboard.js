@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
     const cols = this.iterateThrough();
     // console.log(Discussion);
     return (
-      <Scrollbars style={{ background: '#F5FCFF', height: window.innerHeight - 50 }}>
+      <Scrollbars className="dashboard" style={{ background: '#F5FCFF', height: window.innerHeight - 50 }}>
         <Grid>
           <Row className="widget-row">
             {cols.shift()}

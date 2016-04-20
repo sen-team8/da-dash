@@ -5,6 +5,8 @@ import { actions } from '../../redux/actions';
 import { formQuery } from '../../network/intranet';
 import Folder from './Folder';
 import MiniIntranet from './MiniIntranet';
+import Loading from 'react-loading';
+import { Panel } from 'react-bootstrap';
 
 export class IntranetWidget extends React.Component {
   static propTypes = {
@@ -43,12 +45,12 @@ export class IntranetWidget extends React.Component {
 
   render() {
     const progress = (
-      <div className="intranet-loading"
-        style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%' }}
-      >
-        <div style={{ alignSelf: 'center' }} >
-          Loading...
-        </div>
+      <div className="widget-outer intranet-loading">
+        <Panel header={<h3>Webmail</h3>}>
+          <div className="widget-inner" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%', alignItems: 'center' }}>
+            <Loading type="bubbles" color="lightblue" />
+          </div>
+        </Panel>
       </div>
     );
 
