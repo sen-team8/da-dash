@@ -37,7 +37,7 @@ export default class Toolbar extends React.Component {
   style = () => {
     return {
       wrapper: {
-        height: '152px',
+        height: '180px',
         backgroundColor: '#f5f5f5',
       },
       badge: {

@@ -1,0 +1,17 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/kushanjoshi/.nvm/versions/node/v5.4.1/bin/node /Users/kushanjoshi/.nvm/versions/node/v5.4.1/bin/firebase deploy
+[debug] Platform:     darwin
+[debug] Node Version: v5.4.1
+[debug] Time:         Thu Apr 21 2016 18:13:10 GMT+0530 (IST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/senteam8/token?token=XXX 
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/senteam8/token?token=XXX 
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'senteam8'...
+[info] 
+[info] i  deploying hosting
+[info] i  preparing build directory for upload...
+[debug] >>> HTTP REQUEST PUT https://deploy.firebase.com/firebase/senteam8/uploads/-KFsq715Vx2q-lAsuJZ9?token=XXX&fileCount=9&message= 
