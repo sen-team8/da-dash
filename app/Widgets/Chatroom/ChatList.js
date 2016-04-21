@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ChatItem from './ChatItem';
 import { ListGroup } from 'react-bootstrap';
 
-let prevChatId='';
+let prevChatId=null;
 let isPrevChatId=false;
 
 class ChatList extends React.Component {
@@ -19,10 +19,10 @@ class ChatList extends React.Component {
 
   render() {
     return (
-      <ListGroup style={{ height: '500px' }}>
+      <ListGroup style={{ }}>
       {
         this.props.chats.map((chat, key) => {
-          if (prevChatId===chat.id) {
+          if (prevChatId===chat.id && key!==0) {
             isPrevChatId = true;
           } else {
             isPrevChatId = false;
