@@ -25,6 +25,10 @@ html, body {
    height: 150px;
 }
 
+.dashboard-title {
+  font-size: 1em;
+}
+
 .login-overlay {
   opacity:0.8;
   background-image: url(https://i.imgsafe.org/2988665.jpg);
@@ -292,6 +296,10 @@ button:focus {
   left: 100%;
 }
 
+.choose-widgets {
+  width: 400px;
+}
+
 @media (max-width:650px) {
 /* (960 * 12) / 9 */
   .navbar-open {
@@ -300,6 +308,10 @@ button:focus {
 
   .sidebar-open {
     left: 180px;
+  }
+
+  .choose-widgets {
+    width: 200px;
   }
 }
 
@@ -311,6 +323,14 @@ button:focus {
 
   .sidebar-open {
     left: 130px;
+  }
+
+  .login-overlay {
+    margin-top: -160px;
+  }
+
+  .dashboard-title {
+    font-size: 0.8em;
   }
 }
 
