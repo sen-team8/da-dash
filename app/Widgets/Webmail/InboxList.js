@@ -38,9 +38,15 @@ function makeDate(unixTimestamp) {
   } else {
     let meridian = 'AM';
     let hours = date.getHours();
-    if (hours>12) {
-      hours-=12;
+    if (hours>=12) {
+      if (hours===12) {
+        hours=12;
+      } else {
+        hours%=12;
+      }
       meridian='PM';
+    } else if (hours===0) {
+      hours=12;
     }
     const minutes = `0${date.getMinutes()}`;
 
