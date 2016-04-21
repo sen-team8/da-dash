@@ -69,7 +69,7 @@ export default class WriteChat extends React.Component {
         circle
         responsive
         src={`https://ecampus.daiict.ac.in/webapp/intranet/StudentPhotos/${this.props.id.trim().substring(0, 9)}.jpg`}
-        style={{ height: '40px', width: '40px', marginRight: '0px', clip: 'rect(0px,10px,10px,0px)' }}
+        style={{ marginTop: '10px', height: '40px', width: '40px', marginRight: '0px', clip: 'rect(0px,10px,10px,0px)' }}
       />
     );
     const widthStyle = this.props.isDashboard ? '100%' : '61%';
@@ -85,24 +85,13 @@ export default class WriteChat extends React.Component {
         {ImgDumb}
         <div style= {{ width: widthStyle, marginLeft: marginLeftStyle }}>
           <form onSubmit={this.handleSubmit} style={style.form}>
-            <div style={{ padding: '1px 2px 2px 2px', maxWidth: '100%' }}>
-              <Button
-                className="chat raised"
-                bsStyle="default"
-                onClick={this.fileupload}
-                block
-                style={{ width: '50px', height: '40px' }}
-              >
-                <Icon size="1.9em" icon="file-upload" style={{ marginTop: '-5px' }} />
-              </Button>
-            </div>
             <div style={{ flexGrow: '1', padding: '2px', maxWidth: '100%' }}>
               <Input
                 className="chat textfield"
                 type="text"
                 placeholder="Enter message"
                 value={this.state.text} onChange={this.handleChange}
-                style={{ height: '40px' }}
+                style={{ height: '60px' }}
               />
             </div>
             <div style={{ dislpay: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -113,13 +102,26 @@ export default class WriteChat extends React.Component {
                     bsStyle="default"
                     type="submit"
                     block
-                    style={{ width: '50px', height: '40px' }}
+                    style={{ width: '60px', height: '30px' }}
                   >
                     <Icon size="1.9em" icon="message" style={{ marginTop: '-5px' }} />
                   </Button>
                 </div>
+                <div style={{ padding: '1px 2px 2px 2px', maxWidth: '100%' }}>
+                  <Button
+                    className="chat raised"
+                    bsStyle="default"
+                    onClick={this.fileupload}
+                    block
+                    style={{ width: '60px', height: '30px' }}
+                  >
+                    <Icon size="1.9em" icon="file-upload" style={{ marginTop: '-5px' }} />
+                  </Button>
+                </div>
               </div>
+
             </div>
+
           </form>
 
         </div>
