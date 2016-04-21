@@ -4,6 +4,7 @@ import { ListGroup } from 'react-bootstrap';
 
 let prevChatId=null;
 let isPrevChatId=false;
+let prevTime = null;
 
 class ChatList extends React.Component {
 
@@ -22,11 +23,12 @@ class ChatList extends React.Component {
       <ListGroup style={{ }}>
       {
         this.props.chats.map((chat, key) => {
-          if (prevChatId===chat.id && key!==0) {
+          if (prevChatId===chat.id && prevTime===chat.time && key!==0) {
             isPrevChatId = true;
           } else {
             isPrevChatId = false;
             prevChatId=chat.id;
+            prevTime = chat.time;
           }
           return (
               <ChatItem
