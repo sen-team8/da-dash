@@ -23,7 +23,7 @@ class ChatList extends React.Component {
       <ListGroup style={{ }}>
       {
         this.props.chats.map((chat, key) => {
-          if (prevChatId===chat.id && prevTime===chat.time && key!==0) {
+          if (prevChatId===chat.id && (chat.time-prevTime)<=60000 && key!==0) {
             isPrevChatId = true;
           } else {
             isPrevChatId = false;

@@ -12,7 +12,6 @@ import MiniChat from './MiniChat';
 import Loading from 'react-loading';
 import Panel from 'react-bootstrap';
 
-const month= ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Nov', 'Dec'];
 
 const style = {
   todo: {
@@ -123,12 +122,8 @@ export class Chatroom extends Component {
   }
 
   sendChat = (message) => {
-    const d = new Date();
     const group = this.updateChatGroup();
     const c = { id: this.props.ID, message };
-    const hours = `0${d.getHours()}`.slice(-2);
-    const minutes = `0${d.getMinutes()}`.slice(-2);
-    c.time = `${month[d.getMonth()]} ${d.getDate()} ${d.getFullYear()} ${hours}:${minutes}`;
     this.props.actions.sendChat(c, group);
   }
 
