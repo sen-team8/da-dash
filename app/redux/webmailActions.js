@@ -7,6 +7,7 @@ export const RECEIVE_EMAIL = 'RECEIVE_EMAIL';
 export const REQUEST_EMAIL = 'REQUEST_EMAIL';
 export const RECEIVE_EMAIL_ERROR = 'RECEIVE_EMAIL_ERROR';
 export const QUICK_SEARCH_WEBMAIL = 'QUICK_SEARCH_WEBMAIL';
+export const NULL_THE_EMAIL = 'NULL_THE_EMAIL';
 
 export function requestInbox() {
   return {
@@ -46,6 +47,12 @@ export function receiveEmailError(e) {
   return {
     type: RECEIVE_EMAIL_ERROR,
     error: e,
+  };
+}
+
+export function nullTheEmail() {
+  return {
+    type: NULL_THE_EMAIL,
   };
 }
 

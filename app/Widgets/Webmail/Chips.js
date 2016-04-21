@@ -5,12 +5,13 @@ import React from 'react';
 // const handleClick = (key, pathString, goToPath) => {
 //   return goToPath(pathString.slice(0, key+1));
 // };
+import { Breadcrumb, BreadcrumbItem } from 'react-bootstrap';
+
+import Icon from '../../helper/Icons';
+
 const searchStyle = () => {
   return {
-    overflowX: 'hidden',
-    margin: window.innerWidth < 600 ? '0 20px 0px 0' : '0 20px 10px 0',
-    padding: window.innerWidth < 600 ? '4px 10px' : 0,
-    borderTop: window.innerWidth < 600 ? 'solid 1px #e0e0e0': 0,
+
   };
 };
 
@@ -34,13 +35,15 @@ export default class Chips extends React.Component {
     setSearch: React.PropTypes.func,
     showFixed: React.PropTypes.bool.isRequired,
     quickSearch: React.PropTypes.object,
+    nullTheEmail: React.PropTypes.func,
   }
 
   handleSearchChange = () => {
     const value = this.refs.search.value;
     if (value && value.length >= 1 && value !== '' && value !== ' ') {
+      console.log(value);
       clearTimeout(this.lastQuery);
-      this.lastQuery = setTimeout(() => this.props.setSearch(value), 400);
+      this.lastQuery = setTimeout(() => this.props.setSearch(value), 800);
     } else {
       this.clearSearch();
     }
@@ -60,26 +63,35 @@ export default class Chips extends React.Component {
         paddingBottom: this.props.showFixed? '4px' : undefined,
         borderBottom: this.props.showFixed? 'solid 1px #e0e0e0' : undefined,
         display: 'flex',
-        flexDirection: window.innerWidth < 600 ? 'column': 'row',
+        flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
         zIndex: '1000',
         backgroundColor: 'rgb(245, 245, 245)',
+        // marginTop: this.props.showFixed ? undefined: 30,
       },
+      search: {
+        margin: window.innerWidth < 600 ? '0 20px 0px 0' : '0 20px 10px 0',
+        // padding: window.innerWidth < 600 ? '4px 10px' : 0,
+        // borderTop: window.innerWidth < 600 ? 'solid 1px #e0e0e0': 0,
+        // width: window.innerWidth < 600 ? '40%': undefined,
+      }
     };
   };
 
   render() {
+    const style = this.styleFoo();
+
     const searchButton = !(this.props.quickSearch) ?
     (<button className="btn" type="button">
-    <span className=" glyphicon glyphicon-search"></span>
-    </button>) :
-    (<button className="btn" type="button" onClick={this.clearSearch}>
-    <span className=" glyphicon glyphicon-remove"></span>
-    </button>
+      <span className=" glyphicon glyphicon-search"></span>
+      </button>) :
+      (<button className="btn" type="button" onClick={this.clearSearch}>
+      <span className=" glyphicon glyphicon-remove"></span>
+      </button>
     );
     const search = (
-      <div className="intranet-search webmail-search" style={searchStyle()}>
+      <div className="intranet-search" style={style.search}>
         <input type="text" className="query form-control"
           ref="search" placeholder="Search" onChange={this.handleSearchChange}
         />
@@ -88,26 +100,13 @@ export default class Chips extends React.Component {
         </span>
       </div>
     );
-    const style = this.styleFoo();
-    // const home = (
-    //   <BreadcrumbItem onClick={function foo() {goToPath([]);}} key={-1}>
-    //     <Icon icon="home" style={{ fill: '#000' }} />
-    //   </BreadcrumbItem>
-    // );
-
-    // const List = pathString.map((e, k) => {
-    //   return (
-    //     <BreadcrumbItem
-    //       key={k}
-    //       onClick={function foo() {handleClick(k, pathString, goToPath);}}
-    //     >
-    //       {chipsDisplay(e, pathString.length, k)}
-    //     </BreadcrumbItem>
-    //   );
-    // });
-    // return (<div>hellow rold how are you</div>);
     return (
       <div style={style.wrapper} className="intranet-breadcrumb">
+        <Breadcrumb>
+          <BreadcrumbItem onClick={this.props.nullTheEmail}>
+            <Icon icon="home" style={{ fill: '#000' }} />
+          </BreadcrumbItem>
+        </Breadcrumb>
         {search}
       </div>
     );

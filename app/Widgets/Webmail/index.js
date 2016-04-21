@@ -20,10 +20,14 @@ export class WebmailWidget extends React.Component {
     isDashboard: React.PropTypes.bool,
     quickSearch: React.PropTypes.object,
     searchForWebmail: React.PropTypes.func.isRequired,
+    lastFetched: React.PropTypes.number,
+    nullTheEmail: React.PropTypes.func,
   };
 
   componentDidMount() {
-    this.props.getInbox(this.props.user);
+    if (Date.now() - this.props.lastFetched > 60*5000) {
+      this.props.getInbox(this.props.user);
+    }
   }
 
   setSearch = (s) => {
@@ -42,6 +46,9 @@ export class WebmailWidget extends React.Component {
           showEmail={this.showEmail}
           setSearch={this.setSearch}
           quickSearch={this.props.quickSearch}
+          isFetchingEmail={this.props.isFetchingEmail}
+          email={this.props.email}
+          nullTheEmail={this.props.nullTheEmail}
         />;
   }
 
@@ -49,7 +56,15 @@ export class WebmailWidget extends React.Component {
     return this.props.inbox ? this.showInbox():
     <div className="widget-outer intranet-loading">
       <Panel header={<h3>Webmail</h3>}>
-        <div className="widget-inner" style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', justifyContent: 'center', height: '100%', width: '100%' }}>
+        <div className="widget-inner"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            height: '100%',
+            width: '100%' }}
+        >
           <Loading type="bubbles" color="lightblue" />
         </div>
       </Panel>

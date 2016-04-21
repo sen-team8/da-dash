@@ -1,11 +1,12 @@
 import React from 'react';
 
+function createMarkup(html) { return { __html: html }; }
+
 export default (props) => {
   const { email } = props;
-  console.log(email);
   return (
-    <div>
-      <h2>hola buddy</h2>
+    <div style={{ padding: '20px' }}>
+      <div dangerouslySetInnerHTML={createMarkup(email.html)} />
     </div>
   );
 }

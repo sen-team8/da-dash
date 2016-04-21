@@ -10,6 +10,8 @@ export default class Toolbar extends React.Component {
     count: React.PropTypes.number.isRequired,
     setSearch: React.PropTypes.func,
     quickSearch: React.PropTypes.object,
+    nullTheEmail: React.PropTypes.func,
+    email: React.PropTypes.object,
   }
 
   constructor(props, state) {
@@ -35,7 +37,7 @@ export default class Toolbar extends React.Component {
   style = () => {
     return {
       wrapper: {
-        height: '202px',
+        height: '152px',
         backgroundColor: '#f5f5f5',
       },
       badge: {
@@ -73,11 +75,16 @@ export default class Toolbar extends React.Component {
       <div style={style.wrapper}>
         <div style={style.jumbo}>
           <div style={style.header}>
-            <h1 className="intranet-heading">&nbsp;&nbsp;
-              Inbox
-              <span>
-                <Badge pullRight style={style.badge}>{count}</Badge>
-              </span>
+            <h1 className="intranet-heading" style={{ textAlign: 'center' }}>&nbsp;&nbsp;
+              {(this.props.email && this.props.email.subject) || 'Inbox'}
+              {
+                !(this.props.email && this.props.email.subject) ? (
+                  <span>
+                    <Badge pullRight style={style.badge}>{count}</Badge>
+                  </span>
+                ) : null
+              }
+
               </h1>&nbsp;
           </div>
           {/*
@@ -94,6 +101,7 @@ export default class Toolbar extends React.Component {
           setSearch={this.props.setSearch}
           showFixed={this.state.showFixed}
           quickSearch={this.props.quickSearch}
+          nullTheEmail={this.props.nullTheEmail}
         />
     </div>
     );

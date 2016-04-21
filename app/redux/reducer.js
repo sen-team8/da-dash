@@ -39,6 +39,7 @@ import {
   RECEIVE_EMAIL,
   RECEIVE_EMAIL_ERROR,
   QUICK_SEARCH_WEBMAIL,
+  NULL_THE_EMAIL,
 } from './webmailActions';
 
 import {
@@ -277,7 +278,6 @@ export function intranet(state=initialIntranetState, action) {
         searchError: null,
       });
     case LONG_SEARCH:
-      // console.log(action.searchResults);
       return Object.assign({}, state, {
         search: state.isSearching ? action.searchResults : null,
         isSearching: false,
@@ -312,6 +312,7 @@ export function webmail(state=webmailState, action) {
       return Object.assign({}, state, {
         isFetching: true,
         quickSearch: null,
+        email: null,
       });
     case RECEIVE_INBOX:
       return Object.assign({}, state, {
@@ -319,6 +320,7 @@ export function webmail(state=webmailState, action) {
         lastFetched: Date.now(),
         isFetching: false,
         quickSearch: null,
+        email: null,
       });
     case RECEIVE_INBOX_ERROR:
       return Object.assign({}, state, {
@@ -331,6 +333,7 @@ export function webmail(state=webmailState, action) {
         isFetchingEmail: true,
         emaildId: action.emailId,
         quickSearch: null,
+        email: null,
       });
     case RECEIVE_EMAIL:
       return Object.assign({}, state, {
@@ -343,6 +346,13 @@ export function webmail(state=webmailState, action) {
         isFetchingEmail: false,
         error: action.error,
         quickSearch: null,
+        email: null,
+      });
+    case NULL_THE_EMAIL:
+      return Object.assign({}, state, {
+        isFetchingEmail: false,
+        email: null,
+        quickSearch: null,
       });
     case QUICK_SEARCH_WEBMAIL:
       newSearchObj = new Immutable.List();
@@ -350,16 +360,18 @@ export function webmail(state=webmailState, action) {
         if ((v.get('su').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1)
         || (v.get('fr').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1)) {
           newSearchObj = newSearchObj.push(v);
+        } else {
+          v.get('e').forEach(w => {
+            if (w.get('p')!==undefined && w.get('p').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1) {
+              newSearchObj = newSearchObj.push(v);
+            }
+          });
         }
-        v.get('e').forEach(w => {
-          if (w.get('p')!==undefined && w.get('p').toLowerCase().indexOf(action.searchToken.toLowerCase()) > -1) {
-            newSearchObj = newSearchObj.push(v);
-          }
-        });
       });
 
       return Object.assign({}, state, {
         quickSearch: newSearchObj,
+        email: null,
       });
     default:
       return state;

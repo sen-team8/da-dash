@@ -31,6 +31,7 @@ import {
   getInbox,
   getEmail,
   searchForWebmail,
+  nullTheEmail,
 } from './webmailActions';
 
 import { sendChat, receivedChat, clearChat } from './chatActions';
@@ -69,6 +70,7 @@ export const actions = {
   getInbox,
   getEmail,
   searchForWebmail,
+  nullTheEmail,
 
   getProfileName,
   setProfileName,

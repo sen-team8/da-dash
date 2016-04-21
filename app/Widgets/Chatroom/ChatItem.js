@@ -18,9 +18,10 @@ export default class ChatItem extends React.Component {
         display: 'flex',
         flexDirection: 'column',
         wordWrap: 'break-word',
-        padding: '0px',
+        padding: this.props.isDashboard ? '0 15px 0 15px' : 0,
         marginTop: '0px',
         marginBottom: '0px',
+
       },
       name: {
         width: '100%',
@@ -28,7 +29,7 @@ export default class ChatItem extends React.Component {
       },
       message: {
         width: '100%',
-        padding: this.props.isDashboard ? '10px': 0,
+        padding: this.props.isDashboard ? 5 : 0,
       },
     };
   }
@@ -55,7 +56,7 @@ export default class ChatItem extends React.Component {
     );
     return (
       <div style={style.chat}>
-        <Panel header={header} style={{ marginBottom: '2px', marginTop: panelMarginBot }} bsStyle={who ? 'info': 'success'}>
+        <Panel header={header} bsStyle={who ? 'info': 'success'}>
           <div style={style.message}>{
               this.props.chat.message.substring(0, 8) === 'https://' ? (
                   <a href={this.props.chat.message}>{this.props.chat.message}</a>
