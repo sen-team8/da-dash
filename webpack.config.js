@@ -43,7 +43,7 @@ const common = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
-      title: 'Dadash',
+      title: 'DA-Dash',
       appMountId: 'app',
       inject: false,
     }),
