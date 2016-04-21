@@ -59,7 +59,7 @@ class Login extends React.Component {
     return (
       <div className="login-overlay">
       <div>
-      <div className="image-logo" style={{ marginLeft: '44%', marginTop: '10px' }} />
+      <div className="image-logo center-block" style={{ marginTop: '10px' }} />
       <div>
       <div style={{ width: '100%', textAlign: 'center', marginTop: '20px', marginBottom: '30px' }}>
       <h1 style={{ fontWeight: 'bold', color: 'black' }}>DA-Dash</h1>
