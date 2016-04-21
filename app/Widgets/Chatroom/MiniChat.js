@@ -34,7 +34,7 @@ class Mini extends Component {
       <div className="widget-outer">
         <Panel header={<Link to="/chatroom">Batch Chat </Link>} >
           <div className="custom-inner">
-            <Scrollbars ref="scrollRef" id="chatList" style={{ height: 400-85 }}>
+            <Scrollbars ref="scrollRef" id="chatList" style={{ height: 400-50 }}>
             <ChatList
               style={{ flex: '8' }}
               chats={this.props.chats}
