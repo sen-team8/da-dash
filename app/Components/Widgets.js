@@ -10,7 +10,6 @@ import { actions } from '../redux/actions';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
 
 const style = {
-  width: 400,
   justifyContent: 'center',
   alignItems: 'center',
 };
@@ -54,7 +53,7 @@ class Container extends Component {
       <Row>
       <Col offset={6}>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-      <Panel defaultExpanded header="Choose Widgets" style={{ width: '700px' }}>
+      <Panel defaultExpanded header="Choose Widgets" style={{ width: 'auto' }}>
       Drag and drop widgets to customize your dashboard.
       You can also select widgets to show on your home screen by checking or unchecking boxes.
       <div style={{ display: 'flex',
@@ -63,7 +62,7 @@ class Container extends Component {
                     alignItems: 'center',
                     marginTop: '10px' }}
       >
-        <ListGroup style={style}>
+        <ListGroup style={style} className="choose-widgets">
           {widgets.map((widget, i) => {
             return (
               <Widget key={widget.id}

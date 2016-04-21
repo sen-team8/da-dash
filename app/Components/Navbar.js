@@ -31,7 +31,7 @@ export default class Nav extends Component {
             <Link to={'/'} style={{ fontSize: '28px',
               marginLeft: '5px',
               color: 'grey' }}
-            >DA-Dash
+            ><div className="dashboard-title">DA-Dash</div>
             </Link>
             </Navbar.Brand>
           <Navbar.Toggle />
