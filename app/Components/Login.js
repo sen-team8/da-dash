@@ -60,7 +60,7 @@ class Login extends React.Component {
       <div className="login-overlay">
       <div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div className="image-logo" style={{ marginTop: '10px' }} />
+          <img className="image-logo" style={{ marginTop: '10px' }} src="https://i.imgsafe.org/bc8d981.png" />
       </div>
       <div>
       <div style={{ width: '100%', textAlign: 'center', marginTop: '20px', marginBottom: '30px' }}>
