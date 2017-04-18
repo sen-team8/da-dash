@@ -38,7 +38,11 @@ export default class MyComponent extends React.Component {
         <Button key={0} bsSize="small" onClick={this.onToggle} active={this.props.batch} id="button-your-batch" style={{ flex: '1' }} >
           Your Batch
         </Button>
+<<<<<<< HEAD
         <Button key={1} bsSize="small" onClick={this.onToggle} active={!this.props.batch} id="button-daiict" style={{ flex: '1' }}>
+=======
+        <Button key={1} bsSize="small" onClick={this.onToggle} active={!this.props.batch} id="button-daiict" style={{ flex: '1' }}>
+>>>>>>> upstream/master
           DA-IICT
         </Button>
       </ButtonToolbar>
